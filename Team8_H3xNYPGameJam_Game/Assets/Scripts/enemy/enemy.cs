@@ -33,7 +33,7 @@ public class enemy : MonoBehaviour
         // Debug.Log(StartingPos);
         sm = GetComponent<SpriteMan>();
         CameraShake.instance.addTargetGroup(transform);
-        targetTrans = GameObject.Find("player").GetComponent<SpriteRenderer>();
+        targetTrans = GameObject.Find("Player").GetComponent<SpriteRenderer>();
         StartCoroutine("attackCD");
         hitimpact = GameObject.Find("HitImpact");
 

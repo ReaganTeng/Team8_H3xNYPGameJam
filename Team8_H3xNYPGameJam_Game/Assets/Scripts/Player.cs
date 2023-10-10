@@ -18,29 +18,48 @@ public class Player : MonoBehaviour
     public TextMeshProUGUI playerStrengthText;
     public float playerWeight;
     public TextMeshProUGUI playerWeightText;
+    float speed = 2;
 
     public int enemiesDefeated;
     int totalenemiesDefeated;
-    [SerializeField] Sprite[] idle;
-    [SerializeField] Sprite[] Attacking;
-    [SerializeField] Sprite[] Hurt;
+    [SerializeField] Sprite[] idleAnim;
+    [SerializeField] Sprite[] attackingAnim;
+    [SerializeField] Sprite[] dodgeAnim;
+    [SerializeField] Sprite[] hurtAnim;
+    Sprite[] current;
+    SpriteMan sm;
     public Canvas shopCanvas;
 
+    public Sprite[] testing;
+    playerState currentPlayerState=playerState.IDLE;
+
+
+    playerState oldPlayerState;
     private void Start()
     {
+        oldPlayerState = currentPlayerState;
         shopCanvas.enabled = false;
-
         enemiesDefeated = 0;
         playerStrength = 1.0f;
         playerStrengthText.text = playerStrength.ToString();
         playerWeight = 1.0f;
         playerWeightText.text = playerWeight.ToString();
-
+        sm=GetComponent<SpriteMan>();
         rb = GetComponent<Rigidbody2D>();
         animController = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         gameObject.AddComponent<SpriteMan>();
         AS = GetComponent<AudioSource>();
+
+    }
+
+    private void GetAnimation()
+    {
+
+        idleAnim = Resources.LoadAll<Sprite>("MC_attack");
+        attackingAnim = Resources.LoadAll<Sprite>("PlayerAnimation/boxer_attack");
+        dodgeAnim = Resources.LoadAll<Sprite>("PlayerAnimation/boxer_dodge");
+        hurtAnim = Resources.LoadAll<Sprite>("PlayerAnimation/MC_attack");
     }
 
     private void Update()
@@ -52,7 +71,8 @@ public class Player : MonoBehaviour
         }
        
 
-        animationCheck();
+        //animationCheck();
+        playAnimation();
     }
 
     //RANDOMISE A SOUND TO PLAY
@@ -92,11 +112,51 @@ public class Player : MonoBehaviour
             {
                 spriteRenderer.flipX = false;
             }
-            animController.SetBool("attack", false);
-            animController.SetBool("dodge", false);
-            animController.SetBool("hurt", false);
+            //animController.SetBool("attack", false);
+            //animController.SetBool("dodge", false);
+            //animController.SetBool("hurt", false);
+            currentPlayerState = playerState.IDLE;
             isAttacking = false; // Reset attack flag
         }
+    }
+
+    private void playAnimation()
+    {
+        if (oldPlayerState == currentPlayerState)
+        {
+            if (sm.ReturnDone())
+            {
+                if (currentPlayerState != playerState.IDLE)
+                {
+                    sm.RunAnimation(idleAnim, speed);
+                }
+                else {
+                    sm.RunAnimation(idleAnim, speed);
+                }
+                currentPlayerState = playerState.IDLE;
+            }
+        }
+        else
+        {
+            Debug.Log("asdasd");
+            switch(currentPlayerState)
+            {
+                case playerState.IDLE:
+                    sm.RunAnimation(idleAnim, speed);
+                    break;
+                case playerState.ATTACK:
+                    sm.RunAnimation(attackingAnim, speed);
+                    break;
+                case playerState.DODGE:
+                    sm.RunAnimation(dodgeAnim, speed);
+                    break;
+                case playerState.HURT:
+                    sm.RunAnimation(hurtAnim, speed);
+                    break;
+            }
+        }
+
+        oldPlayerState = currentPlayerState;
     }
 
     //MOBILE CONTROLS
@@ -139,19 +199,24 @@ public class Player : MonoBehaviour
         // Check for A key (dodge left)
         if (Input.GetKeyDown(KeyCode.A))
         {
-            DodgeLeft();
+            // DodgeLeft();
+            currentPlayerState = playerState.DODGE;
         }
 
         // Check for D key (dodge right)
         if (Input.GetKeyDown(KeyCode.D))
         {
-            DodgeRight();
+            //  DodgeRight();
+
+            currentPlayerState = playerState.DODGE;
         }
 
         // Check for W key (attack)
         if (Input.GetKeyDown(KeyCode.W))
         {
-            Attack();
+            // Attack();
+
+            currentPlayerState = playerState.ATTACK;
         }
     }
 
@@ -159,7 +224,7 @@ public class Player : MonoBehaviour
     //WHAT HAPPENS WHEN PLAYER DODGES
     private void DodgeLeft()
     {
-        animController.Rebind();
+        //animController.Rebind();
 
         if (spriteRenderer.flipX)
         {
@@ -175,7 +240,7 @@ public class Player : MonoBehaviour
 
     private void DodgeRight()
     {
-        animController.Rebind();
+        //animController.Rebind();
 
         spriteRenderer.flipX = true;
 
@@ -194,7 +259,7 @@ public class Player : MonoBehaviour
     {
         if (!isAttacking)
         {
-            animController.Rebind();
+            //animController.Rebind();
 
             animController.SetBool("attack", false);
             animController.SetBool("dodge", false);
@@ -211,7 +276,7 @@ public class Player : MonoBehaviour
     {
         if (!isAttacking) // Only allow attacking if not already attacking
         {
-            animController.Rebind();
+           // animController.Rebind();
 
             animController.SetBool("dodge", false);
             animController.SetBool("hurt", false);
@@ -227,4 +292,12 @@ public class Player : MonoBehaviour
             isAttacking = true; 
         }
     }
+}
+
+enum playerState
+{
+    IDLE,
+    DODGE,
+    ATTACK,
+    HURT
 }
