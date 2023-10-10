@@ -21,7 +21,9 @@ public class Player : MonoBehaviour
 
     public int enemiesDefeated;
     int totalenemiesDefeated;
-
+    [SerializeField] Sprite[] idle;
+    [SerializeField] Sprite[] Attacking;
+    [SerializeField] Sprite[] Hurt;
     public Canvas shopCanvas;
 
     private void Start()
@@ -37,7 +39,7 @@ public class Player : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         animController = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-
+        gameObject.AddComponent<SpriteMan>();
         AS = GetComponent<AudioSource>();
     }
 
@@ -71,6 +73,11 @@ public class Player : MonoBehaviour
         {
             shopCanvas.enabled = true;
         }
+    }
+
+    public void Animation()
+    {
+
     }
 
     //WHEN ANIMATION OTHER THAN IDLE HAS STOPPED PLAYING
