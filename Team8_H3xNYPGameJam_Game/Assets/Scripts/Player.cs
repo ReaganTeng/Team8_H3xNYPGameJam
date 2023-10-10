@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
     public AudioClip[] punchingSounds;
     public AudioClip[] hurtSounds;
 
+    private AudioSource AS;
     private bool isAttacking = false; // Flag to prevent multiple attacks
 
     private void Start()
@@ -15,6 +16,8 @@ public class Player : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         animController = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+
+        AS = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -32,7 +35,8 @@ public class Player : MonoBehaviour
         int idx = Random.Range(0, soundList.Length);
         Debug.Log("Punching Sound Played " + idx);
         // Play the sound at the specified index
-        AudioSource.PlayClipAtPoint(punchingSounds[idx], transform.position);
+        AS.clip = soundList[idx];
+        AS.Play();
     }
     //
 
@@ -41,8 +45,9 @@ public class Player : MonoBehaviour
     private void animationCheck()
     {
         AnimatorStateInfo currentAnimationState = animController.GetCurrentAnimatorStateInfo(0);
+
         if (animController.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f
-            && !currentAnimationState.IsName("player_idle"))
+            && !currentAnimationState.IsName("boxer_idle"))
         {
             if (spriteRenderer.flipX)
             {
@@ -51,7 +56,6 @@ public class Player : MonoBehaviour
             animController.SetBool("attack", false);
             animController.SetBool("dodge", false);
             animController.SetBool("hurt", false);
-
             isAttacking = false; // Reset attack flag
         }
     }
