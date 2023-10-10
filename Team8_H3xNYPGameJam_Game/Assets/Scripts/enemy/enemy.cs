@@ -36,8 +36,11 @@ public class enemy : MonoBehaviour
         targetTrans = GameObject.Find("Player").GetComponent<SpriteRenderer>();
         StartCoroutine("attackCD");
         hitimpact = GameObject.Find("HitImpact");
+    }
 
-
+    public void GETANIMATION()
+    {
+        AttackingSprite = Resources.LoadAll<Sprite>($"EnemyAnimation/{enemysStates.name}/{enemysStates.name}_attack");
     }
 
     IEnumerator attackCD()

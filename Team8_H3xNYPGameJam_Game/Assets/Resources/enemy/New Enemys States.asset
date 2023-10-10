@@ -16,6 +16,7 @@ MonoBehaviour:
   Weight: 2
   strength: 2
   enemySprite: {fileID: 1390732199, guid: 1ba0cc003a797f040bbaa791679274ce, type: 3}
+  Enemy_name: bob
   AttackAnimation:
   - {fileID: 1125619606, guid: 23938e5a315a021498e650efc22c151c, type: 3}
   - {fileID: 1313193526, guid: 23938e5a315a021498e650efc22c151c, type: 3}
