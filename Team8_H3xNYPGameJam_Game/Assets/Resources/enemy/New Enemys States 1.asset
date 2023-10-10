@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7255f9d947863247a86712d9f06fc7a, type: 3}
   m_Name: New Enemys States 1
   m_EditorClassIdentifier: 
-  speed: 0
-  Weight: 0
-  strength: 0
-  enemySprite: {fileID: 0}
+  speed: 2
+  Weight: 2
+  strength: 2
+  enemySprite: {fileID: 328668326, guid: e35a56a36fefe6f4eaa87b98f0e39eaa, type: 3}
+  AttackAnimation: []

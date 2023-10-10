@@ -8,5 +8,6 @@ public class EnemysStates : ScriptableObject
     public float Weight;
     public float strength;
     public Sprite enemySprite;
+    public Sprite[] AttackAnimation;
 
 }

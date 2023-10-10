@@ -1,15 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MainMenuScript : MonoBehaviour
 {
-    private CanvasGroup canvasGroup;
+    [SerializeField] private CanvasGroup canvasGroup;
     [SerializeField] private ScaleTextScript scaleTextScript;
+    [SerializeField] private TMP_Text startText;
+    [SerializeField] private GameObject settingsPanel;
+    [SerializeField] private GameObject settingsButton;
     // Start is called before the first frame update
     void Start()
     {
-        canvasGroup = GetComponent<CanvasGroup>();
+       
     }
 
     // Update is called once per frame
@@ -28,5 +33,19 @@ public class MainMenuScript : MonoBehaviour
             canvasGroup.alpha -= Time.deltaTime / 2;
             yield return null;
         }
+    }
+    public void onSettingsButtonClicked()
+    {
+        Color newColor = new Vector4(0, 0, 0, 0);
+        startText.color = newColor;
+        settingsButton.SetActive(false);
+        settingsPanel.SetActive(true);
+    }
+    public void onSettingsBackButtonClicked()
+    {
+        Color newColor = new Vector4(0, 0, 0, 1);
+        startText.color = newColor;
+        settingsButton.SetActive(true);
+        settingsPanel.SetActive(false);
     }
 }
