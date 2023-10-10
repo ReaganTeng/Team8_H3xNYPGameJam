@@ -14,10 +14,10 @@ public class enemyManeger : MonoBehaviour
            Destroy(e); e = null;
         }
         GameObject SpawnEnemy = new GameObject();
-        SpawnEnemy.AddComponent(typeof(enemy));
+        e= SpawnEnemy.AddComponent(typeof(enemy)) as enemy;
         SpawnEnemy.AddComponent(typeof(SpriteRenderer));
-        SpawnEnemy.transform.position = new Vector3(0, .7f, 0);
-        e = SpawnEnemy.GetComponent<enemy>();
+        SpawnEnemy.transform.localScale *= 3;
+        SpawnEnemy.name = "Enemy";
        // Instantiate(SpawnEnemy, new Vector3(0,.7f,0),Quaternion.identity);
         setEnemyStats();
     }
