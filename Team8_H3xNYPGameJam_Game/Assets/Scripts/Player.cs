@@ -6,6 +6,7 @@ public class Player : MonoBehaviour
     private Animator animController;
     private SpriteRenderer spriteRenderer;
     public AudioClip[] punchingSounds;
+    public AudioClip[] hurtSounds;
 
     private bool isAttacking = false; // Flag to prevent multiple attacks
 
@@ -18,30 +19,30 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        // Check for mobile controls (swipes)
         CheckMobileInput();
 
-        // Check for PC controls
         CheckPCInput();
 
         animationCheck();
     }
 
-    void PlayPunchingSound()
+    //RANDOMISE A SOUND TO PLAY
+    void PlayRandomSound(AudioClip[] soundList)
     {
-        int idx = Random.Range(0, punchingSounds.Length);
+        int idx = Random.Range(0, soundList.Length);
         Debug.Log("Punching Sound Played " + idx);
         // Play the sound at the specified index
         AudioSource.PlayClipAtPoint(punchingSounds[idx], transform.position);
     }
+    //
 
+
+    //WHEN ANIMATION OTHER THAN IDLE HAS STOPPED PLAYING
     private void animationCheck()
     {
-        // Get information about the current animation state in layer 0
         AnimatorStateInfo currentAnimationState = animController.GetCurrentAnimatorStateInfo(0);
-        // Check if the current animation has finished
         if (animController.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f
-            && !currentAnimationState.IsName("boxer_idle"))
+            && !currentAnimationState.IsName("player_idle"))
         {
             if (spriteRenderer.flipX)
             {
@@ -49,10 +50,13 @@ public class Player : MonoBehaviour
             }
             animController.SetBool("attack", false);
             animController.SetBool("dodge", false);
+            animController.SetBool("hurt", false);
+
             isAttacking = false; // Reset attack flag
         }
     }
 
+    //MOBILE CONTROLS
     private void CheckMobileInput()
     {
         // Check for swipe
@@ -62,25 +66,31 @@ public class Player : MonoBehaviour
             if (touch.phase == TouchPhase.Moved)
             {
                 Vector2 deltaPosition = touch.deltaPosition;
-                // SWIPE LEFT
-                if (deltaPosition.x < 0)
-                {
-                    DodgeLeft();
-                }
-                // SWIPE RIGHT
-                else if (deltaPosition.x > 0)
-                {
-                    DodgeRight();
-                }
-                // SWIPE UP (with a sensitivity threshold)
-                else if (deltaPosition.y > deltaPosition.x && deltaPosition.y > Screen.height * 0.05f)
+                
+                // DETECT WHETHER PLAYER SWIPES UP
+                if (deltaPosition.y > Screen.height * 0.05f)
                 {
                     Attack();
+                }
+                //IF NO, THEN IT MUST BE SIDE SWIPE
+                else
+                {
+                    // SWIPE LEFT
+                    if (deltaPosition.x < -Screen.width * 0.05f)
+                    {
+                        DodgeLeft();
+                    }
+                    // SWIPE RIGHT
+                    else if (deltaPosition.x > Screen.width * 0.05f)
+                    {
+                        DodgeRight();
+                    }
                 }
             }
         }
     }
 
+    //KEYBOARD CONTROLS
     private void CheckPCInput()
     {
         // Check for A key (dodge left)
@@ -102,11 +112,14 @@ public class Player : MonoBehaviour
         }
     }
 
+
+    //WHAT HAPPENS WHEN PLAYER DODGES
     private void DodgeLeft()
     {
         if (!isAttacking) // Only allow dodging if not attacking
         {
             animController.SetBool("attack", false);
+            animController.SetBool("hurt", false);
             animController.SetBool("dodge", true);
             // Implement dodge left logic here
             Debug.Log("Dodge Left");
@@ -118,23 +131,39 @@ public class Player : MonoBehaviour
         if (!isAttacking) // Only allow dodging if not attacking
         {
             animController.SetBool("attack", false);
+            animController.SetBool("hurt", false);
             animController.SetBool("dodge", true);
             spriteRenderer.flipX = true;
             // Implement dodge right logic here
             Debug.Log("Dodge Right");
         }
     }
+    //
 
+    //WHAT HAPPENS WHEN PLAYER IS HURT
+    private void hurt()
+    {
+        animController.SetBool("attack", false);
+        animController.SetBool("dodge", false);
+        animController.SetBool("hurt", true);
+        //RANDOMISE A HURT SOUND TO PLAY
+        PlayRandomSound(hurtSounds);
+        Debug.Log("Hurt");
+    }
+
+
+    //WHAT HAPPENS WHEN PLAYER ATTACKS
     private void Attack()
     {
         if (!isAttacking) // Only allow attacking if not already attacking
         {
             animController.SetBool("dodge", false);
+            animController.SetBool("hurt", false);
             animController.SetBool("attack", true);
-            PlayPunchingSound();
-            // Implement attack logic here
+            //RANDOMISE A PUNCH SOUND TO PLAY
+            PlayRandomSound(punchingSounds);
             Debug.Log("Attack");
-            isAttacking = true; // Set attack flag
+            isAttacking = true; 
         }
     }
 }
