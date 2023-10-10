@@ -47,7 +47,7 @@ public class Player : MonoBehaviour
         AnimatorStateInfo currentAnimationState = animController.GetCurrentAnimatorStateInfo(0);
 
         if (animController.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f
-            && !currentAnimationState.IsName("boxer_idle"))
+            && !currentAnimationState.IsName("player_idle"))
         {
             if (spriteRenderer.flipX)
             {
