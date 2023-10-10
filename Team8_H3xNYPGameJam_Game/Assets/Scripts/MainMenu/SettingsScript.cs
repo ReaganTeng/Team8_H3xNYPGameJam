@@ -12,18 +12,7 @@ public class SettingsScript : MonoBehaviour
     [SerializeField] private Sprite vibrationOffImage;
     [SerializeField] private Button vibrationButton;
     private bool isVibrationOn = false;
-    //[SerializeField] private SpriteRenderer
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+  
     public void OnVolumeButtonClicked()
     {
         if (isAudioMuted)
