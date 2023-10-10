@@ -7,7 +7,7 @@ public class Player : MonoBehaviour
     private Rigidbody2D rb;
     private Animator animController;
     private SpriteRenderer spriteRenderer;
-    public AudioClip[] punchingSounds;
+    public AudioClip[] swordSounds;
     public AudioClip[] hurtSounds;
 
     private AudioSource AS;
@@ -152,39 +152,50 @@ public class Player : MonoBehaviour
     //WHAT HAPPENS WHEN PLAYER DODGES
     private void DodgeLeft()
     {
-        if (!isAttacking) // Only allow dodging if not attacking
+        animController.Rebind();
+
+        if (spriteRenderer.flipX)
         {
-            animController.SetBool("attack", false);
-            animController.SetBool("hurt", false);
-            animController.SetBool("dodge", true);
-            // Implement dodge left logic here
-            Debug.Log("Dodge Left");
+            spriteRenderer.flipX = false;
         }
+
+        isAttacking = false;
+        animController.SetBool("attack", false);
+        animController.SetBool("hurt", false);
+        animController.SetBool("dodge", true);
+        Debug.Log("Dodge Left");
     }
 
     private void DodgeRight()
     {
-        if (!isAttacking) // Only allow dodging if not attacking
-        {
-            animController.SetBool("attack", false);
-            animController.SetBool("hurt", false);
-            animController.SetBool("dodge", true);
-            spriteRenderer.flipX = true;
-            // Implement dodge right logic here
-            Debug.Log("Dodge Right");
-        }
+        animController.Rebind();
+
+        spriteRenderer.flipX = true;
+
+        isAttacking = false;
+        animController.SetBool("attack", false);
+        animController.SetBool("hurt", false);
+        // Set "dodge" to true to start the animation
+        animController.SetBool("dodge", true);
+        Debug.Log("Dodge Right");
     }
+
     //
 
     //WHAT HAPPENS WHEN PLAYER IS HURT
     private void hurt()
     {
-        animController.SetBool("attack", false);
-        animController.SetBool("dodge", false);
-        animController.SetBool("hurt", true);
-        //RANDOMISE A HURT SOUND TO PLAY
-        PlayRandomSound(hurtSounds);
-        Debug.Log("Hurt");
+        if (!isAttacking)
+        {
+            animController.Rebind();
+
+            animController.SetBool("attack", false);
+            animController.SetBool("dodge", false);
+            animController.SetBool("hurt", true);
+            //RANDOMISE A HURT SOUND TO PLAY
+            PlayRandomSound(hurtSounds);
+            Debug.Log("Hurt");
+        }
     }
 
 
@@ -193,14 +204,16 @@ public class Player : MonoBehaviour
     {
         if (!isAttacking) // Only allow attacking if not already attacking
         {
+            animController.Rebind();
+
             animController.SetBool("dodge", false);
             animController.SetBool("hurt", false);
             animController.SetBool("attack", true);
             //RANDOMISE A PUNCH SOUND TO PLAY
-            PlayRandomSound(punchingSounds);
+            PlayRandomSound(swordSounds);
             Debug.Log("Attack");
 
-            enemiesDefeated += 1;
+            //enemiesDefeated += 1;
             totalenemiesDefeated += 1;
 
             EnemyTracker();
