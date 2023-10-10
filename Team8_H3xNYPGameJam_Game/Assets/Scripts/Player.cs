@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class Player : MonoBehaviour
 {
@@ -11,8 +13,27 @@ public class Player : MonoBehaviour
     private AudioSource AS;
     private bool isAttacking = false; // Flag to prevent multiple attacks
 
+
+    public float playerStrength;
+    public TextMeshProUGUI playerStrengthText;
+    public float playerWeight;
+    public TextMeshProUGUI playerWeightText;
+
+    public int enemiesDefeated;
+    int totalenemiesDefeated;
+
+    public Canvas shopCanvas;
+
     private void Start()
     {
+        shopCanvas.enabled = false;
+
+        enemiesDefeated = 0;
+        playerStrength = 1.0f;
+        playerStrengthText.text = playerStrength.ToString();
+        playerWeight = 1.0f;
+        playerWeightText.text = playerWeight.ToString();
+
         rb = GetComponent<Rigidbody2D>();
         animController = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -22,9 +43,12 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        CheckMobileInput();
-
-        CheckPCInput();
+        if (!shopCanvas.enabled)
+        {
+            CheckMobileInput();
+            CheckPCInput();
+        }
+       
 
         animationCheck();
     }
@@ -40,6 +64,14 @@ public class Player : MonoBehaviour
     }
     //
 
+    //TRACK HOW MANY ENEMIES ARE DEFEATED
+    private void EnemyTracker()
+    {
+        if(enemiesDefeated >= 3)
+        {
+            shopCanvas.enabled = true;
+        }
+    }
 
     //WHEN ANIMATION OTHER THAN IDLE HAS STOPPED PLAYING
     private void animationCheck()
@@ -167,6 +199,11 @@ public class Player : MonoBehaviour
             //RANDOMISE A PUNCH SOUND TO PLAY
             PlayRandomSound(punchingSounds);
             Debug.Log("Attack");
+
+            enemiesDefeated += 1;
+            totalenemiesDefeated += 1;
+
+            EnemyTracker();
             isAttacking = true; 
         }
     }
