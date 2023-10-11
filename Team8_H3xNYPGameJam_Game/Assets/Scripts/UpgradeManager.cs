@@ -16,7 +16,9 @@ public class UpgradeManager : MonoBehaviour
     private void Awake()
     {
         playerScript = player.GetComponent<Player>();
-        //AS.clip = chaChingSound;
+
+        AS = GetComponent<AudioSource>();
+        AS.clip = chaChingSound;
 
     }
 
@@ -31,6 +33,13 @@ public class UpgradeManager : MonoBehaviour
     {
         playerScript.playerStrength += 1;
         playerScript.playerStrengthText.text = playerScript.playerStrength.ToString();
+        DisableShop();
+    }
+
+    public void UpgradeSpeed()
+    {
+        playerScript.playerSpeed += 1;
+        playerScript.playerSpeedText.text = playerScript.playerSpeed.ToString();
         DisableShop();
     }
 

@@ -60,6 +60,8 @@ MonoBehaviour:
   playerStrengthText: {fileID: 0}
   playerWeight: 0
   playerWeightText: {fileID: 0}
+  playerSpeed: 0
+  playerSpeedText: {fileID: 0}
   enemiesDefeated: 0
   idleAnim: []
   attackingAnim: []
