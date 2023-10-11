@@ -5,13 +5,15 @@ using UnityEngine;
 public class GameManagerScript : MonoBehaviour
 {
     public static GameManagerScript gmInstance;
+    [SerializeField] private GameObject arrowPrefab;
+    [SerializeField] private GameObject arrowPanel;
     public enum GameStates
     {
         START,
         PLAYING,
-        SETTINGS,
         PAUSED,
         UPGRADE,
+        FALLING,
         LOSE
     }
     public GameStates gameState;
@@ -30,6 +32,11 @@ public class GameManagerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(gameState);
+        if (Input.GetKeyDown(KeyCode.P))
+            createArrows();
+    }
+    private void createArrows()
+    {
+        Instantiate(arrowPrefab, arrowPanel.transform);
     }
 }
