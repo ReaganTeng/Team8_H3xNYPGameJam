@@ -294,6 +294,7 @@ public class Player : MonoBehaviour
             animController.SetBool("hurt", true);
             //RANDOMISE A HURT SOUND TO PLAY
             PlayRandomSound(hurtSounds);
+            animController.SetBool("hurt", false);
             Debug.Log("Hurt");
         }
     }
