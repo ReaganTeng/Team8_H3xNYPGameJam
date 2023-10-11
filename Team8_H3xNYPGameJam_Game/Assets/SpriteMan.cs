@@ -8,21 +8,23 @@ public class SpriteMan : MonoBehaviour
     Sprite[] animationToRunThoruh=null;
     int current;
     float animSpeed;
+    float frameDuration;
     IEnumerator RunSprite()
     {
-        yield return new WaitForSeconds(animSpeed*0.1f);
-        spriteRenderer.sprite = animationToRunThoruh[current];
-        checkIfSpriteEnding();
+        if (current < animationToRunThoruh.Length)
+        {
+       
+            spriteRenderer.sprite = animationToRunThoruh[current];
+            float frameDuration = animSpeed / animationToRunThoruh.Length;
+            yield return new WaitForSeconds(frameDuration);
+            StartCoroutine("RunSprite");
+            current++;
+        }
     }
 
     void checkIfSpriteEnding()
     {
-        if(current >= animationToRunThoruh.Length-1)
-        {
-            return;
-        }
-        current++;
-        StartCoroutine("RunSprite");
+       
 
     }
     public bool ReturnDone()
@@ -44,8 +46,8 @@ public class SpriteMan : MonoBehaviour
     public void RunAnimation(Sprite[] anim,float speed)
     {
         current = 0;
-        animSpeed = speed;
         animationToRunThoruh = anim;
+        animSpeed =  speed;
         StopCoroutine("RunSprite");
         StartCoroutine("RunSprite");
     }
