@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 6bb938591ee274f4e96b5a68a3ad438f
+guid: 894dd6e52c0444e4883bd917f0cd3ce1
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -69,7 +69,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 8192
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -136,148 +136,190 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: bob_attack_4
+      name: Player_dodge_right_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 88
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2adcab0404bcdba4fba357af4d3fd3ea
+      internalID: -554213507
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_dodge_right_1
       rect:
         serializedVersion: 2
         x: 88
-        y: 176
+        y: 0
         width: 88
-        height: 88
-      alignment: 9
-      pivot: {x: 0.52281535, y: 0.18514703}
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d2019c042f4c55948962173351ce3df5
-      internalID: 1173274670
+      spriteID: f27784720add4df42950dd0ec160a98a
+      internalID: 1576725357
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bob_attack_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 264
-        width: 88
-        height: 88
-      alignment: 9
-      pivot: {x: 0.50000006, y: 0.18514703}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f40dcc931568bfe408d598a95e44d1c5
-      internalID: 1492909767
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: bob_attack_1
-      rect:
-        serializedVersion: 2
-        x: 88
-        y: 264
-        width: 88
-        height: 88
-      alignment: 9
-      pivot: {x: 0.5, y: 0.1897101}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4d3df5969f3861042a5ad8211f9571b6
-      internalID: 1646338022
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: bob_attack_2
+      name: Player_dodge_right_2
       rect:
         serializedVersion: 2
         x: 176
-        y: 264
+        y: 0
         width: 88
-        height: 88
-      alignment: 9
-      pivot: {x: 0.5091261, y: 0.20339966}
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: edc06ae1aeb3c354a95a5c1711f8a857
-      internalID: 524499444
+      spriteID: 1974a609ed8a52146955f181f054dc2c
+      internalID: 533341426
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bob_attack_3
+      name: Player_dodge_right_3
       rect:
         serializedVersion: 2
-        x: 0
-        y: 176
+        x: 264
+        y: 0
         width: 88
-        height: 88
-      alignment: 9
-      pivot: {x: 0.52281547, y: 0.18058395}
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e01d7f00cc0b9364cb2404ac7d4a6dfb
-      internalID: 1976361207
+      spriteID: bfb1f7f6e8cde4f4eb25e6cabea401b6
+      internalID: 1284000908
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bob_attack_5
+      name: Player_dodge_right_4
       rect:
         serializedVersion: 2
-        x: 176
-        y: 176
+        x: 352
+        y: 0
         width: 88
-        height: 88
-      alignment: 9
-      pivot: {x: 0.5136892, y: 0.17602088}
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ce9eb6417dd301f48bfff6ffd6425798
-      internalID: -196010042
+      spriteID: 407b56a061ac3b94a903f4faaff7d1ea
+      internalID: -387119270
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bob_attack_6
+      name: Player_dodge_right_5
       rect:
         serializedVersion: 2
-        x: 0
-        y: 88
+        x: 440
+        y: 0
         width: 88
-        height: 88
-      alignment: 9
-      pivot: {x: 0.52281547, y: 0.18514694}
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5ff1c48ce972dc74a92e9cbaf99b1f52
-      internalID: -1079627812
+      spriteID: 01c013bb570fe704a8128b64cadd99c9
+      internalID: 1410011715
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_dodge_right_6
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 0
+        width: 88
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ab8cdcbb0387306439783bfe34e0344c
+      internalID: 645651190
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_dodge_right_7
+      rect:
+        serializedVersion: 2
+        x: 616
+        y: 0
+        width: 88
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bed60febb9382404eaef9fd4011503ff
+      internalID: 876467794
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_dodge_right_8
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 0
+        width: 88
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: df5dd0dfab40fa74d859662bb3486a89
+      internalID: -1743751623
       vertices: []
       indices: 
       edges: []
@@ -285,7 +327,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: d8136aa7176a58543b89db230187d10a
+    spriteID: 1858f11c5e5ba5043a5368a0b821a6ac
     internalID: 0
     vertices: []
     indices: 
@@ -293,17 +335,15 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      bob_attack_0: 1492909767
-      bob_attack_1: 1646338022
-      bob_attack_10: -1351300701
-      bob_attack_2: 524499444
-      bob_attack_3: 1976361207
-      bob_attack_4: 1173274670
-      bob_attack_5: -196010042
-      bob_attack_6: -1079627812
-      bob_attack_7: -15627398
-      bob_attack_8: -1280088927
-      bob_attack_9: 155402784
+      Player_dodge_right_0: -554213507
+      Player_dodge_right_1: 1576725357
+      Player_dodge_right_2: 533341426
+      Player_dodge_right_3: 1284000908
+      Player_dodge_right_4: -387119270
+      Player_dodge_right_5: 1410011715
+      Player_dodge_right_6: 645651190
+      Player_dodge_right_7: 876467794
+      Player_dodge_right_8: -1743751623
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

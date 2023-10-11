@@ -22,11 +22,6 @@ public class SpriteMan : MonoBehaviour
         }
     }
 
-    void checkIfSpriteEnding()
-    {
-       
-
-    }
     public bool ReturnDone()
     {
         
@@ -43,8 +38,17 @@ public class SpriteMan : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
+    public int GetCurrentFrame()
+    {
+        return current;
+    }
+
     public void RunAnimation(Sprite[] anim,float speed)
     {
+        if(anim==null || anim.Length == 0)
+        {
+            return;
+        }
         current = 0;
         animationToRunThoruh = anim;
         animSpeed =  speed;

@@ -14,6 +14,7 @@ public class enemyManeger : MonoBehaviour
            Destroy(e); e = null;
         }
         GameObject SpawnEnemy = new GameObject();
+        SpawnEnemy.transform.rotation = Quaternion.Euler(0, 0, 180);
         e= SpawnEnemy.AddComponent(typeof(enemy)) as enemy;
         SpawnEnemy.AddComponent(typeof(SpriteRenderer));
         SpawnEnemy.AddComponent<SpriteMan>();

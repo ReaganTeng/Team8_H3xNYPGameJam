@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7255f9d947863247a86712d9f06fc7a, type: 3}
   m_Name: bob
   m_EditorClassIdentifier: 
-  speed: 1
+  speed: 0.1
   Weight: 2
   strength: 2
-  enemySprite: {fileID: 1390732199, guid: 1ba0cc003a797f040bbaa791679274ce, type: 3}
+  enemySprite: {fileID: 1492909767, guid: 6bb938591ee274f4e96b5a68a3ad438f, type: 3}
   Enemy_name: bob
-  AttackAnimation: []
+  ParryStart: 1
+  ParryEnd: 3

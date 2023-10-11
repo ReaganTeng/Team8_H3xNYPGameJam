@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: e35a56a36fefe6f4eaa87b98f0e39eaa
+guid: ed43a0715b81d4943bd0ff95b834a8d0
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -34,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -136,232 +136,211 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: boxer_dodge_0
+      name: player_attack_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 47.272728
-        height: 72
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        y: 16
+        width: 89
+        height: 114
+      alignment: 9
+      pivot: {x: 0.49422985, y: 0.3963915}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 92c5f9103a17975438be72529a48426d
-      internalID: -312782800
+      spriteID: 53c51c4df26123645af4fa8099f564d6
+      internalID: -992983842
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: boxer_dodge_1
+      name: player_attack_1
       rect:
         serializedVersion: 2
-        x: 40
-        y: 0
-        width: 47
-        height: 72
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 88
+        y: 17
+        width: 88
+        height: 113
+      alignment: 9
+      pivot: {x: 0.5058356, y: 0.3863854}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 385f876f6ae277b4a838910274bf1201
-      internalID: -338971364
+      spriteID: cdfc3ae087e5acb4d8ef6c39097309db
+      internalID: 420919845
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: boxer_dodge_2
+      name: player_attack_2
       rect:
         serializedVersion: 2
-        x: 78
-        y: 0
-        width: 47
-        height: 72
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 175
+        y: 17
+        width: 87
+        height: 113
+      alignment: 9
+      pivot: {x: 0.5413191, y: 0.39547458}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d8c912299dade2e4ca0fdcb27ec02921
-      internalID: 2138016907
+      spriteID: 586b1f6179267b1439f5eb0d5477d5c0
+      internalID: 2072668716
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: boxer_dodge_3
+      name: player_attack_3
       rect:
         serializedVersion: 2
-        x: 119
-        y: 0
-        width: 47
-        height: 72
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 264
+        y: 15
+        width: 85
+        height: 115
+      alignment: 9
+      pivot: {x: 0.52416635, y: 0.4062233}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a48bd4e23ad3dad459d146d2ffa8597b
-      internalID: -1234008473
+      spriteID: 496951cdfb19d9649a7083d6889e5fb3
+      internalID: -545305514
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: boxer_dodge_4
+      name: player_attack_4
       rect:
         serializedVersion: 2
-        x: 166
-        y: 0
-        width: 47
-        height: 72
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 352
+        y: 17
+        width: 88
+        height: 113
+      alignment: 9
+      pivot: {x: 0.4941642, y: 0.39093}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1ba0e82424e070c45b1e2a411d5319a4
-      internalID: 475694751
+      spriteID: 230977e739c41c74796bc5b87bde345f
+      internalID: -904094307
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: boxer_dodge_5
+      name: player_attack_5
       rect:
         serializedVersion: 2
-        x: 206
-        y: 0
-        width: 47
-        height: 72
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 439
+        y: 17
+        width: 89
+        height: 113
+      alignment: 9
+      pivot: {x: 0.5115405, y: 0.39547458}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7d52268d12bb64a4ea723e93c6f54e47
-      internalID: 1061430288
+      spriteID: 5361e4d568c85474bad554675ce792a8
+      internalID: -1186236379
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: boxer_dodge_6
+      name: player_attack_6
       rect:
         serializedVersion: 2
-        x: 247
-        y: 0
-        width: 47
-        height: 72
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 528
+        y: 17
+        width: 88
+        height: 113
+      alignment: 9
+      pivot: {x: 0.5058358, y: 0.3863854}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1ac56afe57847324bb6d38de70c3f420
-      internalID: 246532320
+      spriteID: acabb5412a8113944ac8e1e1471e6237
+      internalID: 1712026752
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: boxer_dodge_7
+      name: player_attack_7
       rect:
         serializedVersion: 2
-        x: 294
-        y: 0
-        width: 47
-        height: 72
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 616
+        y: 18
+        width: 88
+        height: 112
+      alignment: 9
+      pivot: {x: 0.5116709, y: 0.38537097}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 75ae9c66e1297224d80f9749aed6b8e5
-      internalID: 328668326
+      spriteID: 6fb3b268603333e4685e678e09ccce4a
+      internalID: 926982550
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: boxer_dodge_8
+      name: player_attack_8
       rect:
         serializedVersion: 2
-        x: 342
-        y: 0
-        width: 47
-        height: 72
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 704
+        y: 17
+        width: 87
+        height: 113
+      alignment: 9
+      pivot: {x: 0.5177079, y: 0.38184083}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7e5769bf6f2680d46a7e4dae2dee45c2
-      internalID: 4161873
+      spriteID: 109c73b0289f5cd479ac08d57eb90e04
+      internalID: -1863400669
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: boxer_dodge_9
+      name: player_attack_9
       rect:
         serializedVersion: 2
-        x: 390
-        y: 0
-        width: 54
-        height: 72
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 792
+        y: 16
+        width: 88
+        height: 114
+      alignment: 9
+      pivot: {x: 0.4941635, y: 0.40990567}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 308d034d7f9dbb24fad34a2346e4edf2
-      internalID: -1023621545
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: boxer_dodge_10
-      rect:
-        serializedVersion: 2
-        x: 446
-        y: 0
-        width: 67
-        height: 72
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: bd09733ffdf06ae4a896272c85486a08
-      internalID: -748637414
+      spriteID: 37f5cce03f15c5642b07ceb72e6e193b
+      internalID: 940836940
       vertices: []
       indices: 
       edges: []
@@ -369,7 +348,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 245e2761162066f449ec90ea37de2339
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -377,17 +356,16 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      boxer_dodge_0: -312782800
-      boxer_dodge_1: -338971364
-      boxer_dodge_10: -748637414
-      boxer_dodge_2: 2138016907
-      boxer_dodge_3: -1234008473
-      boxer_dodge_4: 475694751
-      boxer_dodge_5: 1061430288
-      boxer_dodge_6: 246532320
-      boxer_dodge_7: 328668326
-      boxer_dodge_8: 4161873
-      boxer_dodge_9: -1023621545
+      player_attack_0: -992983842
+      player_attack_1: 420919845
+      player_attack_2: 2072668716
+      player_attack_3: -545305514
+      player_attack_4: -904094307
+      player_attack_5: -1186236379
+      player_attack_6: 1712026752
+      player_attack_7: 926982550
+      player_attack_8: -1863400669
+      player_attack_9: 940836940
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
