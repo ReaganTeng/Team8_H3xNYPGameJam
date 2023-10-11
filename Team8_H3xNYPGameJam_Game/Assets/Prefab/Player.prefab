@@ -56,6 +56,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 5d1bae6e52fae2f4494e9408f21b893f, type: 3}
   - {fileID: 8300000, guid: 19224fc6e08d0214fa0afa46d5c93d70, type: 3}
   - {fileID: 8300000, guid: cc808a2330028b4439f42f993f0926a2, type: 3}
+  dodgeClip:
+  - {fileID: 7400000, guid: 2e4af67e50ee8c84dbb788568ad3787f, type: 2}
+  - {fileID: 7400000, guid: c91389c39d842cc4190ea8be0836798a, type: 2}
   playerStrength: 0
   playerStrengthText: {fileID: 0}
   playerWeight: 0

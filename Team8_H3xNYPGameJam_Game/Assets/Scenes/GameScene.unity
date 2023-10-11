@@ -999,6 +999,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 6892520773502216702, guid: 12b7f76aab056e64ab4afc5f34e86842, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8020928943811255883, guid: 12b7f76aab056e64ab4afc5f34e86842, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -1046,7 +1050,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 432885759825805696, guid: 12b7f76aab056e64ab4afc5f34e86842, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2089118554}
   m_SourcePrefab: {fileID: 100100000, guid: 12b7f76aab056e64ab4afc5f34e86842, type: 3}
 --- !u!1 &675497412
 GameObject:
@@ -2548,7 +2555,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Strength
+  m_text: 'Speed
 
 
 '
@@ -2762,3 +2769,18 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 432885759825805696, guid: 12b7f76aab056e64ab4afc5f34e86842, type: 3}
   m_PrefabInstance: {fileID: 621424975}
   m_PrefabAsset: {fileID: 0}
+--- !u!111 &2089118554
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2089118547}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 0}
+  m_Animations: []
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
