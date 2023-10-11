@@ -22,7 +22,7 @@ public class enemy : MonoBehaviour
     [SerializeField]SpriteRenderer targetTrans;
     GameObject hitimpact;
     //animation
-    Sprite[] AttackingSprite;
+    [SerializeField]Sprite[] AttackingSprite;
 
     public void SetEnemyStats(EnemysStates ES)
     {
@@ -36,11 +36,13 @@ public class enemy : MonoBehaviour
         targetTrans = GameObject.Find("Player").GetComponent<SpriteRenderer>();
         StartCoroutine("attackCD");
         hitimpact = GameObject.Find("HitImpact");
+        GETANIMATION();
     }
 
     public void GETANIMATION()
     {
-        AttackingSprite = Resources.LoadAll<Sprite>($"EnemyAnimation/{enemysStates.name}/{enemysStates.name}_attack");
+        AttackingSprite = Resources.LoadAll<Sprite>($"EnemyAnimation/{enemysStates.Enemy_name}/{enemysStates.Enemy_name}_attack");
+
     }
 
     IEnumerator attackCD()
@@ -68,7 +70,7 @@ public class enemy : MonoBehaviour
         Preattack.OnComplete(() =>
         {
       
-            sm.RunAnimation(enemysStates.AttackAnimation,enemysStates.speed);
+            sm.RunAnimation(AttackingSprite,enemysStates.speed);
          
             attacking = false;
             if(MiddleOrSide == 0)
@@ -122,6 +124,7 @@ public class enemy : MonoBehaviour
                     StartCoroutine("attackCD");
                 });
             });
+            sr.sprite = AttackingSprite[0];
             return;
         }
         moveBack();
