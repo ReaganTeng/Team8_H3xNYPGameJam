@@ -56,7 +56,7 @@ public class Player : MonoBehaviour
     private void GetAnimation()
     {
 
-        idleAnim = Resources.LoadAll<Sprite>("MC_attack");
+        idleAnim = Resources.LoadAll<Sprite>("PlayerAnimation/MC_attack");
         attackingAnim = Resources.LoadAll<Sprite>("PlayerAnimation/boxer_attack");
         dodgeAnim = Resources.LoadAll<Sprite>("PlayerAnimation/boxer_dodge");
         hurtAnim = Resources.LoadAll<Sprite>("PlayerAnimation/MC_attack");
@@ -70,16 +70,20 @@ public class Player : MonoBehaviour
             CheckPCInput();
         }
        
+        //MY ANIMATION
+        animationCheck();
 
-        //animationCheck();
-        playAnimation();
+        //JUN KAI'S ANIMATION
+       
+         playAnimation();
+        
     }
 
     //RANDOMISE A SOUND TO PLAY
     void PlayRandomSound(AudioClip[] soundList)
     {
         int idx = Random.Range(0, soundList.Length);
-        Debug.Log("Punching Sound Played " + idx);
+        Debug.Log("Sound Played " + soundList[idx].name);
         // Play the sound at the specified index
         AS.clip = soundList[idx];
         AS.Play();
@@ -112,51 +116,61 @@ public class Player : MonoBehaviour
             {
                 spriteRenderer.flipX = false;
             }
-            //animController.SetBool("attack", false);
-            //animController.SetBool("dodge", false);
-            //animController.SetBool("hurt", false);
+            animController.SetBool("attack", false);
+            animController.SetBool("dodge", false);
+            animController.SetBool("hurt", false);
+
             currentPlayerState = playerState.IDLE;
+
             isAttacking = false; // Reset attack flag
         }
     }
 
     private void playAnimation()
     {
-        if (oldPlayerState == currentPlayerState)
+        if (idleAnim != null
+           && attackingAnim != null
+           && dodgeAnim != null
+           && hurtAnim != null
+           && sm != null)
         {
-            if (sm.ReturnDone())
+            if (oldPlayerState == currentPlayerState)
             {
-                if (currentPlayerState != playerState.IDLE)
+                if (sm.ReturnDone())
                 {
-                    sm.RunAnimation(idleAnim, speed);
+                    if (currentPlayerState != playerState.IDLE)
+                    {
+                        sm.RunAnimation(idleAnim, speed);
+                    }
+                    else
+                    {
+                        sm.RunAnimation(idleAnim, speed);
+                    }
+                    currentPlayerState = playerState.IDLE;
                 }
-                else {
-                    sm.RunAnimation(idleAnim, speed);
-                }
-                currentPlayerState = playerState.IDLE;
             }
-        }
-        else
-        {
-            Debug.Log("asdasd");
-            switch(currentPlayerState)
+            else
             {
-                case playerState.IDLE:
-                    sm.RunAnimation(idleAnim, speed);
-                    break;
-                case playerState.ATTACK:
-                    sm.RunAnimation(attackingAnim, speed);
-                    break;
-                case playerState.DODGE:
-                    sm.RunAnimation(dodgeAnim, speed);
-                    break;
-                case playerState.HURT:
-                    sm.RunAnimation(hurtAnim, speed);
-                    break;
+                Debug.Log("asdasd");
+                switch (currentPlayerState)
+                {
+                    case playerState.IDLE:
+                        sm.RunAnimation(idleAnim, speed);
+                        break;
+                    case playerState.ATTACK:
+                        sm.RunAnimation(attackingAnim, speed);
+                        break;
+                    case playerState.DODGE:
+                        sm.RunAnimation(dodgeAnim, speed);
+                        break;
+                    case playerState.HURT:
+                        sm.RunAnimation(hurtAnim, speed);
+                        break;
+                }
             }
-        }
 
-        oldPlayerState = currentPlayerState;
+            oldPlayerState = currentPlayerState;
+        }
     }
 
     //MOBILE CONTROLS
@@ -199,14 +213,14 @@ public class Player : MonoBehaviour
         // Check for A key (dodge left)
         if (Input.GetKeyDown(KeyCode.A))
         {
-            // DodgeLeft();
+            DodgeLeft();
             currentPlayerState = playerState.DODGE;
         }
 
         // Check for D key (dodge right)
         if (Input.GetKeyDown(KeyCode.D))
         {
-            //  DodgeRight();
+            DodgeRight();
 
             currentPlayerState = playerState.DODGE;
         }
@@ -214,7 +228,7 @@ public class Player : MonoBehaviour
         // Check for W key (attack)
         if (Input.GetKeyDown(KeyCode.W))
         {
-            // Attack();
+            Attack();
 
             currentPlayerState = playerState.ATTACK;
         }
@@ -224,7 +238,7 @@ public class Player : MonoBehaviour
     //WHAT HAPPENS WHEN PLAYER DODGES
     private void DodgeLeft()
     {
-        //animController.Rebind();
+        animController.Rebind();
 
         if (spriteRenderer.flipX)
         {
@@ -240,7 +254,7 @@ public class Player : MonoBehaviour
 
     private void DodgeRight()
     {
-        //animController.Rebind();
+        animController.Rebind();
 
         spriteRenderer.flipX = true;
 
@@ -259,7 +273,7 @@ public class Player : MonoBehaviour
     {
         if (!isAttacking)
         {
-            //animController.Rebind();
+            animController.Rebind();
 
             animController.SetBool("attack", false);
             animController.SetBool("dodge", false);
@@ -276,7 +290,7 @@ public class Player : MonoBehaviour
     {
         if (!isAttacking) // Only allow attacking if not already attacking
         {
-           // animController.Rebind();
+           animController.Rebind();
 
             animController.SetBool("dodge", false);
             animController.SetBool("hurt", false);
