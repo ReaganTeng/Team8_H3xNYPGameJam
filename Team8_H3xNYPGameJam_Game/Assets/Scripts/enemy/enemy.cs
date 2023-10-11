@@ -17,6 +17,7 @@ public class enemy : MonoBehaviour
     Vector3 StartingPos;
     Vector3 targetPos;
     Tween Preattack;
+    Tween AttackingNOW;
     SpriteMan sm;
     [SerializeField]SpriteRenderer targetTrans;
     GameObject hitimpact;
@@ -24,13 +25,16 @@ public class enemy : MonoBehaviour
     [SerializeField]Sprite[] AttackingSprite;
     Sprite[] StopAttacking;
     bool tired = false;
-
+    bool dead = false;
+    bool hurt = false;
+    int LOR = 0;
+    int randomLeftOrRight = 0;    
     public void SetEnemyStats(EnemysStates ES)
     {
         enemysStates = ES;
         sr= GetComponent<SpriteRenderer>();
         sr.sprite = enemysStates.enemySprite;
-        StartingPos = transform.position += new Vector3(transform.position.x, 0.7f+ sr.size.y/2,0);
+        StartingPos = transform.position += new Vector3(transform.position.x, sr.size.y,0);
         // Debug.Log(StartingPos);
         sm = GetComponent<SpriteMan>();
         CameraShake.instance.addTargetGroup(transform);
@@ -39,7 +43,6 @@ public class enemy : MonoBehaviour
         hitimpact = GameObject.Find("HitImpact");
         GETANIMATION();
     }
-
     public void GETANIMATION()
     {
         StopAttacking = Resources.LoadAll<Sprite>($"EnemyAnimation/{enemysStates.Enemy_name}/{enemysStates.Enemy_name}_stop");
@@ -50,16 +53,20 @@ public class enemy : MonoBehaviour
 
     IEnumerator attackCD()
     {
+        hurt = false;
         sm.RunAnimation(StopAttacking, enemysStates.speed);
         yield return new WaitForSeconds(enemysStates.speed);
-        StartAttack();
+        if(!tired)
+        {
+            StartAttack();
+        }
     }
 
     void StartAttack()
     {
-
+        LOR = 0;
         int MiddleOrSide = Random.Range(0, 2);
-        //int MiddleOrSide = 0;
+        //MiddleOrSide = 0;
         if (MiddleOrSide == 0)// middle attack
         {
             // parryable = true;
@@ -67,13 +74,28 @@ public class enemy : MonoBehaviour
         }
         else
         {
-            Preattack = (transform.DOMoveX(transform.position.x + Random.Range(0, 2) * 2 - 1, enemysStates.speed));
+            randomLeftOrRight = Random.Range(0, 2);
+            //randomLeftOrRight = 0;
+            LOR = (randomLeftOrRight == 0) ? -1 : 1;
+            Preattack = (transform.DOMoveX(transform.position.x + ((randomLeftOrRight * 2 - 1)*0.6f), enemysStates.speed));
 
         }
         attacking = true;
 
-        Preattack.OnComplete(() =>
+        Preattack.OnUpdate(() =>
         {
+           
+
+        }).OnComplete(() =>
+        {
+            //Vector3 vectorToTarget = transform.position - Player2.instance.startingLocation(); ;
+            //float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg;
+            //Quaternion q = Quaternion.AngleAxis(-angle, Vector3.forward);
+            //transform.DORotateQuaternion(q, 1);
+            //Vector3 difference = (Player2.instance.startingLocation()) - transform.position;
+            //float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
+            //transform.DORotateQuaternion( Quaternion.Euler(0.0f, 0.0f, rotationZ),1);
+
             StartCoroutine("showStrong", MiddleOrSide);
 
         });
@@ -82,10 +104,9 @@ public class enemy : MonoBehaviour
     IEnumerator showStrong(int MiddleOrSide)
     {
 
-        int a = 0;
         float Delay = 0.2f;
         strongAttack = (Random.Range(0, 1) == 0) ? true : false;
-        strongAttack = true;
+        strongAttack = false;
         if (strongAttack)
         {
             GameObject HI = Instantiate(hitimpact, transform) as GameObject;
@@ -93,28 +114,32 @@ public class enemy : MonoBehaviour
             Delay = 1;
             Destroy(HI,Delay);
         }
-        yield return new WaitForSeconds(Delay); 
-        a = (transform.position.x >= 0) ? -1 : 1;
 
-        Quaternion targetRotation = Quaternion.LookRotation((targetTrans.transform.position + targetTrans.transform.right * a));
-        transform.DORotateQuaternion(Quaternion.Euler(0, 0, targetRotation.z + 180), enemysStates.speed);
-        Debug.Log(targetRotation.z);
+        yield return new WaitForSeconds(Delay); 
+
+
+     
         sm.RunAnimation(AttackingSprite, enemysStates.speed);
 
         attacking = false;
         if (MiddleOrSide == 0)
         {
-            transform.DOMove(targetTrans.transform.position + targetTrans.transform.up, enemysStates.speed).OnUpdate(
+           AttackingNOW= transform.DOMove( Player2.instance.startingLocation() + new Vector3(0,targetTrans.size.y/2,0) , enemysStates.speed).OnUpdate(
                 () =>
                 {
                     becomeParry();
+                    PlayerHit();
                 }
                 ).OnComplete(gotHit);
         }
         else
         {
 
-            transform.DOMove((targetTrans.transform.position + targetTrans.transform.right * a), enemysStates.speed).OnComplete(gotHit);
+            AttackingNOW = transform.DOMove(( Player2.instance.startingLocation() + targetTrans.transform.right * -((randomLeftOrRight * 2 - 1) * 0.6f)), enemysStates.speed).OnUpdate(()=>
+            {
+                becomeParry();
+                PlayerHit();
+            }).OnComplete(gotHit);
         }
     }
 
@@ -122,7 +147,7 @@ public class enemy : MonoBehaviour
     {
         if(sm.GetCurrentFrame()>=enemysStates.ParryStart && sm.GetCurrentFrame() <= enemysStates.ParryEnd && strongAttack==false)
         {
-            Debug.Log(sm.GetCurrentFrame());
+            //Debug.Log(sm.GetCurrentFrame());
             parryable = true;
             hitimpact.transform.position = transform.position;
             return;
@@ -150,40 +175,72 @@ public class enemy : MonoBehaviour
         transform.position = StartingPos; 
     }
 
-    private void gotHit()
+    private void RotateBack()
     {
+       // transform.DORotateQuaternion ( Quaternion.Euler(0,0,180),1);
+    }
 
+    private bool PlayerHit()
+    {
         if (parryable || tired) // get Player hit
         {
-            //if player hitting as well
+            if (Player2.instance.GetPlayerState() == playerState.ATTACK)//if player hitting as well
             {
-                StartingPos = new Vector3(targetTrans.transform.position.x, transform.position.y + targetTrans.size.y / 2 + 1.4f, targetTrans.transform.position.z);
-                transform.DOMove(StartingPos, 1).OnComplete(() =>
-                {
-                    StartCoroutine("attackCD");
+                RotateBack();
+                hitimpact.transform.position = new Vector3(-10000, -10000);
+                AttackingNOW.Kill();
+                Preattack.Kill();
+                transform.DOMoveY(StartingPos.y + Player2.instance.playerStrength / enemysStates.Weight, 1).OnComplete(() => {
+                    checkIfOut();
+                    if (!dead)
+                    {
+                        StartingPos = new Vector3(0, transform.position.y,0);
+                        transform.DOMove(StartingPos, 0.4f).OnComplete(() =>
+                        {
+                            StartCoroutine("attackCD");
+                        });
+                        targetTrans.transform.DOMoveY(StartingPos.y- targetTrans.size.y, 0.4f).OnComplete(() =>
+                        {
+                            Player2.instance.updateStaringLoc();
+                            Player2.instance.MoveBack();
+                        });
+                    }
                 });
-                return;
+                //StartingPos = new Vector3( Player2.instance.startingLocation().x, transform.position.y + targetTrans.size.y ,  Player2.instance.startingLocation().z);
+
+                return true;
             }
         }
-        if (true) // get Player DodgeLeft / right to see if correct
+        return false;
+    }
+
+    private void gotHit()
+    {
+        RotateBack();
+        if ((LOR == 0 && (Player2.instance.GetPlayerState() != playerState.IDLE && Player2.instance.GetPlayerState() != playerState.ATTACK)) ||
+            (LOR== -1 && Player2.instance.GetPlayerState()==playerState.DODGELEFT) ||
+            (LOR == 1 && Player2.instance.GetPlayerState() == playerState.DODGERIGHT)) // get Player DodgeLeft / right to see if correct
         {
-            CameraShake.instance.ShakeContorl(5 *(strongAttack?2:1) ,0.4f);
-            //GameObject gameObject = Instantiate(hitimpact, transform.position, Quaternion.identity) as GameObject;
-            //Destroy(gameObject, 0.7f);
-            StopCoroutine("attackCD");
-            targetTrans.transform.DOMoveY(targetTrans.transform.position.y - (strongAttack? enemysStates.strength*1.5f : enemysStates.strength), 1).OnComplete(() =>
-            {
-                StartingPos = new Vector3(targetTrans.transform.position.x, targetTrans.transform.position.y + targetTrans.size.y / 2 + 1.4f, targetTrans.transform.position.z);
+            moveBack();
            
-                transform.DOMove(StartingPos, 1).OnComplete(() =>
-                {
-                    StartCoroutine("attackCD");
-                });
-            });
-            sr.sprite = AttackingSprite[0];
             return;
         }
-        moveBack();
+        CameraShake.instance.ShakeContorl(5 * (strongAttack ? 2 : 1), 0.4f);
+        //GameObject gameObject = Instantiate(hitimpact, transform.position, Quaternion.identity) as GameObject;
+        //Destroy(gameObject, 0.7f);
+        StopCoroutine("attackCD");
+        Player2.instance.StopMoving();  
+        targetTrans.transform.DOMoveY( Player2.instance.startingLocation().y - (strongAttack ? enemysStates.strength * 1.5f : enemysStates.strength) / Player2.instance.playerWeight, 1).OnComplete(() =>
+        {
+            Player2.instance.updateStaringLoc();
+            StartingPos = new Vector3( Player2.instance.startingLocation().x,  Player2.instance.startingLocation().y + targetTrans.size.y,  Player2.instance.startingLocation().z);
+            Player2.instance.MoveBack();
+            transform.DOMove(StartingPos, 1).OnComplete(() =>
+            {
+                StartCoroutine("attackCD");
+            });
+        });
+        sr.sprite = AttackingSprite[0];
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -191,7 +248,21 @@ public class enemy : MonoBehaviour
         gotHit();
   
     }
-
+     
+    void checkIfOut()
+    {
+        Tween check;
+        if(transform.position.y>=10)
+        {
+            dead = true;
+            check = transform.DOScale(new Vector3(0, 0, 0), 2).OnComplete(()=>
+            {
+                Player2.instance.AddScore();
+               
+            });
+        }
+       
+    }
 }
 
 

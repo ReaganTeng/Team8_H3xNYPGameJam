@@ -5,6 +5,8 @@ using DG.Tweening;
 
 public class Player2 : MonoBehaviour
 {
+
+    public static Player2 instance;
     public AudioClip[] swordSounds;
     public AudioClip[] hurtSounds;
 
@@ -35,8 +37,22 @@ public class Player2 : MonoBehaviour
     playerState currentPlayerState = playerState.IDLE;
     playerState oldPlayerState;
 
+    Tween moving;
+    bool isBack=true;
+
+    public playerState GetPlayerState() 
+    { 
+        return currentPlayerState; 
+    }
+
+    Vector3 startLocation;
+    private void Awake()
+    {
+        instance = this;
+    }
     private void Start()
     {
+        startLocation = transform.position;
         oldPlayerState = currentPlayerState;
         shopCanvas.enabled = false;
         enemiesDefeated = 0;
@@ -62,13 +78,22 @@ public class Player2 : MonoBehaviour
         dodgeRightAnim = Resources.LoadAll<Sprite>("PlayerAnimation/Player_dodge_right");
         hurtAnim = Resources.LoadAll<Sprite>("PlayerAnimation/MC_attack");
     }
+    public Vector3 startingLocation()
+    {
+        return startLocation;
+    }
+
+    public void updateStaringLoc()
+    {
+        startLocation = new Vector3(0,transform.position.y,0);
+    }
 
     private void Update()
     {
 
         if (!shopCanvas.enabled)
         {
-            if(currentPlayerState==playerState.IDLE)
+            if(isBack)
             {
                 CheckMobileInput();
                 CheckPCInput();
@@ -122,7 +147,6 @@ public class Player2 : MonoBehaviour
             }
             else
             {
-                Debug.Log("asdasd");
                 switch (currentPlayerState)
                 {
                     case playerState.IDLE:
@@ -187,21 +211,26 @@ public class Player2 : MonoBehaviour
         // Check for A key (dodge left)
         if (Input.GetKeyDown(KeyCode.A))
         {
+            isBack = false;
             DodgeLeft();
+
+           moving= transform.DOMoveX(transform.position.x - 0.6f, 1).OnComplete(MoveBack);
             currentPlayerState = playerState.DODGELEFT;
         }
 
         // Check for D key (dodge right)
         if (Input.GetKeyDown(KeyCode.D))
         {
+            isBack = false;
             DodgeRight();
-
+            moving = transform.DOMoveX(transform.position.x + 0.6f, 1).OnComplete(MoveBack);
             currentPlayerState = playerState.DODGERIGHT;
         }
 
         // Check for W key (attack)
         if (Input.GetKeyDown(KeyCode.W))
         {
+            isBack = false;
             Attack();
 
             currentPlayerState = playerState.ATTACK;
@@ -209,18 +238,19 @@ public class Player2 : MonoBehaviour
     }
 
 
-
+    public void MoveBack()
+    {
+        transform.DOMove(startLocation, 1).OnComplete(() => { isBack = true; });
+    }
 
 
     //WHAT HAPPENS WHEN PLAYER DODGES
     private void DodgeLeft()
     {
+
         if (currentAnimationState.IsName("player_idle"))
         {
             
-
-
-            Debug.Log("Dodge Left");
         }
     }
 
@@ -228,7 +258,8 @@ public class Player2 : MonoBehaviour
     {
         if (currentAnimationState.IsName("player_idle"))
         {
-          
+
+           
             //animController.SetBool("dodgeDirection", "l");
 
             Debug.Log("Dodge Right");
@@ -267,9 +298,20 @@ public class Player2 : MonoBehaviour
             isAttacking = true;
         }
     }
+
+    public void AddScore()
+    {
+
+        enemiesDefeated++;
+    }
+
+    public void StopMoving()
+    {
+        moving.Kill();
+    }
 }
 
-enum playerState
+public enum playerState
 {
     IDLE,
     DODGERIGHT,
