@@ -6,13 +6,13 @@ public class Player : MonoBehaviour
 {
     private Rigidbody2D rb;
     private Animator animController;
-    private SpriteRenderer spriteRenderer;
     public AudioClip[] swordSounds;
     public AudioClip[] hurtSounds;
 
     private AudioSource AS;
     private bool isAttacking = false; // Flag to prevent multiple attacks
 
+    AnimatorStateInfo currentAnimationState;
 
     public float playerStrength;
     public TextMeshProUGUI playerStrengthText;
@@ -33,9 +33,8 @@ public class Player : MonoBehaviour
 
     public Sprite[] testing;
     playerState currentPlayerState=playerState.IDLE;
-
-
     playerState oldPlayerState;
+
     private void Start()
     {
         oldPlayerState = currentPlayerState;
@@ -52,7 +51,6 @@ public class Player : MonoBehaviour
         sm=GetComponent<SpriteMan>();
         rb = GetComponent<Rigidbody2D>();
         animController = GetComponent<Animator>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
         gameObject.AddComponent<SpriteMan>();
         AS = GetComponent<AudioSource>();
 
@@ -60,7 +58,6 @@ public class Player : MonoBehaviour
 
     private void GetAnimation()
     {
-
         idleAnim = Resources.LoadAll<Sprite>("PlayerAnimation/MC_attack");
         attackingAnim = Resources.LoadAll<Sprite>("PlayerAnimation/boxer_attack");
         dodgeAnim = Resources.LoadAll<Sprite>("PlayerAnimation/boxer_dodge");
@@ -69,6 +66,8 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+        currentAnimationState = animController.GetCurrentAnimatorStateInfo(0);
+
         if (!shopCanvas.enabled)
         {
             CheckMobileInput();
@@ -104,25 +103,18 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void Animation()
-    {
-
-    }
 
     //WHEN ANIMATION OTHER THAN IDLE HAS STOPPED PLAYING
     private void animationCheck()
     {
-        AnimatorStateInfo currentAnimationState = animController.GetCurrentAnimatorStateInfo(0);
+        currentAnimationState = animController.GetCurrentAnimatorStateInfo(0);
 
         if (animController.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f
             && !currentAnimationState.IsName("player_idle"))
         {
-            if (spriteRenderer.flipX)
-            {
-                spriteRenderer.flipX = false;
-            }
+            
             animController.SetBool("attack", false);
-            animController.SetBool("dodge", false);
+            animController.SetFloat("dodge", 0);
             animController.SetBool("hurt", false);
 
             currentPlayerState = playerState.IDLE;
@@ -251,61 +243,54 @@ public class Player : MonoBehaviour
     }
 
 
+    
+
+
     //WHAT HAPPENS WHEN PLAYER DODGES
     private void DodgeLeft()
     {
-        AnimatorStateInfo currentAnimationState = animController.GetCurrentAnimatorStateInfo(0);
-
         if (currentAnimationState.IsName("player_idle"))
         {
             animController.Rebind();
 
-            if (spriteRenderer.flipX)
-            {
-                spriteRenderer.flipX = false;
-            }
-
             isAttacking = false;
             animController.SetBool("attack", false);
             animController.SetBool("hurt", false);
-            animController.SetBool("dodge", true);
+            animController.SetFloat("dodge", 1f);
+
+
+
             Debug.Log("Dodge Left");
         }
     }
 
     private void DodgeRight()
     {
-        AnimatorStateInfo currentAnimationState = animController.GetCurrentAnimatorStateInfo(0);
-
         if (currentAnimationState.IsName("player_idle"))
         {
             animController.Rebind();
 
-            spriteRenderer.flipX = true;
-
             isAttacking = false;
             animController.SetBool("attack", false);
             animController.SetBool("hurt", false);
-            // Set "dodge" to true to start the animation
-            animController.SetBool("dodge", true);
+            animController.SetFloat("dodge", 3f);
+            //animController.SetBool("dodgeDirection", "l");
+
             Debug.Log("Dodge Right");
         }
     }
-
     //
 
     //WHAT HAPPENS WHEN PLAYER IS HURT
     private void hurt()
     {
-        AnimatorStateInfo currentAnimationState = animController.GetCurrentAnimatorStateInfo(0);
-
         if (currentAnimationState.IsName("player_idle")
           && !isAttacking)
         {
             animController.Rebind();
 
             animController.SetBool("attack", false);
-            animController.SetBool("dodge", false);
+            animController.SetFloat("dodge", 0);
             animController.SetBool("hurt", true);
             //RANDOMISE A HURT SOUND TO PLAY
             PlayRandomSound(hurtSounds);
@@ -313,11 +298,9 @@ public class Player : MonoBehaviour
         }
     }
 
-
     //WHAT HAPPENS WHEN PLAYER ATTACKS
     private void Attack()
     {
-        AnimatorStateInfo currentAnimationState = animController.GetCurrentAnimatorStateInfo(0);
 
         if (!isAttacking
          && currentAnimationState.IsName("player_idle")
@@ -325,7 +308,7 @@ public class Player : MonoBehaviour
         {
            animController.Rebind();
 
-            animController.SetBool("dodge", false);
+            animController.SetFloat("dodge", 0);
             animController.SetBool("hurt", false);
             animController.SetBool("attack", true);
             //RANDOMISE A PUNCH SOUND TO PLAY
