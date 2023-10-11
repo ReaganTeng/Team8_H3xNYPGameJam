@@ -13,7 +13,7 @@ public class SettingsScript : MonoBehaviour
     [SerializeField] private Button vibrationButton;
     private bool isVibrationOn = false;
   
-    public void OnVolumeButtonClicked()
+    public void onVolumeButtonClicked()
     {
         if (isAudioMuted)
         {
@@ -28,7 +28,7 @@ public class SettingsScript : MonoBehaviour
             AudioListener.volume = 0;
         }
     }
-    public void OnVibrationButtonClicked()
+    public void onVibrationButtonClicked()
     {
         if (isVibrationOn)
         {

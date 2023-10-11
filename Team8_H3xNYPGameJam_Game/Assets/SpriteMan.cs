@@ -5,18 +5,19 @@ using UnityEngine;
 public class SpriteMan : MonoBehaviour
 {
     SpriteRenderer spriteRenderer;
-    Sprite[] animationToRunThoruh;
+    Sprite[] animationToRunThoruh=null;
     int current;
-    
-    IEnumerable RunSprite()
+    float animSpeed;
+    IEnumerator RunSprite()
     {
-        yield return new WaitForEndOfFrame();
+        yield return new WaitForSeconds(animSpeed*0.1f);
         spriteRenderer.sprite = animationToRunThoruh[current];
+        checkIfSpriteEnding();
     }
 
     void checkIfSpriteEnding()
     {
-        if(current >= animationToRunThoruh.Length)
+        if(current >= animationToRunThoruh.Length-1)
         {
             return;
         }
@@ -24,16 +25,28 @@ public class SpriteMan : MonoBehaviour
         StartCoroutine("RunSprite");
 
     }
+    public bool ReturnDone()
+    {
+        
+        if ( animationToRunThoruh == null || current >= animationToRunThoruh.Length - 1)
+        {
+            return true;
+        }
+        return false;
+    }
+
     private void Start()
     {
 
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    void RunAnimation(Sprite[] anim)
+    public void RunAnimation(Sprite[] anim,float speed)
     {
         current = 0;
+        animSpeed = speed;
         animationToRunThoruh = anim;
+        StopCoroutine("RunSprite");
         StartCoroutine("RunSprite");
     }
 }
