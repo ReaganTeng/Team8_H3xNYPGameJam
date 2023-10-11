@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 3ab87a2a712b48746b43fc0da0d5cbcc
+guid: ed43a0715b81d4943bd0ff95b834a8d0
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -69,7 +69,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 8192
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -136,190 +136,211 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Player_dodge_right_0
+      name: player_attack_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 88
-        height: 68
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        y: 16
+        width: 89
+        height: 114
+      alignment: 9
+      pivot: {x: 0.49422985, y: 0.3963915}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2adcab0404bcdba4fba357af4d3fd3ea
-      internalID: -554213507
+      spriteID: 53c51c4df26123645af4fa8099f564d6
+      internalID: -992983842
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_dodge_right_1
+      name: player_attack_1
       rect:
         serializedVersion: 2
         x: 88
-        y: 0
+        y: 17
         width: 88
-        height: 68
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        height: 113
+      alignment: 9
+      pivot: {x: 0.5058356, y: 0.3863854}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f27784720add4df42950dd0ec160a98a
-      internalID: 1576725357
+      spriteID: cdfc3ae087e5acb4d8ef6c39097309db
+      internalID: 420919845
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_dodge_right_2
+      name: player_attack_2
       rect:
         serializedVersion: 2
-        x: 176
-        y: 0
-        width: 88
-        height: 68
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 175
+        y: 17
+        width: 87
+        height: 113
+      alignment: 9
+      pivot: {x: 0.5413191, y: 0.39547458}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1974a609ed8a52146955f181f054dc2c
-      internalID: 533341426
+      spriteID: 586b1f6179267b1439f5eb0d5477d5c0
+      internalID: 2072668716
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_dodge_right_3
+      name: player_attack_3
       rect:
         serializedVersion: 2
         x: 264
-        y: 0
-        width: 88
-        height: 68
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        y: 15
+        width: 85
+        height: 115
+      alignment: 9
+      pivot: {x: 0.52416635, y: 0.4062233}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bfb1f7f6e8cde4f4eb25e6cabea401b6
-      internalID: 1284000908
+      spriteID: 496951cdfb19d9649a7083d6889e5fb3
+      internalID: -545305514
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_dodge_right_4
+      name: player_attack_4
       rect:
         serializedVersion: 2
         x: 352
-        y: 0
+        y: 17
         width: 88
-        height: 68
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        height: 113
+      alignment: 9
+      pivot: {x: 0.4941642, y: 0.39093}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 407b56a061ac3b94a903f4faaff7d1ea
-      internalID: -387119270
+      spriteID: 230977e739c41c74796bc5b87bde345f
+      internalID: -904094307
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_dodge_right_5
+      name: player_attack_5
       rect:
         serializedVersion: 2
-        x: 440
-        y: 0
-        width: 88
-        height: 68
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 439
+        y: 17
+        width: 89
+        height: 113
+      alignment: 9
+      pivot: {x: 0.5115405, y: 0.39547458}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 01c013bb570fe704a8128b64cadd99c9
-      internalID: 1410011715
+      spriteID: 5361e4d568c85474bad554675ce792a8
+      internalID: -1186236379
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_dodge_right_6
+      name: player_attack_6
       rect:
         serializedVersion: 2
         x: 528
-        y: 0
+        y: 17
         width: 88
-        height: 68
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        height: 113
+      alignment: 9
+      pivot: {x: 0.5058358, y: 0.3863854}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ab8cdcbb0387306439783bfe34e0344c
-      internalID: 645651190
+      spriteID: acabb5412a8113944ac8e1e1471e6237
+      internalID: 1712026752
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_dodge_right_7
+      name: player_attack_7
       rect:
         serializedVersion: 2
         x: 616
-        y: 0
+        y: 18
         width: 88
-        height: 68
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        height: 112
+      alignment: 9
+      pivot: {x: 0.5116709, y: 0.38537097}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bed60febb9382404eaef9fd4011503ff
-      internalID: 876467794
+      spriteID: 6fb3b268603333e4685e678e09ccce4a
+      internalID: 926982550
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_dodge_right_8
+      name: player_attack_8
       rect:
         serializedVersion: 2
         x: 704
-        y: 0
-        width: 88
-        height: 68
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        y: 17
+        width: 87
+        height: 113
+      alignment: 9
+      pivot: {x: 0.5177079, y: 0.38184083}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: df5dd0dfab40fa74d859662bb3486a89
-      internalID: -1743751623
+      spriteID: 109c73b0289f5cd479ac08d57eb90e04
+      internalID: -1863400669
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_attack_9
+      rect:
+        serializedVersion: 2
+        x: 792
+        y: 16
+        width: 88
+        height: 114
+      alignment: 9
+      pivot: {x: 0.4941635, y: 0.40990567}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 37f5cce03f15c5642b07ceb72e6e193b
+      internalID: 940836940
       vertices: []
       indices: 
       edges: []
@@ -327,7 +348,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 1858f11c5e5ba5043a5368a0b821a6ac
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -335,15 +356,16 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Player_dodge_right_0: -554213507
-      Player_dodge_right_1: 1576725357
-      Player_dodge_right_2: 533341426
-      Player_dodge_right_3: 1284000908
-      Player_dodge_right_4: -387119270
-      Player_dodge_right_5: 1410011715
-      Player_dodge_right_6: 645651190
-      Player_dodge_right_7: 876467794
-      Player_dodge_right_8: -1743751623
+      player_attack_0: -992983842
+      player_attack_1: 420919845
+      player_attack_2: 2072668716
+      player_attack_3: -545305514
+      player_attack_4: -904094307
+      player_attack_5: -1186236379
+      player_attack_6: 1712026752
+      player_attack_7: 926982550
+      player_attack_8: -1863400669
+      player_attack_9: 940836940
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
