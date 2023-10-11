@@ -17,6 +17,7 @@ public class GameManagerScript : MonoBehaviour
         LOSE
     }
     public GameStates gameState;
+    private List<RectTransform> test = new List<RectTransform>();
     private void Awake()
     {
         if (gmInstance == null)
@@ -33,10 +34,40 @@ public class GameManagerScript : MonoBehaviour
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.P))
+        {
+            gameState = GameStates.FALLING;
             createArrows();
+        }
+        if(gameState == GameStates.FALLING)
+        {
+            if (Input.GetKeyDown(KeyCode.W))
+            {
+
+            }
+            if (Input.GetKeyDown(KeyCode.A))
+            {
+
+            }
+            if (Input.GetKeyDown(KeyCode.S))
+            {
+
+            }
+            if (Input.GetKeyDown(KeyCode.D))
+            {
+
+            }
+            //arrowPanel.GetComponentInChildren<>
+        }
     }
     private void createArrows()
     {
-        Instantiate(arrowPrefab, arrowPanel.transform);
+        for(int i = 0; i < 5; i++)
+        {
+            Instantiate(arrowPrefab, arrowPanel.transform);
+            ArrowScript arrow = arrowPrefab.GetComponent<ArrowScript>();
+            arrow.SetRandomDirection(arrow.getRandomDirection());
+            Debug.Log(arrow.getDir());
+        }
+        
     }
 }

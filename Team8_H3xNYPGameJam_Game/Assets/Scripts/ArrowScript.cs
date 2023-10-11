@@ -5,7 +5,7 @@ using UnityEngine;
 public class ArrowScript : MonoBehaviour
 {
     private RectTransform arrowRectTransform;
-    private enum arrowDirection
+    public enum arrowDirection
     {
         UP,
         DOWN,
@@ -17,27 +17,33 @@ public class ArrowScript : MonoBehaviour
     void Start()
     {
         arrowRectTransform = GetComponent<RectTransform>();
-        SetRandomDirection(arrowDirection.DOWN);
+        //SetRandomDirection(getRandomDirection());
     }
-
-    // Update is called once per frame
-    void Update()
+    public arrowDirection getRandomDirection()
     {
-        
-    }
-    private arrowDirection getRandomDirection()
-    {
-        int random = Random.Range(0, 3);
+        int random = Random.Range(0, 4);
         switch (random)
         {
-
+            case 0:
+                return arrowDirection.UP;
+            case 1:
+                return arrowDirection.DOWN;
+            case 2:
+                return arrowDirection.LEFT;
+            case 3:
+                return arrowDirection.RIGHT;
+            default:
+                return arrowDirection.UP;
         }
-        return arrowDirection.UP;
     }
-    private void SetRandomDirection(arrowDirection dir)
+    public arrowDirection getDir()
+    {
+        return direction;
+    }
+    public void SetRandomDirection(arrowDirection dir)
     {
         direction = dir;
-        Vector3 rotVector = new Vector3(0,0,0);
+        Vector3 rotVector = new Vector3(0, 0, 0);
         switch (direction)
         {
             case arrowDirection.UP:
