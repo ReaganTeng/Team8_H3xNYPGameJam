@@ -61,7 +61,12 @@ MonoBehaviour:
   playerWeight: 0
   playerWeightText: {fileID: 0}
   enemiesDefeated: 0
+  idleAnim: []
+  attackingAnim: []
+  dodgeAnim: []
+  hurtAnim: []
   shopCanvas: {fileID: 0}
+  testing: []
 --- !u!212 &3264824365605880121
 SpriteRenderer:
   m_ObjectHideFlags: 0
