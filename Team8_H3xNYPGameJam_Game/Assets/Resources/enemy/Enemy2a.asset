@@ -16,6 +16,6 @@ MonoBehaviour:
   Weight: 0
   strength: 0
   enemySprite: {fileID: 0}
-  Enemy_name: Enemy2
+  Enemy_name: Enemy2a
   ParryStart: 0
   ParryEnd: 0
