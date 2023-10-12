@@ -20,7 +20,7 @@ public class GameManagerScript : MonoBehaviour
     public GameStates gameState;
     private List<GameObject> arrows = new List<GameObject>();
 
-    private int arrowCount = 5;
+    private int arrowCount = 10;
     private void Awake()
     {
         if (gmInstance == null)
