@@ -240,6 +240,12 @@ public class Player : MonoBehaviour
 
             currentPlayerState = playerState.ATTACK;
         }
+
+        //COMMENT THIS OUT LATER
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            hurt();
+        }
     }
 
 
@@ -249,7 +255,8 @@ public class Player : MonoBehaviour
     //WHAT HAPPENS WHEN PLAYER DODGES
     private void DodgeLeft()
     {
-        if (currentAnimationState.IsName("player_idle"))
+        if (currentAnimationState.IsName("player_idle")
+         && !isAttacking)
         {
             animController.Rebind();
 
@@ -258,15 +265,14 @@ public class Player : MonoBehaviour
             animController.SetBool("hurt", false);
             animController.SetFloat("dodge", 1f);
 
-
-
             Debug.Log("Dodge Left");
         }
     }
 
     private void DodgeRight()
     {
-        if (currentAnimationState.IsName("player_idle"))
+        if (currentAnimationState.IsName("player_idle")
+         && !isAttacking)
         {
             animController.Rebind();
 
@@ -274,7 +280,6 @@ public class Player : MonoBehaviour
             animController.SetBool("attack", false);
             animController.SetBool("hurt", false);
             animController.SetFloat("dodge", 3f);
-            //animController.SetBool("dodgeDirection", "l");
 
             Debug.Log("Dodge Right");
         }
@@ -294,7 +299,6 @@ public class Player : MonoBehaviour
             animController.SetBool("hurt", true);
             //RANDOMISE A HURT SOUND TO PLAY
             PlayRandomSound(hurtSounds);
-            animController.SetBool("hurt", false);
             Debug.Log("Hurt");
         }
     }
@@ -303,9 +307,8 @@ public class Player : MonoBehaviour
     private void Attack()
     {
 
-        if (!isAttacking
-         && currentAnimationState.IsName("player_idle")
-            ) // Only allow attacking if not already attacking
+        if (currentAnimationState.IsName("player_idle")
+         && !isAttacking)
         {
            animController.Rebind();
 
