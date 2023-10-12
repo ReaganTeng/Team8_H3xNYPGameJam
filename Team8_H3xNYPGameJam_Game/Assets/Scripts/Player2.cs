@@ -60,7 +60,7 @@ public class Player2 : MonoBehaviour
     {
         TrueOGPos = transform.position;
         startLocation = transform.position;
-        shopCanvas.enabled = false;
+        shopCanvas.gameObject.SetActive(false);
         enemiesDefeated = 0;
 
 
@@ -94,7 +94,7 @@ public class Player2 : MonoBehaviour
     private void Update()
     {
 
-        if (!shopCanvas.enabled)
+        if (!shopCanvas.gameObject.activeSelf)
         {
             if (isBack)
             {
@@ -123,7 +123,8 @@ public class Player2 : MonoBehaviour
     {
         if (enemiesDefeated >= 3)
         {
-            shopCanvas.enabled = true;
+            shopCanvas.gameObject.SetActive(true);
+
         }
     }
 

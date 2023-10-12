@@ -17,5 +17,5 @@ MonoBehaviour:
   strength: 2
   enemySprite: {fileID: 0}
   Enemy_name: Enemy2a
-  ParryStart: 0
-  ParryEnd: 0
+  ParryStart: 3
+  ParryEnd: 5
