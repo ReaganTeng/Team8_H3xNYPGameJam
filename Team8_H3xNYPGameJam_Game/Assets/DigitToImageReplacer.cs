@@ -12,39 +12,59 @@ public class DigitToImageReplacer : MonoBehaviour
 
     public Sprite[] characterSprites; // An array of sprites to use for replacement
     public int maxDigits = 5;
+    public Image img;
 
     public TextMeshProUGUI textComponent; // Reference to the TextMeshProUGUI component
 
     private void Awake()
     {
         textComponent = GetComponent<TextMeshProUGUI>();
+
+        characterSprites = Resources.LoadAll<Sprite>("Digits");
     }
 
     private void Update()
     {
         //ReplaceDigitsWithSprites();
-        SetNumber(12);
+    }
+    private void Start()
+    {
     }
 
-
-
-    public void SetNumber(int number)
+    private void OnEnable()
     {
-        string numberString = number.ToString();
+        SetNumber(transform.GetComponent<TextMeshProUGUI>().text);
+    }
 
-        // Ensure the number of digits doesn't exceed the maximum
-        if (numberString.Length > maxDigits)
-            numberString = new string('9', maxDigits);
-
-        for (int i = 0; i < maxDigits; i++)
+    void Clear()
+    {
+        foreach(Transform t in transform)
         {
-            // Get the individual digit
-            int digit = i < numberString.Length ? int.Parse(numberString[i].ToString()) : 0;
+            Destroy(t.gameObject);
+        }
+    }
 
-            // Access the digit GameObject or sprite and set the appropriate sprite
-            GameObject digitObject = background.transform.GetChild(i).gameObject;
-            Image digitImage = digitObject.GetComponent<Image>();
-            digitImage.sprite = characterSprites[digit];
+    public void SetNumber(string number)
+    {
+        Clear();
+        if (int.TryParse(number, out int a))
+        {
+            string numberString = number;
+            transform.GetComponent<TextMeshProUGUI>().text = "";
+            // Ensure the number of digits doesn't exceed the maximum
+            if (numberString.Length > maxDigits)
+                numberString = new string('9', maxDigits);
+
+            for (int i = 0; i < numberString.Length; i++)
+            {
+                // Get the individual digit
+                int digit = int.Parse(numberString[i].ToString());
+               
+                // Access the digit GameObject or sprite and set the appropriate sprite
+                Image Digit = Instantiate(img, background.transform) as Image;
+                Digit.sprite = characterSprites[digit];
+
+            }
         }
     }
 

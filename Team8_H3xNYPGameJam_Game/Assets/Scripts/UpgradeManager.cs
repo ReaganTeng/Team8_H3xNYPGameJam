@@ -24,28 +24,28 @@ public class UpgradeManager : MonoBehaviour
     public void UpgradeWeight()
     {
         playerScript.playerWeight += 1;
-        playerScript.playerWeightText.text = playerScript.playerWeight.ToString();
         DisableShop();
     }
 
     public void UpgradeStrength()
     {
         playerScript.playerStrength += 1;
-        playerScript.playerStrengthText.text = playerScript.playerStrength.ToString();
         DisableShop();
     }
 
     public void UpgradeSpeed()
     {
         playerScript.playerSpeed += 1;
-        playerScript.playerSpeedText.text = playerScript.playerSpeed.ToString();
         DisableShop();
     }
 
     public void DisableShop()
     {
-        //playerScript.shopCanvas.enabled = false;
-        //playerScript.enemiesDefeated = 0;
+        playerScript.playerSpeedText.text = playerScript.playerSpeed.ToString();
+        playerScript.playerStrengthText.text = playerScript.playerStrength.ToString();
+        playerScript.playerWeightText.text = playerScript.playerWeight.ToString();
+        playerScript.shopCanvas.gameObject.SetActive(false);
+        playerScript.enemiesDefeated = 0;
         AS.Play();
     }
 }

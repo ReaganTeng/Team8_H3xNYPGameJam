@@ -39,7 +39,7 @@ public class Player : MonoBehaviour
     private void Start()
     {
         oldPlayerState = currentPlayerState;
-        shopCanvas.enabled = false;
+        shopCanvas.gameObject.SetActive(false);
         enemiesDefeated = 0;
 
         playerStrength = 1.0f;
@@ -69,12 +69,13 @@ public class Player : MonoBehaviour
     {
         currentAnimationState = animController.GetCurrentAnimatorStateInfo(0);
 
-        if (!shopCanvas.enabled)
+        if (!shopCanvas.gameObject.activeSelf)
         {
             CheckMobileInput();
             CheckPCInput();
         }
        
+
         //MY ANIMATION
         animationCheck();
 
@@ -100,7 +101,7 @@ public class Player : MonoBehaviour
     {
         if(enemiesDefeated >= 3)
         {
-            shopCanvas.enabled = true;
+            shopCanvas.gameObject.SetActive(true);
         }
     }
 
