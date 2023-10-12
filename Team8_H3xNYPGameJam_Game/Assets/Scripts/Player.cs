@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
     private Animator animController;
     public AudioClip[] swordSounds;
     public AudioClip[] hurtSounds;
+    public AudioClip[] dodgeSounds;
 
     private AudioSource AS;
     private bool isAttacking = false; // Flag to prevent multiple attacks
@@ -265,6 +266,9 @@ public class Player : MonoBehaviour
             animController.SetBool("hurt", false);
             animController.SetFloat("dodge", 1f);
 
+            //PLAY A RANDOMISED DODGE SOUND
+            PlayRandomSound(dodgeSounds);
+
             Debug.Log("Dodge Left");
         }
     }
@@ -280,6 +284,9 @@ public class Player : MonoBehaviour
             animController.SetBool("attack", false);
             animController.SetBool("hurt", false);
             animController.SetFloat("dodge", 3f);
+
+            //PLAY A RANDOMISED DODGE SOUND
+            PlayRandomSound(dodgeSounds);
 
             Debug.Log("Dodge Right");
         }
