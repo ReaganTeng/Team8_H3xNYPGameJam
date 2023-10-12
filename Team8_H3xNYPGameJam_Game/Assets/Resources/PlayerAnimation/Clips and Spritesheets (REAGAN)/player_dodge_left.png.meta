@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 3ab87a2a712b48746b43fc0da0d5cbcc
+guid: c9b07d61c74b95c4a8ff4c268fe24721
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -69,12 +69,12 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 8192
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
+    compressionQuality: 100
+    crunchedCompression: 1
     allowsAlphaSplitting: 0
     overridden: 0
     ignorePlatformSupport: 0
@@ -136,7 +136,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Player_dodge_right_0
+      name: Player_dodge_left_0
       rect:
         serializedVersion: 2
         x: 0
@@ -150,14 +150,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2adcab0404bcdba4fba357af4d3fd3ea
-      internalID: -554213507
+      spriteID: 549d368ad4bc8ef409de93d02311aeed
+      internalID: 1570253806
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_dodge_right_1
+      name: Player_dodge_left_1
       rect:
         serializedVersion: 2
         x: 88
@@ -171,14 +171,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f27784720add4df42950dd0ec160a98a
-      internalID: 1576725357
+      spriteID: 6a730fe3f56628c4ca6cb1132823d321
+      internalID: -291332577
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_dodge_right_2
+      name: Player_dodge_left_2
       rect:
         serializedVersion: 2
         x: 176
@@ -192,14 +192,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1974a609ed8a52146955f181f054dc2c
-      internalID: 533341426
+      spriteID: 3496fd5c309e28c48a1cf0f56e39645b
+      internalID: -1466685462
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_dodge_right_3
+      name: Player_dodge_left_3
       rect:
         serializedVersion: 2
         x: 264
@@ -213,14 +213,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bfb1f7f6e8cde4f4eb25e6cabea401b6
-      internalID: 1284000908
+      spriteID: e4b81b6c630651e4cad1cb112e8f93ef
+      internalID: 1159148702
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_dodge_right_4
+      name: Player_dodge_left_4
       rect:
         serializedVersion: 2
         x: 352
@@ -234,14 +234,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 407b56a061ac3b94a903f4faaff7d1ea
-      internalID: -387119270
+      spriteID: 6da00e8939619834a9f0b6c956251b2b
+      internalID: -308056142
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_dodge_right_5
+      name: Player_dodge_left_5
       rect:
         serializedVersion: 2
         x: 440
@@ -255,14 +255,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 01c013bb570fe704a8128b64cadd99c9
-      internalID: 1410011715
+      spriteID: 68a5e9640abab7b43a9c93ca11d5e9d4
+      internalID: 261811744
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_dodge_right_6
+      name: Player_dodge_left_6
       rect:
         serializedVersion: 2
         x: 528
@@ -276,14 +276,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ab8cdcbb0387306439783bfe34e0344c
-      internalID: 645651190
+      spriteID: 10faa26ab62b0ff4b8e8aadfba5aa614
+      internalID: 80097482
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_dodge_right_7
+      name: Player_dodge_left_7
       rect:
         serializedVersion: 2
         x: 616
@@ -297,14 +297,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bed60febb9382404eaef9fd4011503ff
-      internalID: 876467794
+      spriteID: 2571ac175b3030c47ab8b4de60556fbb
+      internalID: 894698914
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_dodge_right_8
+      name: Player_dodge_left_8
       rect:
         serializedVersion: 2
         x: 704
@@ -318,8 +318,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: df5dd0dfab40fa74d859662bb3486a89
-      internalID: -1743751623
+      spriteID: 0ab14d45e7c43c340b9fafa9db170e45
+      internalID: -904537533
       vertices: []
       indices: 
       edges: []
@@ -327,7 +327,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 1858f11c5e5ba5043a5368a0b821a6ac
+    spriteID: 332285671f9a9a1409b3c437bf40cbc7
     internalID: 0
     vertices: []
     indices: 
@@ -335,15 +335,15 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Player_dodge_right_0: -554213507
-      Player_dodge_right_1: 1576725357
-      Player_dodge_right_2: 533341426
-      Player_dodge_right_3: 1284000908
-      Player_dodge_right_4: -387119270
-      Player_dodge_right_5: 1410011715
-      Player_dodge_right_6: 645651190
-      Player_dodge_right_7: 876467794
-      Player_dodge_right_8: -1743751623
+      Player_dodge_left_0: 1570253806
+      Player_dodge_left_1: -291332577
+      Player_dodge_left_2: -1466685462
+      Player_dodge_left_3: 1159148702
+      Player_dodge_left_4: -308056142
+      Player_dodge_left_5: 261811744
+      Player_dodge_left_6: 80097482
+      Player_dodge_left_7: 894698914
+      Player_dodge_left_8: -904537533
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
