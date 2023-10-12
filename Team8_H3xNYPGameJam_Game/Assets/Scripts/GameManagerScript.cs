@@ -20,7 +20,7 @@ public class GameManagerScript : MonoBehaviour
     public GameStates gameState;
     private List<GameObject> arrows = new List<GameObject>();
 
-    private int arrowCount = 10;
+    private int arrowCount = 3;
     private void Awake()
     {
         if (gmInstance == null)
@@ -43,47 +43,7 @@ public class GameManagerScript : MonoBehaviour
         }
         if (gameState == GameStates.FALLING)
         {
-            if (arrows.Count > 0)
-            {
-                if (Input.GetKeyDown(KeyCode.W))
-                {
-                    if (arrowPanel.transform.GetChild(arrowPanel.transform.childCount - 1).GetComponent<ArrowScript>().getDir() == ArrowScript.arrowDirection.UP)
-                    {
-                        arrows.RemoveAt(0);
-                        Destroy(arrowPanel.transform.GetChild(arrowPanel.transform.childCount - 1).gameObject);
-                    }
-                }
-                if (Input.GetKeyDown(KeyCode.A))
-                {
-                    if (arrowPanel.transform.GetChild(arrowPanel.transform.childCount - 1).GetComponent<ArrowScript>().getDir() == ArrowScript.arrowDirection.LEFT)
-                    {
-                        arrows.RemoveAt(0);
-                        Destroy(arrowPanel.transform.GetChild(arrowPanel.transform.childCount - 1).gameObject);
-                    }
-                }
-                if (Input.GetKeyDown(KeyCode.S))
-                {
-                    if (arrowPanel.transform.GetChild(arrowPanel.transform.childCount - 1).GetComponent<ArrowScript>().getDir() == ArrowScript.arrowDirection.DOWN)
-                    {
-                        arrows.RemoveAt(0);
-                        Destroy(arrowPanel.transform.GetChild(arrowPanel.transform.childCount - 1).gameObject);
-                    }
-                }
-                if (Input.GetKeyDown(KeyCode.D))
-                {
-                    if (arrowPanel.transform.GetChild(arrowPanel.transform.childCount - 1).GetComponent<ArrowScript>().getDir() == ArrowScript.arrowDirection.RIGHT)
-                    {
-                        arrows.RemoveAt(0);
-                        Destroy(arrowPanel.transform.GetChild(arrowPanel.transform.childCount - 1).gameObject);
-                    }
-                }
-            }
-            else 
-            {
-                arrowPanel.SetActive(false);
-                gameState = GameStates.PLAYING; 
-            }
-
+            CheckArrowInputs();
         }
     }
     private void createArrows()
@@ -97,5 +57,51 @@ public class GameManagerScript : MonoBehaviour
         }
         gameState = GameStates.FALLING;
         arrowPanel.SetActive(true);
+    }
+    private void CheckArrowInputs()
+    {
+        if (arrows.Count > 0)
+        {
+            if (Input.GetKeyDown(KeyCode.W))
+            {
+                if (arrowPanel.transform.GetChild(arrowPanel.transform.childCount - 1).GetComponent<ArrowScript>().getDir() == ArrowScript.arrowDirection.UP)
+                {
+                    arrows.RemoveAt(arrows.Count - 1);
+                    Destroy(arrowPanel.transform.GetChild(arrowPanel.transform.childCount - 1).gameObject);
+                }
+            }
+            if (Input.GetKeyDown(KeyCode.A))
+            {
+                if (arrowPanel.transform.GetChild(arrowPanel.transform.childCount - 1).GetComponent<ArrowScript>().getDir() == ArrowScript.arrowDirection.LEFT)
+                {
+                    arrows.RemoveAt(arrows.Count - 1);
+                    Destroy(arrowPanel.transform.GetChild(arrowPanel.transform.childCount - 1).gameObject);
+                }
+            }
+            if (Input.GetKeyDown(KeyCode.S))
+            {
+                if (arrowPanel.transform.GetChild(arrowPanel.transform.childCount - 1).GetComponent<ArrowScript>().getDir() == ArrowScript.arrowDirection.DOWN)
+                {
+                    arrows.RemoveAt(arrows.Count - 1);
+                    Destroy(arrowPanel.transform.GetChild(arrowPanel.transform.childCount - 1).gameObject);
+                }
+            }
+            if (Input.GetKeyDown(KeyCode.D))
+            {
+                if (arrowPanel.transform.GetChild(arrowPanel.transform.childCount - 1).GetComponent<ArrowScript>().getDir() == ArrowScript.arrowDirection.RIGHT)
+                {
+                    arrows.RemoveAt(arrows.Count - 1);
+                    Destroy(arrowPanel.transform.GetChild(arrowPanel.transform.childCount - 1).gameObject);
+                }
+            }
+        }
+        else
+        {
+            arrowPanel.SetActive(false);
+            if (arrowCount <= 15)
+                arrowCount++;
+            gameState = GameStates.PLAYING;
+        }
+
     }
 }
