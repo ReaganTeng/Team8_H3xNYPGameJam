@@ -29,6 +29,14 @@ public class MainMenuScript : MonoBehaviour
     {
         StartCoroutine(fadeOut());
     }
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.I))
+        {
+        StartCoroutine(fadeOut());
+
+        }
+    }
     public void onPauseButtonClicked()
     {
         GameManagerScript.gmInstance.gameState = GameManagerScript.GameStates.PAUSED;

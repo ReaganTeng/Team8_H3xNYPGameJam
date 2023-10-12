@@ -45,7 +45,7 @@ public class enemyManeger : MonoBehaviour
     public void Start()
     {
         AllenemyType = Resources.LoadAll<EnemysStates>("enemy");
-        SpawnEnemy();
+       // SpawnEnemy();
     }
 
     public bool SendHIt()
