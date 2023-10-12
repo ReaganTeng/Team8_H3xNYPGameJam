@@ -80,7 +80,7 @@ public class Player : MonoBehaviour
 
         //JUN KAI'S ANIMATION
        
-         playAnimation();
+        // playAnimation();
         
     }
 

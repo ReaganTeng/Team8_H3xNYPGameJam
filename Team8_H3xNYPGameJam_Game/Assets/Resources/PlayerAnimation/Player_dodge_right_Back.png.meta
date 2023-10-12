@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 894dd6e52c0444e4883bd917f0cd3ce1
+guid: c20846c23abf5a74082ae2877534460f
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -139,7 +139,7 @@ TextureImporter:
       name: Player_dodge_right_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 440
         y: 0
         width: 88
         height: 68
@@ -160,7 +160,7 @@ TextureImporter:
       name: Player_dodge_right_1
       rect:
         serializedVersion: 2
-        x: 88
+        x: 528
         y: 0
         width: 88
         height: 68
@@ -181,7 +181,7 @@ TextureImporter:
       name: Player_dodge_right_2
       rect:
         serializedVersion: 2
-        x: 176
+        x: 616
         y: 0
         width: 88
         height: 68
@@ -202,7 +202,7 @@ TextureImporter:
       name: Player_dodge_right_3
       rect:
         serializedVersion: 2
-        x: 264
+        x: 704
         y: 0
         width: 88
         height: 68
@@ -219,6 +219,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Player_dodge_right Back_0
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 0
+        width: 88
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: de95fecdcef9133418ef1b6d87407b9f
+      internalID: 634267352
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -230,6 +251,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
+      Player_dodge_right Back_0: 634267352
       Player_dodge_right_0: -554213507
       Player_dodge_right_1: 1576725357
       Player_dodge_right_2: 533341426

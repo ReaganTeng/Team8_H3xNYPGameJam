@@ -13,7 +13,6 @@ public class SpriteMan : MonoBehaviour
     {
         if (current < animationToRunThoruh.Length)
         {
-       
             spriteRenderer.sprite = animationToRunThoruh[current];
             float frameDuration = animSpeed / animationToRunThoruh.Length;
             yield return new WaitForSeconds(frameDuration);
@@ -34,7 +33,6 @@ public class SpriteMan : MonoBehaviour
 
     private void Start()
     {
-
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 

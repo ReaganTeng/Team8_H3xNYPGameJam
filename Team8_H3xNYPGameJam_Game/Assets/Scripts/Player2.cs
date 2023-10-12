@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -23,14 +25,17 @@ public class Player2 : MonoBehaviour
     public TextMeshProUGUI playerSpeedText;
 
     public int enemiesDefeated;
-    int totalenemiesDefeated;
+    public int totalenemiesDefeated;
     [SerializeField] Sprite[] idleAnim;
     [SerializeField] Sprite[] attackingAnim;
     [SerializeField] Sprite[] dodgeLeftAnim;
     [SerializeField] Sprite[] dodgeRightAnim;
+    [SerializeField] Sprite[] dodgeLeftBackAnim;
+    [SerializeField] Sprite[] dodgeRightBackAnim;
     [SerializeField] Sprite[] hurtAnim;
     Sprite[] current;
     SpriteMan sm;
+    public bool CantHit;
     public Canvas shopCanvas;
 
     public Sprite[] testing;
@@ -38,11 +43,12 @@ public class Player2 : MonoBehaviour
     playerState oldPlayerState;
 
     Tween moving;
-    bool isBack=true;
+    bool isBack = true;
 
-    public playerState GetPlayerState() 
-    { 
-        return currentPlayerState; 
+    Vector3 TrueOGPos;
+    public playerState GetPlayerState()
+    {
+        return currentPlayerState;
     }
 
     Vector3 startLocation;
@@ -52,16 +58,14 @@ public class Player2 : MonoBehaviour
     }
     private void Start()
     {
+        TrueOGPos = transform.position;
         startLocation = transform.position;
-        oldPlayerState = currentPlayerState;
         shopCanvas.enabled = false;
         enemiesDefeated = 0;
 
-        playerStrength = 1.0f;
         playerStrengthText.text = playerStrength.ToString();
-        playerWeight = 1.0f;
         playerWeightText.text = playerWeight.ToString();
-        playerSpeed = 1.0f;
+        //playerSpeed = 1.0f;
         playerSpeedText.text = playerSpeed.ToString();
 
         sm = GetComponent<SpriteMan>();
@@ -75,8 +79,10 @@ public class Player2 : MonoBehaviour
         idleAnim = Resources.LoadAll<Sprite>("PlayerAnimation/player_idle");
         attackingAnim = Resources.LoadAll<Sprite>("PlayerAnimation/player_attack");
         dodgeLeftAnim = Resources.LoadAll<Sprite>("PlayerAnimation/Player_dodge_left");
+        dodgeLeftBackAnim = Resources.LoadAll<Sprite>("PlayerAnimation/Player_dodge_left Back");
         dodgeRightAnim = Resources.LoadAll<Sprite>("PlayerAnimation/Player_dodge_right");
-        hurtAnim = Resources.LoadAll<Sprite>("PlayerAnimation/MC_attack");
+        dodgeRightBackAnim = Resources.LoadAll<Sprite>("PlayerAnimation/Player_dodge_right_Back");
+        hurtAnim = Resources.LoadAll<Sprite>("PlayerAnimation/player_hurt");
     }
     public Vector3 startingLocation()
     {
@@ -85,7 +91,8 @@ public class Player2 : MonoBehaviour
 
     public void updateStaringLoc()
     {
-        startLocation = new Vector3(0,transform.position.y,0);
+        startLocation = new Vector3(0, transform.position.y, 0);
+        CantHit = false;
     }
 
     private void Update()
@@ -93,7 +100,7 @@ public class Player2 : MonoBehaviour
 
         if (!shopCanvas.enabled)
         {
-            if(isBack)
+            if (isBack)
             {
                 CheckMobileInput();
                 CheckPCInput();
@@ -125,50 +132,43 @@ public class Player2 : MonoBehaviour
     }
 
 
+
+
     //WHEN ANIMATION OTHER THAN IDLE HAS STOPPED PLAYING
-    
+
     private void playAnimation()
     {
-        
-            if (oldPlayerState == currentPlayerState)
-            {
-                if (sm.ReturnDone())
-                {
-                    if (currentPlayerState != playerState.IDLE)
-                    {
-                        sm.RunAnimation(idleAnim, playerSpeed);
-                    }
-                    else
-                    {
-                        sm.RunAnimation(idleAnim, playerSpeed);
-                    }
-                    currentPlayerState = playerState.IDLE;
-                }
-            }
-            else
-            {
-                switch (currentPlayerState)
-                {
-                    case playerState.IDLE:
-                        sm.RunAnimation(idleAnim, playerSpeed);
-                        break;
-                    case playerState.ATTACK:
-                        sm.RunAnimation(attackingAnim, playerSpeed);
-                        break;
-                    case playerState.DODGELEFT:
-                        sm.RunAnimation(dodgeLeftAnim, playerSpeed);
-                        break;
-                case playerState.DODGERIGHT:
-                    sm.RunAnimation(dodgeRightAnim, playerSpeed);
-                    break;
-                case playerState.HURT:
-                        sm.RunAnimation(hurtAnim, playerSpeed);
-                        break;
-                }
-            }
+        if(!sm.ReturnDone() || oldPlayerState == currentPlayerState)
+        {
+            return;
+        }
+        switch (currentPlayerState)
+        {
+            case playerState.IDLE:
+                sm.RunAnimation(idleAnim, playerSpeed);
+                break;
+            case playerState.ATTACK:
+                sm.RunAnimation(attackingAnim, playerSpeed);
+                break;
+            case playerState.DODGELEFT:
+                sm.RunAnimation(dodgeLeftAnim, playerSpeed);
+                break;
+            case playerState.DODGELEFTBACK:
+                sm.RunAnimation(dodgeLeftBackAnim, playerSpeed);
+                break;
+            case playerState.DODGERIGHTBACK:
+                sm.RunAnimation(dodgeRightBackAnim, playerSpeed);
+                break;
+            case playerState.DODGERIGHT:
+                sm.RunAnimation(dodgeRightAnim, playerSpeed);
+                break;
+            case playerState.HURT:
+                sm.RunAnimation(hurtAnim, 0.1f);
+                break;
+        }
 
-            oldPlayerState = currentPlayerState;
-        
+        oldPlayerState = currentPlayerState;
+
     }
 
     //MOBILE CONTROLS
@@ -214,7 +214,7 @@ public class Player2 : MonoBehaviour
             isBack = false;
             DodgeLeft();
 
-           moving= transform.DOMoveX(transform.position.x - 0.6f, 1).OnComplete(MoveBack);
+            moving = transform.DOMoveX(transform.position.x - 0.6f, playerSpeed).OnComplete(callMoveBack);
             currentPlayerState = playerState.DODGELEFT;
         }
 
@@ -223,7 +223,7 @@ public class Player2 : MonoBehaviour
         {
             isBack = false;
             DodgeRight();
-            moving = transform.DOMoveX(transform.position.x + 0.6f, 1).OnComplete(MoveBack);
+            moving = transform.DOMoveX(transform.position.x + 0.6f, playerSpeed).OnComplete(callMoveBack);
             currentPlayerState = playerState.DODGERIGHT;
         }
 
@@ -232,17 +232,53 @@ public class Player2 : MonoBehaviour
         {
             isBack = false;
             Attack();
+            if (enemyManeger.EM.SendHIt() == true)
+            {
+                CantHit = true;
+            }
 
+            moving = transform.DOMoveY(transform.position.y + 0.5f, playerSpeed).OnComplete(() =>
+            {
+               if(!CantHit)
+                {
+                    CantHit = false;
+                    callMoveBack();
+                }
+            });
+           
             currentPlayerState = playerState.ATTACK;
         }
     }
 
 
-    public void MoveBack()
+    IEnumerator moveBack()
     {
-        transform.DOMove(startLocation, 1).OnComplete(() => { isBack = true; });
+        yield return new WaitForSeconds(0.7f);
+        Debug.Log("asdasda");
+        if (currentPlayerState == playerState.DODGERIGHT)
+        {
+            currentPlayerState = playerState.DODGERIGHTBACK;
+        }
+        else if (currentPlayerState == playerState.DODGELEFT)
+        {
+
+            currentPlayerState = playerState.DODGELEFTBACK;
+
+        }
+       
+        transform.DOMove(startLocation, playerSpeed).OnComplete(() => { isBack = true;
+            currentPlayerState = playerState.IDLE;
+        });
     }
 
+    void callMoveBack()
+    {
+        StartCoroutine("moveBack");
+    }
+    public void InstantMove()
+    {
+        transform.DOMove(startLocation, playerSpeed).OnComplete(() => { isBack = true; });
+    }
 
     //WHAT HAPPENS WHEN PLAYER DODGES
     private void DodgeLeft()
@@ -289,7 +325,7 @@ public class Player2 : MonoBehaviour
     
             //RANDOMISE A PUNCH SOUND TO PLAY
             PlayRandomSound(swordSounds);
-            Debug.Log("Attack");
+            callMoveBack();
 
             enemiesDefeated += 1;
             totalenemiesDefeated += 1;
@@ -309,6 +345,35 @@ public class Player2 : MonoBehaviour
     {
         moving.Kill();
     }
+    public void stopMove()
+    {
+        StopCoroutine("moveBack");
+    }
+    public void GotHit()
+    {
+        if(currentPlayerState==playerState.HURT)
+        {
+            currentPlayerState = playerState.IDLE;
+            sm.RunAnimation(idleAnim, 1);
+            return;
+        }
+        currentPlayerState = playerState.HURT;
+        sm.RunAnimation(hurtAnim,1);
+    }
+
+    public void playerMoveBack()
+    {
+        transform.DOMove(TrueOGPos,0.1f).OnComplete(() =>
+        {
+            AddScore();
+            isBack = true;
+            updateStaringLoc();
+        });
+    }
+
+    public void PlayerFall() { 
+    
+    }
 }
 
 public enum playerState
@@ -317,5 +382,7 @@ public enum playerState
     DODGERIGHT,
     DODGELEFT,
     ATTACK,
-    HURT
+    HURT,
+    DODGELEFTBACK,
+    DODGERIGHTBACK
 }

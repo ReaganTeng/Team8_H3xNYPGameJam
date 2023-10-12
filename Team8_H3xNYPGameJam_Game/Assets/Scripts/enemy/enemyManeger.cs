@@ -7,6 +7,19 @@ public class enemyManeger : MonoBehaviour
 {
     enemy e = null;
     EnemysStates[]AllenemyType;
+    [SerializeField] EnemysStates ES;
+    public static enemyManeger EM;
+    private void Awake()
+    {
+        if (EM == null)
+        {
+            EM = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
     public void SpawnEnemy()
     {
         if(e != null)
@@ -14,7 +27,6 @@ public class enemyManeger : MonoBehaviour
            Destroy(e); e = null;
         }
         GameObject SpawnEnemy = new GameObject();
-        SpawnEnemy.transform.rotation = Quaternion.Euler(0, 0, 180);
         e= SpawnEnemy.AddComponent(typeof(enemy)) as enemy;
         SpawnEnemy.AddComponent(typeof(SpriteRenderer));
         SpawnEnemy.AddComponent<SpriteMan>();
@@ -28,12 +40,17 @@ public class enemyManeger : MonoBehaviour
     private void setEnemyStats()
     {
         int a = Random.Range(0, AllenemyType.Length);
-        e.SetEnemyStats(AllenemyType[a]);
+        e.SetEnemyStats(ES);
     }
     public void Start()
     {
         AllenemyType = Resources.LoadAll<EnemysStates>("enemy");
         SpawnEnemy();
+    }
+
+    public bool SendHIt()
+    {
+       return e.PlayerHit();
     }
 
 }
