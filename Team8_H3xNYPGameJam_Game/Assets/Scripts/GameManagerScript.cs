@@ -20,7 +20,7 @@ public class GameManagerScript : MonoBehaviour
     public GameStates gameState;
     private List<GameObject> arrows = new List<GameObject>();
 
-    private int baseArrowCount = 5;
+    private int arrowCount = 5;
     private void Awake()
     {
         if (gmInstance == null)
@@ -88,7 +88,7 @@ public class GameManagerScript : MonoBehaviour
     }
     private void createArrows()
     {
-        for(int i = 0; i < baseArrowCount; i++)
+        for(int i = 0; i < arrowCount; i++)
         {
             Instantiate(arrowPrefab, arrowPanel.transform);
             ArrowScript arrow = arrowPrefab.GetComponent<ArrowScript>();
