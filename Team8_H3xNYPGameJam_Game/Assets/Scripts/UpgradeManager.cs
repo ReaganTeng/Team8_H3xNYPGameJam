@@ -21,7 +21,6 @@ public class UpgradeManager : MonoBehaviour
         AS.clip = chaChingSound;
 
     }
-
     public void UpgradeWeight()
     {
         playerScript.playerWeight += 1;
@@ -45,8 +44,8 @@ public class UpgradeManager : MonoBehaviour
 
     public void DisableShop()
     {
-        playerScript.shopCanvas.enabled = false;
-        playerScript.enemiesDefeated = 0;
+        //playerScript.shopCanvas.enabled = false;
+        //playerScript.enemiesDefeated = 0;
         AS.Play();
     }
 }
