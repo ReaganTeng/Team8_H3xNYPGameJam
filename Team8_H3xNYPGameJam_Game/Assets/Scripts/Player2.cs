@@ -63,10 +63,6 @@ public class Player2 : MonoBehaviour
         shopCanvas.enabled = false;
         enemiesDefeated = 0;
 
-        playerStrengthText.text = playerStrength.ToString();
-        playerWeightText.text = playerWeight.ToString();
-        //playerSpeed = 1.0f;
-        playerSpeedText.text = playerSpeed.ToString();
 
         sm = GetComponent<SpriteMan>();
         gameObject.AddComponent<SpriteMan>();

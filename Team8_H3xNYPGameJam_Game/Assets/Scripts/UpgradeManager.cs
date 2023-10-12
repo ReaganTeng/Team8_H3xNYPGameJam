@@ -7,15 +7,16 @@ using TMPro;
 public class UpgradeManager : MonoBehaviour
 {
     public GameObject player;
-    Player playerScript;
+    //Player playerScript;
 
+    Player2 playerScript;
     AudioSource AS;
     public AudioClip chaChingSound;
     //AS.Play();
 
     private void Awake()
     {
-        playerScript = player.GetComponent<Player>();
+        playerScript = player.GetComponent<Player2>();
 
         AS = GetComponent<AudioSource>();
         AS.clip = chaChingSound;
@@ -47,5 +48,12 @@ public class UpgradeManager : MonoBehaviour
         playerScript.shopCanvas.gameObject.SetActive(false);
         playerScript.enemiesDefeated = 0;
         AS.Play();
+    }
+    private void OnEnable()
+    {
+
+        playerScript.playerSpeedText.text = playerScript.playerSpeed.ToString();
+        playerScript.playerStrengthText.text = playerScript.playerStrength.ToString();
+        playerScript.playerWeightText.text = playerScript.playerWeight.ToString();
     }
 }
