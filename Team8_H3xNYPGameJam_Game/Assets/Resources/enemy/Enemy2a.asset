@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b7255f9d947863247a86712d9f06fc7a, type: 3}
-  m_Name: New Enemys States
+  m_Name: Enemy2a
   m_EditorClassIdentifier: 
   speed: 0
   Weight: 0
   strength: 0
   enemySprite: {fileID: 0}
-  Enemy_name: 
+  Enemy_name: Enemy2
   ParryStart: 0
   ParryEnd: 0
