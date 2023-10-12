@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 6bb938591ee274f4e96b5a68a3ad438f
+guid: 205ba61733475cc4a9d9826c47d889ce
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -136,36 +136,15 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: bob_attack_4
-      rect:
-        serializedVersion: 2
-        x: 88
-        y: 176
-        width: 88
-        height: 88
-      alignment: 9
-      pivot: {x: 0.52281535, y: 0.18514703}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d2019c042f4c55948962173351ce3df5
-      internalID: 1173274670
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: bob_attack_0
       rect:
         serializedVersion: 2
         x: 0
         y: 264
         width: 88
-        height: 88
+        height: 30
       alignment: 9
-      pivot: {x: 0.50000006, y: 0.18514703}
+      pivot: {x: 0.50331193, y: 0.5640177}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -173,111 +152,6 @@ TextureImporter:
       bones: []
       spriteID: f40dcc931568bfe408d598a95e44d1c5
       internalID: 1492909767
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: bob_attack_1
-      rect:
-        serializedVersion: 2
-        x: 88
-        y: 264
-        width: 88
-        height: 88
-      alignment: 9
-      pivot: {x: 0.5, y: 0.1897101}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4d3df5969f3861042a5ad8211f9571b6
-      internalID: 1646338022
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: bob_attack_2
-      rect:
-        serializedVersion: 2
-        x: 176
-        y: 264
-        width: 88
-        height: 88
-      alignment: 9
-      pivot: {x: 0.5091261, y: 0.20339966}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: edc06ae1aeb3c354a95a5c1711f8a857
-      internalID: 524499444
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: bob_attack_3
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 176
-        width: 88
-        height: 88
-      alignment: 9
-      pivot: {x: 0.52281547, y: 0.18058395}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e01d7f00cc0b9364cb2404ac7d4a6dfb
-      internalID: 1976361207
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: bob_attack_5
-      rect:
-        serializedVersion: 2
-        x: 176
-        y: 176
-        width: 88
-        height: 88
-      alignment: 9
-      pivot: {x: 0.5136892, y: 0.17602088}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ce9eb6417dd301f48bfff6ffd6425798
-      internalID: -196010042
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: bob_attack_6
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 88
-        width: 88
-        height: 88
-      alignment: 9
-      pivot: {x: 0.52281547, y: 0.18514694}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5ff1c48ce972dc74a92e9cbaf99b1f52
-      internalID: -1079627812
       vertices: []
       indices: 
       edges: []

@@ -1,11 +1,12 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using DG.Tweening;
 
-public class Player : MonoBehaviour
+public class Player2 : MonoBehaviour
 {
-    private Rigidbody2D rb;
-    private Animator animController;
+
+    public static Player2 instance;
     public AudioClip[] swordSounds;
     public AudioClip[] hurtSounds;
 
@@ -25,18 +26,33 @@ public class Player : MonoBehaviour
     int totalenemiesDefeated;
     [SerializeField] Sprite[] idleAnim;
     [SerializeField] Sprite[] attackingAnim;
-    [SerializeField] Sprite[] dodgeAnim;
+    [SerializeField] Sprite[] dodgeLeftAnim;
+    [SerializeField] Sprite[] dodgeRightAnim;
     [SerializeField] Sprite[] hurtAnim;
     Sprite[] current;
     SpriteMan sm;
     public Canvas shopCanvas;
 
     public Sprite[] testing;
-    playerState currentPlayerState=playerState.IDLE;
+    playerState currentPlayerState = playerState.IDLE;
     playerState oldPlayerState;
 
+    Tween moving;
+    bool isBack=true;
+
+    public playerState GetPlayerState() 
+    { 
+        return currentPlayerState; 
+    }
+
+    Vector3 startLocation;
+    private void Awake()
+    {
+        instance = this;
+    }
     private void Start()
     {
+        startLocation = transform.position;
         oldPlayerState = currentPlayerState;
         shopCanvas.enabled = false;
         enemiesDefeated = 0;
@@ -48,39 +64,44 @@ public class Player : MonoBehaviour
         playerSpeed = 1.0f;
         playerSpeedText.text = playerSpeed.ToString();
 
-        sm=GetComponent<SpriteMan>();
-        rb = GetComponent<Rigidbody2D>();
-        animController = GetComponent<Animator>();
+        sm = GetComponent<SpriteMan>();
         gameObject.AddComponent<SpriteMan>();
         AS = GetComponent<AudioSource>();
-
+        GetAnimation();
     }
 
     private void GetAnimation()
     {
-        idleAnim = Resources.LoadAll<Sprite>("PlayerAnimation/MC_attack");
-        attackingAnim = Resources.LoadAll<Sprite>("PlayerAnimation/boxer_attack");
-        dodgeAnim = Resources.LoadAll<Sprite>("PlayerAnimation/boxer_dodge");
+        idleAnim = Resources.LoadAll<Sprite>("PlayerAnimation/player_idle");
+        attackingAnim = Resources.LoadAll<Sprite>("PlayerAnimation/player_attack");
+        dodgeLeftAnim = Resources.LoadAll<Sprite>("PlayerAnimation/Player_dodge_left");
+        dodgeRightAnim = Resources.LoadAll<Sprite>("PlayerAnimation/Player_dodge_right");
         hurtAnim = Resources.LoadAll<Sprite>("PlayerAnimation/MC_attack");
+    }
+    public Vector3 startingLocation()
+    {
+        return startLocation;
+    }
+
+    public void updateStaringLoc()
+    {
+        startLocation = new Vector3(0,transform.position.y,0);
     }
 
     private void Update()
     {
-        currentAnimationState = animController.GetCurrentAnimatorStateInfo(0);
 
         if (!shopCanvas.enabled)
         {
-            CheckMobileInput();
-            CheckPCInput();
+            if(isBack)
+            {
+                CheckMobileInput();
+                CheckPCInput();
+            }
         }
-       
-        //MY ANIMATION
-        animationCheck();
 
-        //JUN KAI'S ANIMATION
-       
-         playAnimation();
-        
+        playAnimation();
+
     }
 
     //RANDOMISE A SOUND TO PLAY
@@ -97,7 +118,7 @@ public class Player : MonoBehaviour
     //TRACK HOW MANY ENEMIES ARE DEFEATED
     private void EnemyTracker()
     {
-        if(enemiesDefeated >= 3)
+        if (enemiesDefeated >= 3)
         {
             shopCanvas.enabled = true;
         }
@@ -105,43 +126,10 @@ public class Player : MonoBehaviour
 
 
     //WHEN ANIMATION OTHER THAN IDLE HAS STOPPED PLAYING
-    private void animationCheck()
-    {
-        currentAnimationState = animController.GetCurrentAnimatorStateInfo(0);
-
-        if (animController.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f
-            && !currentAnimationState.IsName("player_idle"))
-        {
-            
-            animController.SetBool("attack", false);
-            animController.SetFloat("dodge", 0);
-            animController.SetBool("hurt", false);
-
-            currentPlayerState = playerState.IDLE;
-
-            isAttacking = false; // Reset attack flag
-        }
-
-
-        if(currentAnimationState.IsName("player_dodge")
-            || currentAnimationState.IsName("player_attack"))
-        {
-            animController.speed = currentAnimationState.speed * playerSpeed;
-        }
-        else
-        {
-            animController.speed = 1;
-        }
-    }
-
+    
     private void playAnimation()
     {
-        if (idleAnim != null
-           && attackingAnim != null
-           && dodgeAnim != null
-           && hurtAnim != null
-           && sm != null)
-        {
+        
             if (oldPlayerState == currentPlayerState)
             {
                 if (sm.ReturnDone())
@@ -159,7 +147,6 @@ public class Player : MonoBehaviour
             }
             else
             {
-                Debug.Log("asdasd");
                 switch (currentPlayerState)
                 {
                     case playerState.IDLE:
@@ -169,16 +156,19 @@ public class Player : MonoBehaviour
                         sm.RunAnimation(attackingAnim, playerSpeed);
                         break;
                     case playerState.DODGELEFT:
-                        sm.RunAnimation(dodgeAnim, playerSpeed);
+                        sm.RunAnimation(dodgeLeftAnim, playerSpeed);
                         break;
-                    case playerState.HURT:
+                case playerState.DODGERIGHT:
+                    sm.RunAnimation(dodgeRightAnim, playerSpeed);
+                    break;
+                case playerState.HURT:
                         sm.RunAnimation(hurtAnim, playerSpeed);
                         break;
                 }
             }
 
             oldPlayerState = currentPlayerState;
-        }
+        
     }
 
     //MOBILE CONTROLS
@@ -191,7 +181,7 @@ public class Player : MonoBehaviour
             if (touch.phase == TouchPhase.Moved)
             {
                 Vector2 deltaPosition = touch.deltaPosition;
-                
+
                 // DETECT WHETHER PLAYER SWIPES UP
                 if (deltaPosition.y > Screen.height * 0.05f)
                 {
@@ -221,65 +211,56 @@ public class Player : MonoBehaviour
         // Check for A key (dodge left)
         if (Input.GetKeyDown(KeyCode.A))
         {
+            isBack = false;
             DodgeLeft();
+
+           moving= transform.DOMoveX(transform.position.x - 0.6f, 1).OnComplete(MoveBack);
             currentPlayerState = playerState.DODGELEFT;
         }
 
         // Check for D key (dodge right)
         if (Input.GetKeyDown(KeyCode.D))
         {
+            isBack = false;
             DodgeRight();
-
-            currentPlayerState = playerState.DODGELEFT;
+            moving = transform.DOMoveX(transform.position.x + 0.6f, 1).OnComplete(MoveBack);
+            currentPlayerState = playerState.DODGERIGHT;
         }
 
         // Check for W key (attack)
         if (Input.GetKeyDown(KeyCode.W))
         {
+            isBack = false;
             Attack();
 
             currentPlayerState = playerState.ATTACK;
         }
-
-        //COMMENT THIS OUT LATER
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            hurt();
-        }
     }
 
 
-    
+    public void MoveBack()
+    {
+        transform.DOMove(startLocation, 1).OnComplete(() => { isBack = true; });
+    }
 
 
     //WHAT HAPPENS WHEN PLAYER DODGES
     private void DodgeLeft()
     {
-        if (currentAnimationState.IsName("player_idle")
-         && !isAttacking)
+
+        if (currentAnimationState.IsName("player_idle"))
         {
-            animController.Rebind();
-
-            isAttacking = false;
-            animController.SetBool("attack", false);
-            animController.SetBool("hurt", false);
-            animController.SetFloat("dodge", 1f);
-
-            Debug.Log("Dodge Left");
+            
         }
     }
 
     private void DodgeRight()
     {
-        if (currentAnimationState.IsName("player_idle")
-         && !isAttacking)
+        if (currentAnimationState.IsName("player_idle"))
         {
-            animController.Rebind();
 
-            isAttacking = false;
-            animController.SetBool("attack", false);
-            animController.SetBool("hurt", false);
-            animController.SetFloat("dodge", 3f);
+           
+            //animController.SetBool("dodgeDirection", "l");
 
             Debug.Log("Dodge Right");
         }
@@ -292,13 +273,7 @@ public class Player : MonoBehaviour
         if (currentAnimationState.IsName("player_idle")
           && !isAttacking)
         {
-            animController.Rebind();
-
-            animController.SetBool("attack", false);
-            animController.SetFloat("dodge", 0);
-            animController.SetBool("hurt", true);
-            //RANDOMISE A HURT SOUND TO PLAY
-            PlayRandomSound(hurtSounds);
+           
             Debug.Log("Hurt");
         }
     }
@@ -307,14 +282,11 @@ public class Player : MonoBehaviour
     private void Attack()
     {
 
-        if (currentAnimationState.IsName("player_idle")
-         && !isAttacking)
+        if (!isAttacking
+         && currentAnimationState.IsName("player_idle")
+            ) // Only allow attacking if not already attacking
         {
-           animController.Rebind();
-
-            animController.SetFloat("dodge", 0);
-            animController.SetBool("hurt", false);
-            animController.SetBool("attack", true);
+    
             //RANDOMISE A PUNCH SOUND TO PLAY
             PlayRandomSound(swordSounds);
             Debug.Log("Attack");
@@ -323,8 +295,27 @@ public class Player : MonoBehaviour
             totalenemiesDefeated += 1;
 
             EnemyTracker();
-            isAttacking = true; 
+            isAttacking = true;
         }
+    }
+
+    public void AddScore()
+    {
+
+        enemiesDefeated++;
+    }
+
+    public void StopMoving()
+    {
+        moving.Kill();
     }
 }
 
+public enum playerState
+{
+    IDLE,
+    DODGERIGHT,
+    DODGELEFT,
+    ATTACK,
+    HURT
+}

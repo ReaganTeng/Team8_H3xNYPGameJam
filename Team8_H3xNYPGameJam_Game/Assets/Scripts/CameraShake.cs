@@ -68,4 +68,9 @@ public class CameraShake : MonoBehaviour
         c = _ProcessShake(strenght, timer);
         StartCoroutine(c);
     }
+    public void ShakeContorl(float s, float t)
+    {
+        c = _ProcessShake(s, t);
+        StartCoroutine(c);
+    }
 }

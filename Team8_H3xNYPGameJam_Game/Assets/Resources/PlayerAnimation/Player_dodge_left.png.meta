@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 6bb938591ee274f4e96b5a68a3ad438f
+guid: ab98cdb4729740749ad51d7f0e28c169
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -69,7 +69,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 8192
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -136,148 +136,190 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: bob_attack_4
+      name: Player_dodge_left_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 88
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 549d368ad4bc8ef409de93d02311aeed
+      internalID: 1570253806
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_dodge_left_1
       rect:
         serializedVersion: 2
         x: 88
-        y: 176
+        y: 0
         width: 88
-        height: 88
-      alignment: 9
-      pivot: {x: 0.52281535, y: 0.18514703}
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d2019c042f4c55948962173351ce3df5
-      internalID: 1173274670
+      spriteID: 6a730fe3f56628c4ca6cb1132823d321
+      internalID: -291332577
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bob_attack_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 264
-        width: 88
-        height: 88
-      alignment: 9
-      pivot: {x: 0.50000006, y: 0.18514703}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f40dcc931568bfe408d598a95e44d1c5
-      internalID: 1492909767
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: bob_attack_1
-      rect:
-        serializedVersion: 2
-        x: 88
-        y: 264
-        width: 88
-        height: 88
-      alignment: 9
-      pivot: {x: 0.5, y: 0.1897101}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4d3df5969f3861042a5ad8211f9571b6
-      internalID: 1646338022
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: bob_attack_2
+      name: Player_dodge_left_2
       rect:
         serializedVersion: 2
         x: 176
-        y: 264
+        y: 0
         width: 88
-        height: 88
-      alignment: 9
-      pivot: {x: 0.5091261, y: 0.20339966}
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: edc06ae1aeb3c354a95a5c1711f8a857
-      internalID: 524499444
+      spriteID: 3496fd5c309e28c48a1cf0f56e39645b
+      internalID: -1466685462
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bob_attack_3
+      name: Player_dodge_left_3
       rect:
         serializedVersion: 2
-        x: 0
-        y: 176
+        x: 264
+        y: 0
         width: 88
-        height: 88
-      alignment: 9
-      pivot: {x: 0.52281547, y: 0.18058395}
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e01d7f00cc0b9364cb2404ac7d4a6dfb
-      internalID: 1976361207
+      spriteID: e4b81b6c630651e4cad1cb112e8f93ef
+      internalID: 1159148702
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bob_attack_5
+      name: Player_dodge_left_4
       rect:
         serializedVersion: 2
-        x: 176
-        y: 176
+        x: 352
+        y: 0
         width: 88
-        height: 88
-      alignment: 9
-      pivot: {x: 0.5136892, y: 0.17602088}
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ce9eb6417dd301f48bfff6ffd6425798
-      internalID: -196010042
+      spriteID: 6da00e8939619834a9f0b6c956251b2b
+      internalID: -308056142
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bob_attack_6
+      name: Player_dodge_left_5
       rect:
         serializedVersion: 2
-        x: 0
-        y: 88
+        x: 440
+        y: 0
         width: 88
-        height: 88
-      alignment: 9
-      pivot: {x: 0.52281547, y: 0.18514694}
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5ff1c48ce972dc74a92e9cbaf99b1f52
-      internalID: -1079627812
+      spriteID: 68a5e9640abab7b43a9c93ca11d5e9d4
+      internalID: 261811744
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_dodge_left_6
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 0
+        width: 88
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 10faa26ab62b0ff4b8e8aadfba5aa614
+      internalID: 80097482
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_dodge_left_7
+      rect:
+        serializedVersion: 2
+        x: 616
+        y: 0
+        width: 88
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2571ac175b3030c47ab8b4de60556fbb
+      internalID: 894698914
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_dodge_left_8
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 0
+        width: 88
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0ab14d45e7c43c340b9fafa9db170e45
+      internalID: -904537533
       vertices: []
       indices: 
       edges: []
@@ -285,7 +327,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: d8136aa7176a58543b89db230187d10a
+    spriteID: 332285671f9a9a1409b3c437bf40cbc7
     internalID: 0
     vertices: []
     indices: 
@@ -293,17 +335,15 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      bob_attack_0: 1492909767
-      bob_attack_1: 1646338022
-      bob_attack_10: -1351300701
-      bob_attack_2: 524499444
-      bob_attack_3: 1976361207
-      bob_attack_4: 1173274670
-      bob_attack_5: -196010042
-      bob_attack_6: -1079627812
-      bob_attack_7: -15627398
-      bob_attack_8: -1280088927
-      bob_attack_9: 155402784
+      Player_dodge_left_0: 1570253806
+      Player_dodge_left_1: -291332577
+      Player_dodge_left_2: -1466685462
+      Player_dodge_left_3: 1159148702
+      Player_dodge_left_4: -308056142
+      Player_dodge_left_5: 261811744
+      Player_dodge_left_6: 80097482
+      Player_dodge_left_7: 894698914
+      Player_dodge_left_8: -904537533
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

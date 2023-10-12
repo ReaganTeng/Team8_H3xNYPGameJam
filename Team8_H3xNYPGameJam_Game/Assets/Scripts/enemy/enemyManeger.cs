@@ -14,10 +14,12 @@ public class enemyManeger : MonoBehaviour
            Destroy(e); e = null;
         }
         GameObject SpawnEnemy = new GameObject();
+        SpawnEnemy.transform.rotation = Quaternion.Euler(0, 0, 180);
         e= SpawnEnemy.AddComponent(typeof(enemy)) as enemy;
         SpawnEnemy.AddComponent(typeof(SpriteRenderer));
         SpawnEnemy.AddComponent<SpriteMan>();
-        SpawnEnemy.transform.localScale *= 3;
+        SpawnEnemy.AddComponent<BoxCollider2D>().isTrigger=true;
+        SpawnEnemy.transform.localScale *= 1;
         SpawnEnemy.name = "Enemy";
        // Instantiate(SpawnEnemy, new Vector3(0,.7f,0),Quaternion.identity);
         setEnemyStats();

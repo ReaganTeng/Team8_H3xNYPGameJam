@@ -16,5 +16,5 @@ MonoBehaviour:
   Weight: 0
   strength: 0
   enemySprite: {fileID: 0}
-  Enemy_name: 
+  Enemy_name: Enemy1
   AttackAnimation: []
