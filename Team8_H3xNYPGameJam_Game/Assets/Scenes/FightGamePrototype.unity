@@ -5302,6 +5302,11 @@ MonoBehaviour:
   - target: {fileID: 628881800}
     weight: 1
     radius: 1
+--- !u!223 &368328255 stripped
+Canvas:
+  m_CorrespondingSourceObject: {fileID: 7325582310719582223, guid: 359b4c8ad0834b742bc95eb045e7225f, type: 3}
+  m_PrefabInstance: {fileID: 561265589}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &468427691
 GameObject:
   m_ObjectHideFlags: 0
@@ -5662,6 +5667,7 @@ MonoBehaviour:
   playerSpeed: 0.2
   playerSpeedText: {fileID: 561265590}
   enemiesDefeated: 0
+  totalenemiesDefeated: 0
   idleAnim: []
   attackingAnim: []
   dodgeLeftAnim: []
@@ -5670,7 +5676,7 @@ MonoBehaviour:
   dodgeRightBackAnim: []
   hurtAnim: []
   CantHit: 0
-  shopCanvas: {fileID: 0}
+  shopCanvas: {fileID: 368328255}
   testing: []
 --- !u!114 &628881803
 MonoBehaviour:
