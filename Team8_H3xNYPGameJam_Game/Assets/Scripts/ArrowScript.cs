@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class ArrowScript : MonoBehaviour
@@ -12,16 +11,16 @@ public class ArrowScript : MonoBehaviour
         LEFT,
         RIGHT
     }
-    private arrowDirection direction;
+    public arrowDirection direction;
     // Start is called before the first frame update
     void Start()
     {
-        arrowRectTransform = GetComponent<RectTransform>();
+        
         //SetRandomDirection(getRandomDirection());
     }
     public arrowDirection getRandomDirection()
     {
-        int random = Random.Range(0, 4);
+        int random = UnityEngine.Random.Range(0, Enum.GetValues(typeof(arrowDirection)).Length);
         switch (random)
         {
             case 0:
@@ -42,6 +41,7 @@ public class ArrowScript : MonoBehaviour
     }
     public void SetRandomDirection(arrowDirection dir)
     {
+        arrowRectTransform = GetComponent<RectTransform>();
         direction = dir;
         Vector3 rotVector = new Vector3(0, 0, 0);
         switch (direction)
