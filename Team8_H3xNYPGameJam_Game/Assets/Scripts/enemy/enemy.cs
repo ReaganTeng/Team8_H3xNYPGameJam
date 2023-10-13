@@ -31,6 +31,12 @@ public class enemy : MonoBehaviour
     int LOR = 0;
     int randomLeftOrRight = 0;
     Tween FallOrNo;
+
+
+    public GameObject EnemyAS;
+    public EnemyAudioManager EAM;
+    
+
     public void SetEnemyStats(EnemysStates ES)
     {
         enemysStates = ES;
@@ -43,6 +49,13 @@ public class enemy : MonoBehaviour
         targetTrans = GameObject.Find("Player").GetComponent<SpriteRenderer>();
         StartCoroutine("attackCD");
         hitimpact = GameObject.Find("HitImpact");
+
+
+        //ADD ENEMY AUDIO MANAGER
+        EnemyAS
+                = GameObject.FindGameObjectWithTag("EnemyAM");
+        EAM = EnemyAS.GetComponent<EnemyAudioManager>();
+
         GETANIMATION();
     }
     public void GETANIMATION()
@@ -52,7 +65,16 @@ public class enemy : MonoBehaviour
         hurtSprite = Resources.LoadAll<Sprite>($"EnemyAnimation/{enemysStates.Enemy_name}/{enemysStates.Enemy_name}_hurt");
     }
 
- 
+
+    public void Update()
+    {
+        //if(Input.GetKeyDown(KeyCode.N)
+        //    || Input.GetKeyDown(KeyCode.M))
+        //{
+        //    gotHit();
+        //}
+    }
+
 
     IEnumerator attackCD()
     {
@@ -232,6 +254,7 @@ public class enemy : MonoBehaviour
             return;
         }
         if (Player2.instance.CantHit)
+            //|| Input.GetKeyDown(KeyCode.N))
         {
             Player2.instance.CantHit = false;
             sr.sprite = AttackingSprite[0];
@@ -239,8 +262,12 @@ public class enemy : MonoBehaviour
             {
                 StartCoroutine("attackCD");
             });
+
+            //PLAY HURT SOUND
+            EAM.PlayRandomSound(0);
+
         }
-        else
+        else //if  (Input.GetKeyDown(KeyCode.M))
         {
             Player2.instance.stopMove();
             CameraShake.instance.ShakeContorl(5 * (strongAttack ? 2 : 1), 0.4f);
@@ -279,6 +306,9 @@ public class enemy : MonoBehaviour
                     StartCoroutine("attackCD");
                 });
             });
+
+            //PLAY HIT SOUND
+            EAM.PlayRandomSound(1);
         }
         sr.sprite = AttackingSprite[0];
     }
