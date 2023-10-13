@@ -42,7 +42,6 @@ public class UpgradeManager : MonoBehaviour
 
     public void DisableShop()
     {
-        playerScript.playerSpeedText.text = playerScript.playerSpeed.ToString();
         playerScript.playerStrengthText.text = playerScript.playerStrength.ToString();
         playerScript.playerWeightText.text = playerScript.playerWeight.ToString();
         playerScript.shopCanvas.gameObject.SetActive(false);
@@ -52,7 +51,6 @@ public class UpgradeManager : MonoBehaviour
     private void OnEnable()
     {
 
-        playerScript.playerSpeedText.text = playerScript.playerSpeed.ToString();
         playerScript.playerStrengthText.text = playerScript.playerStrength.ToString();
         playerScript.playerWeightText.text = playerScript.playerWeight.ToString();
     }
