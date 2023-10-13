@@ -137,7 +137,7 @@ public class Player2 : MonoBehaviour
     //TRACK HOW MANY ENEMIES ARE DEFEATED
     public  bool EnemyTracker()
     {
-        if (enemiesDefeated >= 1)
+        if (enemiesDefeated >= 1) //CHANGEE TO 3
         {
             shopCanvas.gameObject.SetActive(true);
             return true;

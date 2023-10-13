@@ -10,7 +10,7 @@ public class UpgradeManager : MonoBehaviour
     //Player playerScript;
 
     Player2 playerScript;
-    AudioSource AS;
+    public AudioSource AS;
     public AudioClip chaChingSound;
     public DigitToImageReplacer[] DTIR;
     //AS.Play();
@@ -18,8 +18,6 @@ public class UpgradeManager : MonoBehaviour
     private void Awake()
     {
         playerScript = player.GetComponent<Player2>();
-
-        AS = GetComponent<AudioSource>();
         AS.clip = chaChingSound;
 
     }

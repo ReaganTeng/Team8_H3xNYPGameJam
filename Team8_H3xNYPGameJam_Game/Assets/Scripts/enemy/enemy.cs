@@ -129,10 +129,9 @@ public class enemy : MonoBehaviour
 
     IEnumerator showStrong(int MiddleOrSide)
     {
-
         float Delay = 0.2f;
-        strongAttack = (Random.Range(0, 1) == 0) ? true : false;
-        strongAttack = false;
+        strongAttack = (Random.Range(0, 2) == 0) ? true : false;
+        strongAttack = true;
         if (strongAttack)
         {
             GameObject HI = Instantiate(StrongIndicator, transform) as GameObject;
@@ -237,6 +236,7 @@ public class enemy : MonoBehaviour
                   
                 }
             });
+            EAM.PlayRandomSound(0);
             //StartingPos = new Vector3( Player2.instance.startingLocation().x, transform.position.y + targetTrans.size.y ,  Player2.instance.startingLocation().z);
 
             return true;
@@ -256,7 +256,6 @@ public class enemy : MonoBehaviour
             return;
         }
 
-        sm.RunAnimation(StopAttacking, enemysStates.speed);
         if (Player2.instance.CantHit)
         {
             Player2.instance.CantHit = false;
@@ -280,6 +279,7 @@ public class enemy : MonoBehaviour
             StopCoroutine("attackCD");
             Player2.instance.StopMoving();
             Player2.instance.hurt();
+
             bool NoFall = false;
             FallOrNo = targetTrans.transform.DOMoveY(Player2.instance.startingLocation().y - (strongAttack ? enemysStates.strength * 1.5f : enemysStates.strength) / Player2.instance.playerWeight, 1);
 
@@ -320,6 +320,7 @@ public class enemy : MonoBehaviour
                 });
             });
 
+            sm.RunAnimation(StopAttacking, enemysStates.speed);
             //PLAY HIT SOUND
             EAM.PlayRandomSound(1);
         }
