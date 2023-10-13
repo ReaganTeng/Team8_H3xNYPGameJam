@@ -12,11 +12,10 @@ public class Player2 : MonoBehaviour
     public static Player2 instance;
     public AudioClip[] swordSounds;
     public AudioClip[] hurtSounds;
+    public AudioClip[] dodgeSounds;
 
     private AudioSource AS;
-    private bool isAttacking = false; // Flag to prevent multiple attacks
 
-    AnimatorStateInfo currentAnimationState;
 
     public float playerStrength;
     public TextMeshProUGUI playerStrengthText;
@@ -190,7 +189,7 @@ public class Player2 : MonoBehaviour
                 Vector2 deltaPosition = touch.deltaPosition;
 
                 // DETECT WHETHER PLAYER SWIPES UP
-                if (deltaPosition.y > Screen.height * 0.05f)
+                if (deltaPosition.y > Screen.height * 0.1f)
                 {
                     Attack();
                 }
@@ -198,12 +197,12 @@ public class Player2 : MonoBehaviour
                 else
                 {
                     // SWIPE LEFT
-                    if (deltaPosition.x < -Screen.width * 0.05f)
+                    if (deltaPosition.x < -Screen.width * 0.1f)
                     {
                         DodgeLeft();
                     }
                     // SWIPE RIGHT
-                    else if (deltaPosition.x > Screen.width * 0.05f)
+                    else if (deltaPosition.x > Screen.width * 0.1f)
                     {
                         DodgeRight();
                     }
@@ -218,42 +217,20 @@ public class Player2 : MonoBehaviour
         // Check for A key (dodge left)
         if (Input.GetKeyDown(KeyCode.A))
         {
-            isBack = false;
             DodgeLeft();
-
-            moving = transform.DOMoveX(transform.position.x - 0.6f, playerSpeed).OnComplete(callMoveBack);
-            currentPlayerState = playerState.DODGELEFT;
+           
         }
 
         // Check for D key (dodge right)
         if (Input.GetKeyDown(KeyCode.D))
         {
-            isBack = false;
             DodgeRight();
-            moving = transform.DOMoveX(transform.position.x + 0.6f, playerSpeed).OnComplete(callMoveBack);
-            currentPlayerState = playerState.DODGERIGHT;
         }
 
         // Check for W key (attack)
         if (Input.GetKeyDown(KeyCode.W))
         {
-            isBack = false;
             Attack();
-            if (enemyManeger.EM.SendHIt() == true)
-            {
-                CantHit = true;
-            }
-
-            moving = transform.DOMoveY(transform.position.y + 0.5f, playerSpeed).OnComplete(() =>
-            {
-               if(!CantHit)
-                {
-                    CantHit = false;
-                    callMoveBack();
-                }
-            });
-           
-            currentPlayerState = playerState.ATTACK;
         }
     }
 
@@ -268,9 +245,7 @@ public class Player2 : MonoBehaviour
         }
         else if (currentPlayerState == playerState.DODGELEFT)
         {
-
             currentPlayerState = playerState.DODGELEFTBACK;
-
         }
        
         transform.DOMove(startLocation, playerSpeed).OnComplete(() => { isBack = true;
@@ -291,55 +266,62 @@ public class Player2 : MonoBehaviour
     private void DodgeLeft()
     {
 
-        if (currentAnimationState.IsName("player_idle"))
-        {
-            
-        }
+        isBack = false;
+        moving = transform.DOMoveX(transform.position.x - 0.6f, playerSpeed).OnComplete(callMoveBack);
+        currentPlayerState = playerState.DODGELEFT;
+        //PLAY A RANDOMISED DODGE SOUND
+        PlayRandomSound(dodgeSounds);
     }
 
     private void DodgeRight()
     {
-        if (currentAnimationState.IsName("player_idle"))
-        {
+        isBack = false;
+        moving = transform.DOMoveX(transform.position.x + 0.6f, playerSpeed).OnComplete(callMoveBack);
+        currentPlayerState = playerState.DODGERIGHT;
+        //PLAY A RANDOMISED DODGE SOUND
+        PlayRandomSound(dodgeSounds);
 
-           
-            //animController.SetBool("dodgeDirection", "l");
-
-            Debug.Log("Dodge Right");
-        }
     }
     //
 
     //WHAT HAPPENS WHEN PLAYER IS HURT
-    private void hurt()
+    public void hurt()
     {
-        if (currentAnimationState.IsName("player_idle")
-          && !isAttacking)
+        if (currentPlayerState == playerState.HURT)
         {
-           
-            Debug.Log("Hurt");
+            currentPlayerState = playerState.IDLE;
+            sm.RunAnimation(idleAnim, 1);
+            return;
         }
+        currentPlayerState = playerState.HURT;
+        sm.RunAnimation(hurtAnim, 1);
+        Debug.Log("Hurt");
+        
     }
 
     //WHAT HAPPENS WHEN PLAYER ATTACKS
     private void Attack()
     {
 
-        if (!isAttacking
-         && currentAnimationState.IsName("player_idle")
-            ) // Only allow attacking if not already attacking
+        isBack = false;
+        if (enemyManeger.EM.SendHIt() == true)
         {
-    
-            //RANDOMISE A PUNCH SOUND TO PLAY
-            PlayRandomSound(swordSounds);
-            callMoveBack();
-
-            enemiesDefeated += 1;
-            totalenemiesDefeated += 1;
-
-            EnemyTracker();
-            isAttacking = true;
+            CantHit = true;
         }
+        moving = transform.DOMoveY(transform.position.y + 0.5f, playerSpeed).OnComplete(() =>
+        {
+            if (!CantHit)
+            {
+                CantHit = false;
+                callMoveBack();
+            }
+        });
+        currentPlayerState = playerState.ATTACK;
+
+        PlayRandomSound(swordSounds);
+
+
+       
     }
 
     public void AddScore()
@@ -356,17 +338,7 @@ public class Player2 : MonoBehaviour
     {
         StopCoroutine("moveBack");
     }
-    public void GotHit()
-    {
-        if(currentPlayerState==playerState.HURT)
-        {
-            currentPlayerState = playerState.IDLE;
-            sm.RunAnimation(idleAnim, 1);
-            return;
-        }
-        currentPlayerState = playerState.HURT;
-        sm.RunAnimation(hurtAnim,1);
-    }
+  
 
     public void playerMoveBack()
     {
