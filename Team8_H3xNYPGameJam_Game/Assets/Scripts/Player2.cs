@@ -66,7 +66,7 @@ public class Player2 : MonoBehaviour
     {
         TrueOGPos = transform.position;
         startLocation = transform.position;
-        //shopCanvas.gameObject.SetActive(false);
+        shopCanvas.gameObject.SetActive(false);
         enemiesDefeated = 0;
 
 
