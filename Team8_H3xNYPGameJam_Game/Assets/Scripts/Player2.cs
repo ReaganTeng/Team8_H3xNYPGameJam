@@ -302,6 +302,9 @@ public class Player2 : MonoBehaviour
         }
         currentPlayerState = playerState.HURT;
         sm.RunAnimation(hurtAnim, 1);
+        PlayRandomSound(hurtSounds);
+
+
         Debug.Log("Hurt");
         
     }
