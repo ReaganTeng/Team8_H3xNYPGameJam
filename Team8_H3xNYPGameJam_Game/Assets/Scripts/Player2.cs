@@ -56,6 +56,12 @@ public class Player2 : MonoBehaviour
     {
         instance = this;
     }
+
+    public void Recover()
+    {
+        startLocation = new Vector3(0, levelMang.Instance.getMinHeight() + 0.3f, 0);
+    }
+
     private void Start()
     {
         TrueOGPos = transform.position;
