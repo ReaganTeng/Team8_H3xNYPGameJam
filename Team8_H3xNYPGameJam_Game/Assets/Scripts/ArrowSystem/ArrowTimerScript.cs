@@ -5,23 +5,21 @@ using UnityEngine.UI;
 
 public class ArrowTimerScript : MonoBehaviour
 {
-    [SerializeField] private Image timerFill;
+    [SerializeField] private Slider timerSlider;
+    [SerializeField] private float maxSliderValue;
     private void OnEnable()
     {
+        timerSlider.value = maxSliderValue;
+        timerSlider.maxValue = maxSliderValue;
         StartCoroutine(CountdownTime());
-    }
-    private void OnDisable()
-    {
-        timerFill.fillAmount = 1;
     }
     private IEnumerator CountdownTime()
     {
-        while(timerFill.fillAmount > 0)
+        while(timerSlider.value > 0)
         {
-            timerFill.fillAmount -= Time.deltaTime / 7;
+            timerSlider.value -= Time.deltaTime;
             yield return null;
         }
-        Debug.Log("ass");
         GameManagerScript.gmInstance.gameState = GameManagerScript.GameStates.LOSE;
     }
 }
