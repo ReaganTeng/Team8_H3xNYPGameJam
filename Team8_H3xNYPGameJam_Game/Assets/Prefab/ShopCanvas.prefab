@@ -72,7 +72,6 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 5d606f326c7d89443886d4e8c61ce20a, type: 3}
   maxDigits: 5
   img: {fileID: 0}
-  textComponent: {fileID: 0}
 --- !u!114 &7981788239782475621
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -256,7 +255,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3611912212851229385}
         m_TargetAssemblyTypeName: UpgradeManager, Assembly-CSharp
         m_MethodName: UpgradeStrength
         m_Mode: 1
@@ -867,7 +866,6 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 5d606f326c7d89443886d4e8c61ce20a, type: 3}
   maxDigits: 5
   img: {fileID: 0}
-  textComponent: {fileID: 0}
 --- !u!1 &7131561104831231776
 GameObject:
   m_ObjectHideFlags: 0
@@ -1110,7 +1108,6 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 5d606f326c7d89443886d4e8c61ce20a, type: 3}
   maxDigits: 5
   img: {fileID: 0}
-  textComponent: {fileID: 0}
 --- !u!1 &7824578492078692419
 GameObject:
   m_ObjectHideFlags: 0
@@ -1203,9 +1200,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 585128843437995851}
         m_TargetAssemblyTypeName: UpgradeManager, Assembly-CSharp
-        m_MethodName: UpgradeSpeed
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1337,7 +1334,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3611912212851229385}
         m_TargetAssemblyTypeName: UpgradeManager, Assembly-CSharp
         m_MethodName: UpgradeWeight
         m_Mode: 1
@@ -1637,3 +1634,14 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4473070612900967670, guid: 88bc68efc3007fa40908412e656c4712, type: 3}
   m_PrefabInstance: {fileID: 2043113854389203484}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &3611912212851229385 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3349145663675347157, guid: 88bc68efc3007fa40908412e656c4712, type: 3}
+  m_PrefabInstance: {fileID: 2043113854389203484}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 585128843437995851}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a0288698f4057a4fa33b72761ecc7ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
