@@ -20,7 +20,8 @@ public class enemy : MonoBehaviour
     Tween AttackingNOW;
     SpriteMan sm;
     [SerializeField]SpriteRenderer targetTrans;
-    GameObject hitimpact;
+    GameObject hitimpact;// parry
+    GameObject StrongIndicator;
     //animation
     [SerializeField]Sprite[] AttackingSprite;
     [SerializeField] Sprite[] hurtSprite;
@@ -49,6 +50,7 @@ public class enemy : MonoBehaviour
         targetTrans = GameObject.Find("Player").GetComponent<SpriteRenderer>();
         StartCoroutine("attackCD");
         hitimpact = GameObject.Find("HitImpact");
+        StrongIndicator = GameObject.Find("strongImpact");
 
 
         //ADD ENEMY AUDIO MANAGER
@@ -133,7 +135,7 @@ public class enemy : MonoBehaviour
         strongAttack = false;
         if (strongAttack)
         {
-            GameObject HI = Instantiate(hitimpact, transform) as GameObject;
+            GameObject HI = Instantiate(StrongIndicator, transform) as GameObject;
             HI.transform.position = transform.position;
             Delay = 1;
             Destroy(HI,Delay);
@@ -215,7 +217,7 @@ public class enemy : MonoBehaviour
             Player2.instance.stopMove();
             sm.RunAnimation(hurtSprite, 1);
             CameraShake.instance.ShakeContorl(5 * (Player2.instance.playerStrength), 0.4f);
-            transform.DOMoveY(StartingPos.y + (Player2.instance.playerStrength*0.3f) / enemysStates.Weight, 1).OnComplete(() =>
+            transform.DOMoveY(StartingPos.y + (Player2.instance.playerStrength) / enemysStates.Weight, 1).OnComplete(() =>
             {
                 checkIfOut();
                 if (!dead)
@@ -359,8 +361,7 @@ public class enemy : MonoBehaviour
                 Player2.instance.playerMoveBack();
                 if(!Player2.instance.EnemyTracker())
                 {
-
-                enemyManeger.EM.SpawnEnemy();
+                 enemyManeger.EM.SpawnEnemy();
                 }
             });
         }

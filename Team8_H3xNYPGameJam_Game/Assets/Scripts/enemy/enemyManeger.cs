@@ -50,7 +50,7 @@ public class enemyManeger : MonoBehaviour
     private void setEnemyStats()
     {
         int a = Random.Range(0, AllenemyType.Length);
-        e.SetEnemyStats(AllenemyType[a]);
+        e.SetEnemyStats(ES);
     }
     public void Start()
     {

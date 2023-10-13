@@ -32,6 +32,7 @@ public class Player2 : MonoBehaviour
     [SerializeField] Sprite[] dodgeLeftBackAnim;
     [SerializeField] Sprite[] dodgeRightBackAnim;
     [SerializeField] Sprite[] hurtAnim;
+    [SerializeField] Sprite[] climbAnim;
     Sprite[] current;
     SpriteMan sm;
     public bool CantHit;
@@ -84,6 +85,7 @@ public class Player2 : MonoBehaviour
         dodgeRightAnim = Resources.LoadAll<Sprite>("PlayerAnimation/Player_dodge_right");
         dodgeRightBackAnim = Resources.LoadAll<Sprite>("PlayerAnimation/Player_dodge_right_Back");
         hurtAnim = Resources.LoadAll<Sprite>("PlayerAnimation/player_hurt");
+        climbAnim = Resources.LoadAll<Sprite>("PlayerAnimation/Player_climb");
     }
     public Vector3 startingLocation()
     {
@@ -113,7 +115,7 @@ public class Player2 : MonoBehaviour
             if(sm.ReturnDone())
             {
 
-                sm.RunAnimation(attackingAnim, 1);
+                sm.RunAnimation(climbAnim, 1);
             }
         }
 
@@ -161,7 +163,7 @@ public class Player2 : MonoBehaviour
                 sm.RunAnimation(idleAnim, playerSpeed);
                 break;
             case playerState.ATTACK:
-                sm.RunAnimation(attackingAnim, playerSpeed);
+                sm.RunAnimation(attackingAnim, 1);
                 break;
             case playerState.DODGELEFT:
                 sm.RunAnimation(dodgeLeftAnim, playerSpeed);
@@ -266,7 +268,7 @@ public class Player2 : MonoBehaviour
     }
     public void InstantMove()
     {
-        transform.DOMove(startLocation, playerSpeed).OnComplete(() => { isBack = true; });
+        transform.DOMove(startLocation, playerSpeed).OnComplete(() => { isBack = true; currentPlayerState = playerState.IDLE; });
     }
 
     //WHAT HAPPENS WHEN PLAYER DODGES
@@ -326,7 +328,7 @@ public class Player2 : MonoBehaviour
                 callMoveBack();
             }
         });
-        currentPlayerState = playerState.ATTACK;
+        //currentPlayerState = playerState.ATTACK;
 
         PlayRandomSound(swordSounds);
 
@@ -347,6 +349,7 @@ public class Player2 : MonoBehaviour
     public void stopMove()
     {
         StopCoroutine("moveBack");
+        currentPlayerState=playerState.ATTACK;
     }
   
 

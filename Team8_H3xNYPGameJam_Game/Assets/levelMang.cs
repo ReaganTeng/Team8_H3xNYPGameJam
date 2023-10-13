@@ -18,26 +18,27 @@ public class levelMang : MonoBehaviour
     private void Start()
     {
         SR = GetComponent<SpriteRenderer>();
-         width = SR.bounds.size.x;
-         height = SR.bounds.size.y;
+         width = transform.lossyScale.x * SR.bounds.size.x;
+         height = transform.lossyScale.y * SR.bounds.size.y;
 
     }
 
     public float getMaxHeight()
     {
+        
         return transform.position.y + height/2;
     }
     public float getMinHeight()
     {
-        return transform.position.y - height / 2;
+        return transform.position.y - height/2 ;
     }
     public float getMaxWidth()
     {
-        return transform.position.x + width / 2;
+        return transform.position.x + width/2 ;
     }
     public float getMinWidth()
     {
-        return transform.position.x - width / 2;
+        return transform.position.x - width/2 ;
     }
     private void Update()
     {
