@@ -15,7 +15,7 @@ MonoBehaviour:
   speed: 0.7
   Weight: 6
   strength: 10
-  enemySprite: {fileID: 0}
+  enemySprite: {fileID: 1648292173, guid: e091492a69e9f7943a9f8578c6896c28, type: 3}
   Enemy_name: Enemy2b
   ParryStart: 3
   ParryEnd: 5

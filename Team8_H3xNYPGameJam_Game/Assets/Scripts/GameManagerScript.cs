@@ -1,6 +1,8 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
 
 public class GameManagerScript : MonoBehaviour
@@ -46,7 +48,7 @@ public class GameManagerScript : MonoBehaviour
             CheckArrowInputs();
         }
     }
-    private void createArrows()
+    public void createArrows()
     {
         for(int i = 0; i < arrowCount; i++)
         {
@@ -100,7 +102,12 @@ public class GameManagerScript : MonoBehaviour
             arrowPanel.SetActive(false);
             if (arrowCount <= 15)
                 arrowCount++;
-            gameState = GameStates.PLAYING;
+            gameState = GameStates.PLAYING; 
+            Player2.instance.transform.DOMove(Player2.instance.startingLocation(), 1).OnComplete(() => {
+                Player2.instance.isBack = true;
+                Player2.instance.currentPlayerState = playerState.IDLE;
+                enemyManeger.EM.CallToMove();
+            });
         }
 
     }

@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using DG.Tweening;
+using static GameManagerScript;
 
 public class Player2 : MonoBehaviour
 {
@@ -39,11 +40,11 @@ public class Player2 : MonoBehaviour
     public Canvas shopCanvas;
 
     public Sprite[] testing;
-    playerState currentPlayerState = playerState.IDLE;
+    public playerState currentPlayerState = playerState.IDLE;
     playerState oldPlayerState;
 
     Tween moving;
-    bool isBack = true;
+    public bool isBack = true;
 
     Vector3 TrueOGPos;
     public playerState GetPlayerState()
@@ -94,12 +95,21 @@ public class Player2 : MonoBehaviour
     private void Update()
     {
 
-        if (!shopCanvas.gameObject.activeSelf)
+        if (!shopCanvas.gameObject.activeSelf || GameManagerScript.gmInstance.gameState== GameStates.PLAYING)
         {
             if (isBack)
             {
                 CheckMobileInput();
                 CheckPCInput();
+            }
+        }
+
+        if(GameManagerScript.gmInstance.gameState == GameStates.FALLING)
+        {
+            if(sm.ReturnDone())
+            {
+
+                sm.RunAnimation(attackingAnim, 1);
             }
         }
 

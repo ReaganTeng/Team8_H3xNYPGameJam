@@ -23,6 +23,7 @@ public class MainMenuScript : MonoBehaviour
         }
         mainMenuPanel.SetActive(false);
         pauseButton.SetActive(true);
+        enemyManeger.EM.SpawnEnemy();
         GameManagerScript.gmInstance.gameState = GameManagerScript.GameStates.PLAYING;
     }
     public void StartGame()

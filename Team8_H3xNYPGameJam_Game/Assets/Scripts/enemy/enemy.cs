@@ -29,7 +29,8 @@ public class enemy : MonoBehaviour
     bool dead = false;
     bool hurt = false;
     int LOR = 0;
-    int randomLeftOrRight = 0;    
+    int randomLeftOrRight = 0;
+    Tween FallOrNo;
     public void SetEnemyStats(EnemysStates ES)
     {
         enemysStates = ES;
@@ -248,11 +249,27 @@ public class enemy : MonoBehaviour
             StopCoroutine("attackCD");
             Player2.instance.StopMoving();
             Player2.instance.GotHit();
-            targetTrans.transform.DOMoveY(Player2.instance.startingLocation().y - (strongAttack ? enemysStates.strength * 1.5f : enemysStates.strength) / Player2.instance.playerWeight, 1).OnUpdate(() =>
+            bool NoFall = false;
+            FallOrNo = targetTrans.transform.DOMoveY(Player2.instance.startingLocation().y - (strongAttack ? enemysStates.strength * 1.5f : enemysStates.strength) / Player2.instance.playerWeight, 1).OnUpdate(() =>
             {
+                if(targetTrans.transform.position.y <= levelMang.Instance.getMinHeight())
+                {
+                    if(NoFall==false)
+                    {
+
+                    NoFall = true;
+                    GameManagerScript.gmInstance.createArrows();
+                    GameManagerScript.gmInstance.gameState = GameManagerScript.GameStates.FALLING;
+                    }
+                }
 
             }).OnComplete(() =>
             {
+                if(NoFall)
+                {
+                    transform.DOMove(StartingPos, 1);
+                    return;
+                }
                 Player2.instance.GotHit();
                 Player2.instance.updateStaringLoc();
                 StartingPos = new Vector3(Player2.instance.startingLocation().x, Player2.instance.startingLocation().y + targetTrans.size.y, Player2.instance.startingLocation().z);
@@ -266,6 +283,15 @@ public class enemy : MonoBehaviour
         sr.sprite = AttackingSprite[0];
     }
 
+    public void Ready()
+    {
+        StartCoroutine("attackCD");
+    }
+
+    private void Falling()
+    {
+        FallOrNo.Kill();
+    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         gotHit();

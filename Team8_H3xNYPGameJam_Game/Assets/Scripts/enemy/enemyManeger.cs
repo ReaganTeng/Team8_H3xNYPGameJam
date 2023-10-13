@@ -52,5 +52,9 @@ public class enemyManeger : MonoBehaviour
     {
        return e.PlayerHit();
     }
+    public void CallToMove()
+    {
+         e.Ready();
+    }
 
 }
