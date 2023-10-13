@@ -30,7 +30,13 @@ public class DigitToImageReplacer : MonoBehaviour
 
     private void OnEnable()
     {
+
+    }
+
+    public void ChangeToImg()
+    {
         SetNumber(transform.GetComponent<TextMeshProUGUI>().text);
+        transform.GetComponent<TextMeshProUGUI>().text = "";
     }
 
     void Clear()
@@ -48,7 +54,6 @@ public class DigitToImageReplacer : MonoBehaviour
         //if (int.TryParse(number, out int a))
         {
             string numberString = number;
-            transform.GetComponent<TextMeshProUGUI>().text = "";
             // Ensure the number of digits doesn't exceed the maximum
             if (numberString.Length > maxDigits)
                 numberString = new string('9', maxDigits);
@@ -57,7 +62,8 @@ public class DigitToImageReplacer : MonoBehaviour
             {
                 // Get the individual digit
                 int digit = int.Parse(numberString[i].ToString());
-               
+
+                Debug.Log(numberString[i]);
                 // Access the digit GameObject or sprite and set the appropriate sprite
                 Image Digit = Instantiate(img, transform) as Image;
                 Digit.sprite = characterSprites[digit];

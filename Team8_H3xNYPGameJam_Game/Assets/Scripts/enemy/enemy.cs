@@ -79,7 +79,6 @@ public class enemy : MonoBehaviour
     IEnumerator attackCD()
     {
         hurt = false;
-        sm.RunAnimation(StopAttacking, enemysStates.speed);
         yield return new WaitForSeconds(enemysStates.speed);
         if(!tired)
         {
@@ -222,6 +221,7 @@ public class enemy : MonoBehaviour
                 if (!dead)
                 {
                     StartingPos = new Vector3(0, transform.position.y, 0);
+
                     transform.DOMove(StartingPos, 0.4f).OnComplete(() =>
                     {
                         StartCoroutine("attackCD");
@@ -253,11 +253,13 @@ public class enemy : MonoBehaviour
            
             return;
         }
+
+        sm.RunAnimation(StopAttacking, enemysStates.speed);
         if (Player2.instance.CantHit)
-            //|| Input.GetKeyDown(KeyCode.N))
         {
             Player2.instance.CantHit = false;
             sr.sprite = AttackingSprite[0];
+
             transform.DOMove(StartingPos, 1).OnComplete(() =>
             {
                 StartCoroutine("attackCD");
@@ -277,22 +279,31 @@ public class enemy : MonoBehaviour
             Player2.instance.StopMoving();
             Player2.instance.hurt();
             bool NoFall = false;
-            FallOrNo = targetTrans.transform.DOMoveY(Player2.instance.startingLocation().y - (strongAttack ? enemysStates.strength * 1.5f : enemysStates.strength) / Player2.instance.playerWeight, 1).OnUpdate(() =>
-            {
-                if(targetTrans.transform.position.y <= levelMang.Instance.getMinHeight())
-                {
-                    if(NoFall==false)
-                    {
+            FallOrNo = targetTrans.transform.DOMoveY(Player2.instance.startingLocation().y - (strongAttack ? enemysStates.strength * 1.5f : enemysStates.strength) / Player2.instance.playerWeight, 1);
 
-                    NoFall = true;
-                    GameManagerScript.gmInstance.createArrows();
-                    GameManagerScript.gmInstance.gameState = GameManagerScript.GameStates.FALLING;
+
+            FallOrNo.OnUpdate(()=> 
+            {
+                if (targetTrans.transform.position.y < levelMang.Instance.getMinHeight())
+                {
+                    if (NoFall == false)
+                    {
+                        sm.RunAnimation(StopAttacking, enemysStates.speed);
+                        FallOrNo.Kill(); transform.DOMove(StartingPos, enemysStates.speed).OnComplete(() =>
+                        {
+
+                        });
+                        NoFall = true;
+                        GameManagerScript.gmInstance.createArrows();
+                        GameManagerScript.gmInstance.gameState = GameManagerScript.GameStates.FALLING;
                     }
                 }
 
-            }).OnComplete(() =>
+            });
+
+            FallOrNo.OnComplete(() =>
             {
-                if(NoFall)
+                if (NoFall)
                 {
                     transform.DOMove(StartingPos, 1);
                     return;
@@ -315,7 +326,12 @@ public class enemy : MonoBehaviour
 
     public void Ready()
     {
-        StartCoroutine("attackCD");
+        StartingPos = new Vector3(Player2.instance.startingLocation().x, Player2.instance.startingLocation().y + targetTrans.size.y, Player2.instance.startingLocation().z);
+        Player2.instance.InstantMove();
+        transform.DOMove(StartingPos, 1).OnComplete(() =>
+        {
+            StartCoroutine("attackCD");
+        });
     }
 
     private void Falling()
@@ -341,7 +357,11 @@ public class enemy : MonoBehaviour
                 Player2.instance.enemiesDefeated++;
                 Player2.instance.totalenemiesDefeated++;
                 Player2.instance.playerMoveBack();
+                if(!Player2.instance.EnemyTracker())
+                {
+
                 enemyManeger.EM.SpawnEnemy();
+                }
             });
         }
        
