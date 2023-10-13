@@ -5679,6 +5679,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bbc9f5c7966be14c9af7053128a8d35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gamemanager: {fileID: 679627674}
+  gms: {fileID: 0}
+  MainmenuMusic: {fileID: 8300000, guid: d8f06501380286447984cadd27f26a3b, type: 3}
+  GameplayMusic: {fileID: 8300000, guid: cda043de5636b1e408f65fda9b8eb02c, type: 3}
 --- !u!82 &345060475
 AudioSource:
   m_ObjectHideFlags: 0
@@ -5693,7 +5697,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -6289,6 +6293,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &679627674 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8684508415158451673, guid: 84d0adcd3a27fd04a8110dcb693204f3, type: 3}
+  m_PrefabInstance: {fileID: 799083298}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &683677122
 GameObject:
   m_ObjectHideFlags: 0
