@@ -215,7 +215,7 @@ public class enemy : MonoBehaviour
             Player2.instance.stopMove();
             sm.RunAnimation(hurtSprite, 1);
             CameraShake.instance.ShakeContorl(5 * (Player2.instance.playerStrength), 0.4f);
-            transform.DOMoveY(StartingPos.y + Player2.instance.playerStrength / enemysStates.Weight, 1).OnComplete(() =>
+            transform.DOMoveY(StartingPos.y + (Player2.instance.playerStrength*0.3f) / enemysStates.Weight, 1).OnComplete(() =>
             {
                 checkIfOut();
                 if (!dead)

@@ -43,6 +43,7 @@ public class UpgradeManager : MonoBehaviour
 
     public void DisableShop()
     {
+        enemyManeger.EM.SpawnEnemy();
         playerScript.playerStrengthText.text = playerScript.playerStrength.ToString();
         playerScript.playerWeightText.text = playerScript.playerWeight.ToString();
         playerScript.shopCanvas.gameObject.SetActive(false);
