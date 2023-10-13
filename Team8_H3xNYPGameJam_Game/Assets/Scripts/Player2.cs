@@ -191,6 +191,8 @@ public class Player2 : MonoBehaviour
     private void CheckMobileInput()
     {
         // Check for swipe
+
+
         if (Input.touchCount > 0)
         {
             Touch touch = Input.GetTouch(0);
@@ -232,13 +234,13 @@ public class Player2 : MonoBehaviour
         }
 
         // Check for D key (dodge right)
-        if (Input.GetKeyDown(KeyCode.D))
+       else if (Input.GetKeyDown(KeyCode.D))
         {
             DodgeRight();
         }
 
         // Check for W key (attack)
-        if (Input.GetKeyDown(KeyCode.W))
+        else if(Input.GetKeyDown(KeyCode.W))
         {
             Attack();
         }
@@ -260,13 +262,9 @@ public class Player2 : MonoBehaviour
         hit = transform.DOMove(startLocation, playerSpeed).OnComplete(() => { isBack = true;
             currentPlayerState = playerState.IDLE;
 
-        hit.OnUpdate(() =>{
-            if (GameManagerScript.gmInstance.gameState == GameManagerScript.GameStates.FALLING)
-            {
-                hit.Kill();
-            }
+       
         });
-        });
+
     }
 
     void callMoveBack()
@@ -370,8 +368,13 @@ public class Player2 : MonoBehaviour
         });
     }
 
-    public void PlayerFall() { 
-    
+    public void PlayerFall() {
+        hit.Kill();
+        StopCoroutine("moveBack");
+    }
+
+    public void playerFalling()
+    {
     }
 }
 

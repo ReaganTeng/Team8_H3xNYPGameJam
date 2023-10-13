@@ -6,15 +6,14 @@ using UnityEngine.UI;
 
 public class PageFlipper : MonoBehaviour
 {
-    public Image currentTutorialImage;
+    [SerializeField] private Image currentTutorialImage;
     public Sprite[] tutorialImages;
     int currentidx;
 
     private void Awake()
     {
         currentidx = 0;
-        currentTutorialImage = GetComponent<Image>();
-        currentTutorialImage.sprite = tutorialImages[currentidx];
+        
     }
 
 
@@ -34,5 +33,9 @@ public class PageFlipper : MonoBehaviour
             currentidx--;
             currentTutorialImage.sprite = tutorialImages[currentidx];
         }
+    }
+    public void OnCloseButtonClicked()
+    {
+        gameObject.SetActive(false);
     }
 }

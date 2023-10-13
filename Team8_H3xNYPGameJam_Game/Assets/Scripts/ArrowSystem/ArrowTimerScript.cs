@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -22,10 +23,10 @@ public class ArrowTimerScript : MonoBehaviour
             timerSlider.value -= Time.deltaTime;
             yield return null;
         }
-        GameManagerScript.gmInstance.gameState = GameManagerScript.GameStates.LOSE;
-        gameOverPanel.SetActive(true);
-        pauseButton.SetActive(false);
-        gameObject.SetActive(false);
+        gameObject.GetComponent<RectTransform>().localScale = Vector3.zero;
+        Player2.instance.transform.DOMoveY(Player2.instance.transform.position.y-1, 1);
+        Player2.instance.transform.DOScale(Vector3.zero, 1).OnComplete(GO);
+       
     }
     public void setSliderValue(float val)
     {
@@ -34,5 +35,12 @@ public class ArrowTimerScript : MonoBehaviour
     public float getSliderValue()
     {
         return timerSlider.value;
+    }
+    public void GO()
+    {
+        GameManagerScript.gmInstance.gameState = GameManagerScript.GameStates.LOSE;
+        gameOverPanel.SetActive(true);
+        pauseButton.SetActive(false);
+        gameObject.SetActive(false);
     }
 }

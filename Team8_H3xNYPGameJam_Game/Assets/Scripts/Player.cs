@@ -99,7 +99,7 @@ public class Player : MonoBehaviour
     //TRACK HOW MANY ENEMIES ARE DEFEATED
     private void EnemyTracker()
     {
-        if(enemiesDefeated >= 3)
+        if(enemiesDefeated >= 5)
         {
             shopCanvas.gameObject.SetActive(true);
         }

@@ -57,10 +57,7 @@ public class CameraShake : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyUp(KeyCode.Escape))
-        {
-            Shake();
-        }
+     
       
     }
     public void Shake()

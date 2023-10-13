@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Enemy2a
   m_EditorClassIdentifier: 
   speed: 0.8
-  Weight: 2
-  strength: 2
+  Weight: 1.8
+  strength: 1.2
   enemySprite: {fileID: 692390374, guid: 33c4bf3aad80649449aa1a37ff010686, type: 3}
   Enemy_name: Enemy2a
   ParryStart: 3
-  ParryEnd: 5
+  ParryEnd: 6

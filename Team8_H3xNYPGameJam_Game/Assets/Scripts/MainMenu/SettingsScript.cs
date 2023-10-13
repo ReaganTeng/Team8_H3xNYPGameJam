@@ -34,13 +34,13 @@ public class SettingsScript : MonoBehaviour
         {
             isVibrationOn = false;
             vibrationButton.image.sprite = vibrationOnImage;
-            //alter vibration
+            GameManagerScript.gmInstance.canVibrate = false;
         }
         else
         {
             isVibrationOn = true;
             vibrationButton.image.sprite = vibrationOffImage;
-            //alter vibration
+            GameManagerScript.gmInstance.canVibrate = true;
         }
     }
 }

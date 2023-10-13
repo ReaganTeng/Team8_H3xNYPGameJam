@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using DG.Tweening;
+using static UnityEngine.RuleTile.TilingRuleOutput;
+
 public class enemy : MonoBehaviour
 {
     EnemysStates enemysStates;
@@ -44,13 +46,23 @@ public class enemy : MonoBehaviour
         sr= GetComponent<SpriteRenderer>();
         sr.sprite = enemysStates.enemySprite;
         StartingPos = transform.position += new Vector3(transform.position.y, sr.size.y,0);
+        transform.position += new Vector3(0, 1, 0);
         // Debug.Log(StartingPos);
         sm = GetComponent<SpriteMan>();
         CameraShake.instance.addTargetGroup(transform);
         targetTrans = GameObject.Find("Player").GetComponent<SpriteRenderer>();
-        StartCoroutine("attackCD");
+     
         hitimpact = GameObject.Find("HitImpact");
         StrongIndicator = GameObject.Find("strongImpact");
+
+        transform.DOMove(StartingPos, 1);
+        transform.DOScale(new Vector3(1, 1, 1), 1).OnComplete(() =>
+        {
+            CameraShake.instance.Shake();
+            StartCoroutine("attackCD");
+        });
+
+
 
 
         //ADD ENEMY AUDIO MANAGER
@@ -103,7 +115,7 @@ public class enemy : MonoBehaviour
             randomLeftOrRight = Random.Range(0, 2);
             //randomLeftOrRight = 0;
             LOR = (randomLeftOrRight == 0) ? -1 : 1;
-            Preattack = (transform.DOMoveX(transform.position.x + ((randomLeftOrRight * 2 - 1)*(0.6f*levelMang.Instance.getMaxWidth())), enemysStates.speed));
+            Preattack = (transform.DOMoveX(transform.position.x + ((randomLeftOrRight * 2 - 1)*(0.4f*levelMang.Instance.getMaxWidth())), enemysStates.speed));
 
         }
         attacking = true;
@@ -158,7 +170,7 @@ public class enemy : MonoBehaviour
         else
         {
 
-            AttackingNOW = transform.DOMove(( Player2.instance.startingLocation() + targetTrans.transform.right * -((randomLeftOrRight * 2 - 1) * 0.6f)), enemysStates.speed).OnUpdate(()=>
+            AttackingNOW = transform.DOMove(( Player2.instance.startingLocation() + targetTrans.transform.right * -((randomLeftOrRight * 2 - 1) * 0.4f)), enemysStates.speed).OnUpdate(()=>
             {
                 becomeParry();
             }).OnComplete(gotHit);
@@ -181,10 +193,12 @@ public class enemy : MonoBehaviour
 
     private void moveBack()
     {
-        if (strongAttack == true)
+        
+        if(GameManagerScript.gmInstance.gameState==GameManagerScript.GameStates.FALLING)
         {
-            //tired = true;
+            return;
         }
+
         sm.RunAnimation(StopAttacking, enemysStates.speed);
         transform.DOMove(StartingPos, enemysStates.speed).OnComplete(() =>
         {
@@ -247,6 +261,8 @@ public class enemy : MonoBehaviour
     private void gotHit()
     {
         RotateBack();
+
+        hitimpact.transform.position = new Vector3(-10000, -10000);
         if ((LOR == 0 && (Player2.instance.GetPlayerState() == playerState.DODGELEFT || Player2.instance.GetPlayerState() == playerState.DODGERIGHT)) ||
             (LOR== -1 && Player2.instance.GetPlayerState()==playerState.DODGELEFT) ||
             (LOR == 1 && Player2.instance.GetPlayerState() == playerState.DODGERIGHT)) // get Player DodgeLeft / right to see if correct
@@ -272,6 +288,8 @@ public class enemy : MonoBehaviour
         }
         else //if  (Input.GetKeyDown(KeyCode.M))
         {
+            if (GameManagerScript.gmInstance.canVibrate)
+                Handheld.Vibrate();
             Player2.instance.stopMove();
             CameraShake.instance.ShakeContorl(5 * (strongAttack ? 2 : 1), 0.4f);
             //GameObject gameObject = Instantiate(hitimpact, transform.position, Quaternion.identity) as GameObject;
@@ -297,6 +315,7 @@ public class enemy : MonoBehaviour
                         });
                         NoFall = true;
                         GameManagerScript.gmInstance.createArrows();
+                        Player2.instance.PlayerFall();
                         GameManagerScript.gmInstance.gameState = GameManagerScript.GameStates.FALLING;
                     }
                 }

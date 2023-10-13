@@ -18,12 +18,14 @@ public class GameManagerScript : MonoBehaviour
         PAUSED,
         UPGRADE,
         FALLING,
+        TUTORIAL,
         LOSE
     }
     public GameStates gameState;
     private List<GameObject> arrows = new List<GameObject>();
 
     private int arrowCount = 3;
+    public bool canVibrate = true;
     private void Awake()
     {
         if (gmInstance == null)
@@ -90,7 +92,11 @@ public class GameManagerScript : MonoBehaviour
                 arrows.RemoveAt(arrows.Count - 1);
                 Destroy(arrowPanel.transform.GetChild(arrowPanel.transform.childCount - 1).gameObject);
             }
-            else timerScript.setSliderValue(timerScript.getSliderValue() - 0.5f); ;
+            else
+            {
+                timerScript.setSliderValue(timerScript.getSliderValue() - 0.5f);
+                CameraShake.instance.Shake();
+            }
         }
         if (Input.GetKeyDown(KeyCode.A))
         {
@@ -99,7 +105,11 @@ public class GameManagerScript : MonoBehaviour
                 arrows.RemoveAt(arrows.Count - 1);
                 Destroy(arrowPanel.transform.GetChild(arrowPanel.transform.childCount - 1).gameObject);
             }
-            else timerScript.setSliderValue(timerScript.getSliderValue() - 0.5f);
+            else
+            {
+                timerScript.setSliderValue(timerScript.getSliderValue() - 0.5f);
+                CameraShake.instance.Shake();
+            }
         }
         if (Input.GetKeyDown(KeyCode.S))
         {
@@ -108,7 +118,11 @@ public class GameManagerScript : MonoBehaviour
                 arrows.RemoveAt(arrows.Count - 1);
                 Destroy(arrowPanel.transform.GetChild(arrowPanel.transform.childCount - 1).gameObject);
             }
-            else timerScript.setSliderValue(timerScript.getSliderValue() - 0.5f);
+            else
+            {
+                timerScript.setSliderValue(timerScript.getSliderValue() - 0.5f);
+                CameraShake.instance.Shake();
+            }
         }
         if (Input.GetKeyDown(KeyCode.D))
         {
@@ -117,7 +131,11 @@ public class GameManagerScript : MonoBehaviour
                 arrows.RemoveAt(arrows.Count - 1);
                 Destroy(arrowPanel.transform.GetChild(arrowPanel.transform.childCount - 1).gameObject);
             }
-            else timerScript.setSliderValue(timerScript.getSliderValue() - 0.5f);
+            else
+            {
+                timerScript.setSliderValue(timerScript.getSliderValue() - 0.5f);
+                CameraShake.instance.Shake();
+            }
         }
     }
 
@@ -141,7 +159,13 @@ public class GameManagerScript : MonoBehaviour
                         arrows.RemoveAt(arrows.Count - 1);
                         Destroy(arrowPanel.transform.GetChild(arrowPanel.transform.childCount - 1).gameObject);
                     }
-                    else timerScript.setSliderValue(timerScript.getSliderValue() - 0.5f);
+                    else
+                    {
+                        timerScript.setSliderValue(timerScript.getSliderValue() - 0.5f);
+                        CameraShake.instance.Shake();
+                        if(canVibrate)
+                            Handheld.Vibrate();
+                    }
                 }
                 //LEFT SWIPE
                 if (deltaPosition.x < -Screen.width * 0.1f)
@@ -151,7 +175,13 @@ public class GameManagerScript : MonoBehaviour
                         arrows.RemoveAt(arrows.Count - 1);
                         Destroy(arrowPanel.transform.GetChild(arrowPanel.transform.childCount - 1).gameObject);
                     }
-                    else timerScript.setSliderValue(timerScript.getSliderValue() - 0.5f);
+                    else
+                    {
+                        timerScript.setSliderValue(timerScript.getSliderValue() - 0.5f);
+                        CameraShake.instance.Shake();
+                        if (canVibrate)
+                            Handheld.Vibrate();
+                    }
                 }
                 //DOWN SWIPE
                 if (deltaPosition.y < -Screen.height * 0.1f)
@@ -161,7 +191,13 @@ public class GameManagerScript : MonoBehaviour
                         arrows.RemoveAt(arrows.Count - 1);
                         Destroy(arrowPanel.transform.GetChild(arrowPanel.transform.childCount - 1).gameObject);
                     }
-                    else timerScript.setSliderValue(timerScript.getSliderValue() - 0.5f);
+                    else
+                    {
+                        timerScript.setSliderValue(timerScript.getSliderValue() - 0.5f);
+                        CameraShake.instance.Shake();
+                        if (canVibrate)
+                            Handheld.Vibrate();
+                    }
                 }
                 //RIGHT SWIPE
                 if (deltaPosition.x > Screen.width * 0.1f)
@@ -171,7 +207,13 @@ public class GameManagerScript : MonoBehaviour
                         arrows.RemoveAt(arrows.Count - 1);
                         Destroy(arrowPanel.transform.GetChild(arrowPanel.transform.childCount - 1).gameObject);
                     }
-                    else timerScript.setSliderValue(timerScript.getSliderValue() - 0.5f);
+                    else
+                    {
+                        timerScript.setSliderValue(timerScript.getSliderValue() - 0.5f);
+                        CameraShake.instance.Shake();
+                        if (canVibrate)
+                            Handheld.Vibrate();
+                    }
                 }
             }
         }

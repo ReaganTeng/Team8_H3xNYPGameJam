@@ -9,6 +9,7 @@ public class MainMenuScript : MonoBehaviour
     [SerializeField] private GameObject pausePanel;
     [SerializeField] private GameObject pauseButton;
     [SerializeField] private GameObject tutorialPanel;
+    [SerializeField] private GameObject tutorialButton;
 
     private void Awake()
     {
@@ -16,7 +17,8 @@ public class MainMenuScript : MonoBehaviour
     }
     private IEnumerator fadeOut()
     {
-        scaleTextScript.StopScaling();                      
+        scaleTextScript.StopScaling();
+        tutorialButton.SetActive(false);
         while (mainMenuCanvasGroup.alpha > 0f)
         {
             mainMenuCanvasGroup.alpha -= Time.deltaTime / 2;
@@ -29,6 +31,10 @@ public class MainMenuScript : MonoBehaviour
     }
     public void StartGame()
     {
+        if (GameManagerScript.gmInstance.gameState != GameManagerScript.GameStates.START)
+        {
+            return;
+        }
         StartCoroutine(fadeOut());
     }
     private void Update()
@@ -49,8 +55,17 @@ public class MainMenuScript : MonoBehaviour
        GameManagerScript.gmInstance.gameState = GameManagerScript.GameStates.PLAYING;
     }
 
-    public void toggleTutorialPanel ()
+    public void toggleTutorialPanel()
     {
+        if(GameManagerScript.gmInstance.gameState == GameManagerScript.GameStates.TUTORIAL)
+        {
+            GameManagerScript.gmInstance.gameState = GameManagerScript.GameStates.START;
+        }
+        else
+        {
+
+            GameManagerScript.gmInstance.gameState = GameManagerScript.GameStates.TUTORIAL;
+        }
         tutorialPanel.SetActive(!tutorialPanel.activeSelf);
     }
 }

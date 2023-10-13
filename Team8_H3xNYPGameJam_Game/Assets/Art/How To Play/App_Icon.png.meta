@@ -1,12 +1,12 @@
 fileFormatVersion: 2
-guid: 1e77a2591f25a9847a33df7e89c93596
+guid: 885e24d12cbaf224b8f4cba1c9e3b652
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
   serializedVersion: 12
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 0
+    enableMipMap: 1
     sRGBTexture: 1
     linearTexture: 0
     fadeOut: 0
@@ -34,16 +34,16 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
-    wrapU: 1
-    wrapV: 1
+    wrapU: 0
+    wrapV: 0
     wrapW: 0
-  nPOTScale: 0
+  nPOTScale: 1
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 0
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -52,9 +52,9 @@ TextureImporter:
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
-  alphaIsTransparency: 1
+  alphaIsTransparency: 0
   spriteTessellationDetail: -1
-  textureType: 8
+  textureType: 0
   textureShape: 1
   singleChannelComponent: 0
   flipbookRows: 1
@@ -119,128 +119,20 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: iPhone
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: bob_Stop_6
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 88
-        width: 88
-        height: 88
-      alignment: 9
-      pivot: {x: 0.52295697, y: 0.17401305}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0c45b905791b0634ab0f5bd2c425c702
-      internalID: 1468302801
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: bob_Stop_7
-      rect:
-        serializedVersion: 2
-        x: 88
-        y: 88
-        width: 88
-        height: 88
-      alignment: 9
-      pivot: {x: 0.5321397, y: 0.19237857}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4efd38c8acfe32a4d9b248244f6c8528
-      internalID: -617370901
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: bob_Stop_8
-      rect:
-        serializedVersion: 2
-        x: 176
-        y: 88
-        width: 88
-        height: 88
-      alignment: 9
-      pivot: {x: 0.52295667, y: 0.20156123}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b1f536a60853a2e4f888d61a08c537a6
-      internalID: -1594635860
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: bob_Stop_9
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 88
-        height: 88
-      alignment: 9
-      pivot: {x: 0.5000001, y: 0.21533537}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c0844ca83cd92cb4ebee1df7634d349d
-      internalID: -1869079617
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
+    sprites: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: d8136aa7176a58543b89db230187d10a
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable:
-      bob_Stop_0: 420796019
-      bob_Stop_1: -1954629439
-      bob_Stop_10: -2002832974
-      bob_Stop_2: -1831070579
-      bob_Stop_3: -1244566219
-      bob_Stop_4: 367123530
-      bob_Stop_5: -1795694079
-      bob_Stop_6: 1468302801
-      bob_Stop_7: -617370901
-      bob_Stop_8: -1594635860
-      bob_Stop_9: -1869079617
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

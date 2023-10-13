@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-
+using DG.Tweening;
 public class enemyManeger : MonoBehaviour
 {
     enemy e = null;
@@ -36,21 +36,23 @@ public class enemyManeger : MonoBehaviour
         //ADD ENEMY AUDIO MANAGER
         SpawnEnemy.AddComponent<AudioSource>();
 
-      
 
-        SpawnEnemy.transform.localScale *= 1;
+        SpawnEnemy.transform.position *= 3;
+
+        SpawnEnemy.transform.localScale *= 3;
         SpawnEnemy.name = "Enemy";
 
 
-
-       // Instantiate(SpawnEnemy, new Vector3(0,.7f,0),Quaternion.identity);
         setEnemyStats();
+
+        // Instantiate(SpawnEnemy, new Vector3(0,.7f,0),Quaternion.identity);
+       
     }
 
     private void setEnemyStats()
     {
         int a = Random.Range(0, AllenemyType.Length);
-        e.SetEnemyStats(ES);
+        e.SetEnemyStats(AllenemyType[a]);
     }
     public void Start()
     {

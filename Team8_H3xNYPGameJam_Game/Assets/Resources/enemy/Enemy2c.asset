@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7255f9d947863247a86712d9f06fc7a, type: 3}
   m_Name: Enemy2c
   m_EditorClassIdentifier: 
-  speed: 0.8
-  Weight: 2
-  strength: 10
+  speed: 0.4
+  Weight: 2.5
+  strength: 1
   enemySprite: {fileID: -511329288, guid: 9ba503e68d79c4c47a12e88b67a1badc, type: 3}
   Enemy_name: Enemy2c
   ParryStart: 3
-  ParryEnd: 5
+  ParryEnd: 6
