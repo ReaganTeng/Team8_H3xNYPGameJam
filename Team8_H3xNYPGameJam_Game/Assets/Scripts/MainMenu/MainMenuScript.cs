@@ -8,6 +8,7 @@ public class MainMenuScript : MonoBehaviour
     [SerializeField] private TitleScript scaleTextScript;
     [SerializeField] private GameObject pausePanel;
     [SerializeField] private GameObject pauseButton;
+    [SerializeField] private GameObject tutorialPanel;
 
     private void Awake()
     {
@@ -47,7 +48,12 @@ public class MainMenuScript : MonoBehaviour
     public void onResumeButtonClicked()
     {
        pauseButton.SetActive(true);
-        pausePanel.SetActive(false);
+       pausePanel.SetActive(false);
        GameManagerScript.gmInstance.gameState = GameManagerScript.GameStates.PLAYING;
+    }
+
+    public void toggleTutorialPanel ()
+    {
+        tutorialPanel.SetActive(!tutorialPanel.activeSelf);
     }
 }
