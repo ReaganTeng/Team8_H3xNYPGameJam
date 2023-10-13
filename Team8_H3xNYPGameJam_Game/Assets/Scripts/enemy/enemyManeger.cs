@@ -31,8 +31,17 @@ public class enemyManeger : MonoBehaviour
         SpawnEnemy.AddComponent(typeof(SpriteRenderer));
         SpawnEnemy.AddComponent<SpriteMan>();
         SpawnEnemy.AddComponent<BoxCollider2D>().isTrigger=true;
+
+        //ADD ENEMY AUDIO MANAGER
+        SpawnEnemy.AddComponent<AudioSource>();
+
+      
+
         SpawnEnemy.transform.localScale *= 1;
         SpawnEnemy.name = "Enemy";
+
+
+
        // Instantiate(SpawnEnemy, new Vector3(0,.7f,0),Quaternion.identity);
         setEnemyStats();
     }
