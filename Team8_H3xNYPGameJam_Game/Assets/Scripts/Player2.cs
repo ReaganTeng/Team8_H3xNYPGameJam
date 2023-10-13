@@ -60,7 +60,7 @@ public class Player2 : MonoBehaviour
     {
         TrueOGPos = transform.position;
         startLocation = transform.position;
-        shopCanvas.gameObject.SetActive(false);
+        //shopCanvas.gameObject.SetActive(false);
         enemiesDefeated = 0;
 
 
@@ -93,6 +93,8 @@ public class Player2 : MonoBehaviour
 
     private void Update()
     {
+
+        EnemyTracker();
 
         if (!shopCanvas.gameObject.activeSelf || GameManagerScript.gmInstance.gameState== GameStates.PLAYING)
         {
