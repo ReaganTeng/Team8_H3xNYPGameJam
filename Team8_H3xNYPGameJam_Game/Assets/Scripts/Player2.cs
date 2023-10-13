@@ -22,7 +22,6 @@ public class Player2 : MonoBehaviour
     public float playerWeight;
     public TextMeshProUGUI playerWeightText;
     public float playerSpeed;
-    public TextMeshProUGUI playerSpeedText;
 
     public int enemiesDefeated;
     public int totalenemiesDefeated;
