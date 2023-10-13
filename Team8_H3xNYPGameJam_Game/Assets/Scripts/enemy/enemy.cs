@@ -248,7 +248,7 @@ public class enemy : MonoBehaviour
             //Destroy(gameObject, 0.7f);
             StopCoroutine("attackCD");
             Player2.instance.StopMoving();
-            Player2.instance.GotHit();
+            Player2.instance.hurt();
             bool NoFall = false;
             FallOrNo = targetTrans.transform.DOMoveY(Player2.instance.startingLocation().y - (strongAttack ? enemysStates.strength * 1.5f : enemysStates.strength) / Player2.instance.playerWeight, 1).OnUpdate(() =>
             {
@@ -270,7 +270,7 @@ public class enemy : MonoBehaviour
                     transform.DOMove(StartingPos, 1);
                     return;
                 }
-                Player2.instance.GotHit();
+                Player2.instance.hurt();
                 Player2.instance.updateStaringLoc();
                 StartingPos = new Vector3(Player2.instance.startingLocation().x, Player2.instance.startingLocation().y + targetTrans.size.y, Player2.instance.startingLocation().z);
                 Player2.instance.InstantMove();

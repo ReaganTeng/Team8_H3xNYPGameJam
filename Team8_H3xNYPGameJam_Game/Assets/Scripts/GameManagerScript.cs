@@ -64,38 +64,8 @@ public class GameManagerScript : MonoBehaviour
     {
         if (arrows.Count > 0)
         {
-            if (Input.GetKeyDown(KeyCode.W))
-            {
-                if (arrowPanel.transform.GetChild(arrowPanel.transform.childCount - 1).GetComponent<ArrowScript>().getDir() == ArrowScript.arrowDirection.UP)
-                {
-                    arrows.RemoveAt(arrows.Count - 1);
-                    Destroy(arrowPanel.transform.GetChild(arrowPanel.transform.childCount - 1).gameObject);
-                }
-            }
-            if (Input.GetKeyDown(KeyCode.A))
-            {
-                if (arrowPanel.transform.GetChild(arrowPanel.transform.childCount - 1).GetComponent<ArrowScript>().getDir() == ArrowScript.arrowDirection.LEFT)
-                {
-                    arrows.RemoveAt(arrows.Count - 1);
-                    Destroy(arrowPanel.transform.GetChild(arrowPanel.transform.childCount - 1).gameObject);
-                }
-            }
-            if (Input.GetKeyDown(KeyCode.S))
-            {
-                if (arrowPanel.transform.GetChild(arrowPanel.transform.childCount - 1).GetComponent<ArrowScript>().getDir() == ArrowScript.arrowDirection.DOWN)
-                {
-                    arrows.RemoveAt(arrows.Count - 1);
-                    Destroy(arrowPanel.transform.GetChild(arrowPanel.transform.childCount - 1).gameObject);
-                }
-            }
-            if (Input.GetKeyDown(KeyCode.D))
-            {
-                if (arrowPanel.transform.GetChild(arrowPanel.transform.childCount - 1).GetComponent<ArrowScript>().getDir() == ArrowScript.arrowDirection.RIGHT)
-                {
-                    arrows.RemoveAt(arrows.Count - 1);
-                    Destroy(arrowPanel.transform.GetChild(arrowPanel.transform.childCount - 1).gameObject);
-                }
-            }
+            ArrowInputsControlPC();
+            ArrowInputsControlMobile();
         }
         else
         {
@@ -110,5 +80,95 @@ public class GameManagerScript : MonoBehaviour
             });
         }
 
+    }
+
+
+    private void ArrowInputsControlPC()
+    {
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            if (arrowPanel.transform.GetChild(arrowPanel.transform.childCount - 1).GetComponent<ArrowScript>().getDir() == ArrowScript.arrowDirection.UP)
+            {
+                arrows.RemoveAt(arrows.Count - 1);
+                Destroy(arrowPanel.transform.GetChild(arrowPanel.transform.childCount - 1).gameObject);
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            if (arrowPanel.transform.GetChild(arrowPanel.transform.childCount - 1).GetComponent<ArrowScript>().getDir() == ArrowScript.arrowDirection.LEFT)
+            {
+                arrows.RemoveAt(arrows.Count - 1);
+                Destroy(arrowPanel.transform.GetChild(arrowPanel.transform.childCount - 1).gameObject);
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            if (arrowPanel.transform.GetChild(arrowPanel.transform.childCount - 1).GetComponent<ArrowScript>().getDir() == ArrowScript.arrowDirection.DOWN)
+            {
+                arrows.RemoveAt(arrows.Count - 1);
+                Destroy(arrowPanel.transform.GetChild(arrowPanel.transform.childCount - 1).gameObject);
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            if (arrowPanel.transform.GetChild(arrowPanel.transform.childCount - 1).GetComponent<ArrowScript>().getDir() == ArrowScript.arrowDirection.RIGHT)
+            {
+                arrows.RemoveAt(arrows.Count - 1);
+                Destroy(arrowPanel.transform.GetChild(arrowPanel.transform.childCount - 1).gameObject);
+            }
+        }
+    }
+
+
+    private void ArrowInputsControlMobile()
+    {
+       
+        // Check for swipe
+        if (Input.touchCount > 0)
+        {
+            Touch touch = Input.GetTouch(0);
+
+            if (touch.phase == TouchPhase.Moved)
+            {
+                Vector2 deltaPosition = touch.deltaPosition;
+                //UP SWIPE
+                if (deltaPosition.y > Screen.height * 0.1f)
+                {
+                    if (arrowPanel.transform.GetChild(arrowPanel.transform.childCount - 1).GetComponent<ArrowScript>().getDir() == ArrowScript.arrowDirection.UP)
+                    {
+                        arrows.RemoveAt(arrows.Count - 1);
+                        Destroy(arrowPanel.transform.GetChild(arrowPanel.transform.childCount - 1).gameObject);
+                    }
+                }
+                //LEFT SWIPE
+                if (deltaPosition.x < -Screen.width * 0.1f)
+                {
+                    if (arrowPanel.transform.GetChild(arrowPanel.transform.childCount - 1).GetComponent<ArrowScript>().getDir() == ArrowScript.arrowDirection.LEFT)
+                    {
+                        arrows.RemoveAt(arrows.Count - 1);
+                        Destroy(arrowPanel.transform.GetChild(arrowPanel.transform.childCount - 1).gameObject);
+                    }
+                }
+                //DOWN SWIPE
+                if (deltaPosition.y < -Screen.height * 0.1f)
+                {
+                    if (arrowPanel.transform.GetChild(arrowPanel.transform.childCount - 1).GetComponent<ArrowScript>().getDir() == ArrowScript.arrowDirection.DOWN)
+                    {
+                        arrows.RemoveAt(arrows.Count - 1);
+                        Destroy(arrowPanel.transform.GetChild(arrowPanel.transform.childCount - 1).gameObject);
+                    }
+                }
+                //RIGHT SWIPE
+                if (deltaPosition.x > Screen.width * 0.1f)
+                {
+                    if (arrowPanel.transform.GetChild(arrowPanel.transform.childCount - 1).GetComponent<ArrowScript>().getDir() == ArrowScript.arrowDirection.RIGHT)
+                    {
+                        arrows.RemoveAt(arrows.Count - 1);
+                        Destroy(arrowPanel.transform.GetChild(arrowPanel.transform.childCount - 1).gameObject);
+                    }
+                }
+            }
+        }
+      
     }
 }
