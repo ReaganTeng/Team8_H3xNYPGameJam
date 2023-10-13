@@ -42,6 +42,7 @@ public class Player2 : MonoBehaviour
     public playerState currentPlayerState = playerState.IDLE;
     playerState oldPlayerState;
 
+    Tween hit;
     Tween moving;
     public bool isBack = true;
 
@@ -256,9 +257,15 @@ public class Player2 : MonoBehaviour
         {
             currentPlayerState = playerState.DODGELEFTBACK;
         }
-       
-        transform.DOMove(startLocation, playerSpeed).OnComplete(() => { isBack = true;
+        hit = transform.DOMove(startLocation, playerSpeed).OnComplete(() => { isBack = true;
             currentPlayerState = playerState.IDLE;
+
+        hit.OnUpdate(() =>{
+            if (GameManagerScript.gmInstance.gameState == GameManagerScript.GameStates.FALLING)
+            {
+                hit.Kill();
+            }
+        });
         });
     }
 

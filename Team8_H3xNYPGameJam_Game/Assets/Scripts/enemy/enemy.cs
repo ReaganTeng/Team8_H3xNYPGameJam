@@ -131,7 +131,6 @@ public class enemy : MonoBehaviour
     {
         float Delay = 0.2f;
         strongAttack = (Random.Range(0, 2) == 0) ? true : false;
-        strongAttack = true;
         if (strongAttack)
         {
             GameObject HI = Instantiate(StrongIndicator, transform) as GameObject;
@@ -184,8 +183,9 @@ public class enemy : MonoBehaviour
     {
         if (strongAttack == true)
         {
-            tired = true;
+            //tired = true;
         }
+        sm.RunAnimation(StopAttacking, enemysStates.speed);
         transform.DOMove(StartingPos, enemysStates.speed).OnComplete(() =>
         {
             StartCoroutine("attackCD");

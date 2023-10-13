@@ -7,6 +7,8 @@ public class ArrowTimerScript : MonoBehaviour
 {
     [SerializeField] private Slider timerSlider;
     [SerializeField] private float maxSliderValue;
+    [SerializeField] private GameObject gameOverPanel;
+    [SerializeField] private GameObject pauseButton;
     private void OnEnable()
     {
         timerSlider.value = maxSliderValue;
@@ -21,5 +23,16 @@ public class ArrowTimerScript : MonoBehaviour
             yield return null;
         }
         GameManagerScript.gmInstance.gameState = GameManagerScript.GameStates.LOSE;
+        gameOverPanel.SetActive(true);
+        pauseButton.SetActive(false);
+        gameObject.SetActive(false);
+    }
+    public void setSliderValue(float val)
+    {
+        timerSlider.value = val;
+    }
+    public float getSliderValue()
+    {
+        return timerSlider.value;
     }
 }

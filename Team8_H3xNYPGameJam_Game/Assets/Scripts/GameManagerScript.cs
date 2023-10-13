@@ -10,6 +10,7 @@ public class GameManagerScript : MonoBehaviour
     public static GameManagerScript gmInstance;
     [SerializeField] private GameObject arrowPrefab;
     [SerializeField] private GameObject arrowPanel;
+    private ArrowTimerScript timerScript;
     [HideInInspector] public enum GameStates
     {
         START,
@@ -33,16 +34,12 @@ public class GameManagerScript : MonoBehaviour
     void Start()
     {
         gameState = GameStates.START;
+        timerScript = arrowPanel.GetComponent<ArrowTimerScript>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-
-            createArrows();
-        }
         if (gameState == GameStates.FALLING)
         {
             CheckArrowInputs();
@@ -93,6 +90,7 @@ public class GameManagerScript : MonoBehaviour
                 arrows.RemoveAt(arrows.Count - 1);
                 Destroy(arrowPanel.transform.GetChild(arrowPanel.transform.childCount - 1).gameObject);
             }
+            else timerScript.setSliderValue(timerScript.getSliderValue() - 0.5f); ;
         }
         if (Input.GetKeyDown(KeyCode.A))
         {
@@ -101,6 +99,7 @@ public class GameManagerScript : MonoBehaviour
                 arrows.RemoveAt(arrows.Count - 1);
                 Destroy(arrowPanel.transform.GetChild(arrowPanel.transform.childCount - 1).gameObject);
             }
+            else timerScript.setSliderValue(timerScript.getSliderValue() - 0.5f);
         }
         if (Input.GetKeyDown(KeyCode.S))
         {
@@ -109,6 +108,7 @@ public class GameManagerScript : MonoBehaviour
                 arrows.RemoveAt(arrows.Count - 1);
                 Destroy(arrowPanel.transform.GetChild(arrowPanel.transform.childCount - 1).gameObject);
             }
+            else timerScript.setSliderValue(timerScript.getSliderValue() - 0.5f);
         }
         if (Input.GetKeyDown(KeyCode.D))
         {
@@ -117,6 +117,7 @@ public class GameManagerScript : MonoBehaviour
                 arrows.RemoveAt(arrows.Count - 1);
                 Destroy(arrowPanel.transform.GetChild(arrowPanel.transform.childCount - 1).gameObject);
             }
+            else timerScript.setSliderValue(timerScript.getSliderValue() - 0.5f);
         }
     }
 
@@ -140,6 +141,7 @@ public class GameManagerScript : MonoBehaviour
                         arrows.RemoveAt(arrows.Count - 1);
                         Destroy(arrowPanel.transform.GetChild(arrowPanel.transform.childCount - 1).gameObject);
                     }
+                    else timerScript.setSliderValue(timerScript.getSliderValue() - 0.5f);
                 }
                 //LEFT SWIPE
                 if (deltaPosition.x < -Screen.width * 0.1f)
@@ -149,6 +151,7 @@ public class GameManagerScript : MonoBehaviour
                         arrows.RemoveAt(arrows.Count - 1);
                         Destroy(arrowPanel.transform.GetChild(arrowPanel.transform.childCount - 1).gameObject);
                     }
+                    else timerScript.setSliderValue(timerScript.getSliderValue() - 0.5f);
                 }
                 //DOWN SWIPE
                 if (deltaPosition.y < -Screen.height * 0.1f)
@@ -158,6 +161,7 @@ public class GameManagerScript : MonoBehaviour
                         arrows.RemoveAt(arrows.Count - 1);
                         Destroy(arrowPanel.transform.GetChild(arrowPanel.transform.childCount - 1).gameObject);
                     }
+                    else timerScript.setSliderValue(timerScript.getSliderValue() - 0.5f);
                 }
                 //RIGHT SWIPE
                 if (deltaPosition.x > Screen.width * 0.1f)
@@ -167,6 +171,7 @@ public class GameManagerScript : MonoBehaviour
                         arrows.RemoveAt(arrows.Count - 1);
                         Destroy(arrowPanel.transform.GetChild(arrowPanel.transform.childCount - 1).gameObject);
                     }
+                    else timerScript.setSliderValue(timerScript.getSliderValue() - 0.5f);
                 }
             }
         }

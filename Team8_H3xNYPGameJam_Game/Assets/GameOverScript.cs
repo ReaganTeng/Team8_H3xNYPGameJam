@@ -20,6 +20,19 @@ public class GameOverScript : MonoBehaviour
             scoreDigit.sprite = numbersList[digit];
             scoreDigit.GetComponent<RectTransform>().sizeDelta = new Vector2(88, 96);
         }
+        // setting new high score
+        if(Player2.instance.totalenemiesDefeated > PlayerPrefs.GetFloat("Highscore", 0))
+        {
+            PlayerPrefs.SetFloat("Highscore", Player2.instance.totalenemiesDefeated);
+        }
+        string highScoreLength = PlayerPrefs.GetFloat("Highscore", 0).ToString();
+        for (int i = 0; i < highScoreLength.Length; i++)
+        {
+            int digit = int.Parse(highScoreLength[i].ToString());
+            Image scoreDigit = Instantiate(defaultImg, highScoreImg.transform);
+            scoreDigit.sprite = numbersList[digit];
+            scoreDigit.GetComponent<RectTransform>().sizeDelta = new Vector2(88, 96);
+        }
     }
     public void OnRestartButtonClicked()
     {

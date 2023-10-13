@@ -33,15 +33,11 @@ public class MainMenuScript : MonoBehaviour
     }
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.I))
-        {
-        StartCoroutine(fadeOut());
-
-        }
     }
     public void onPauseButtonClicked()
     {
         GameManagerScript.gmInstance.gameState = GameManagerScript.GameStates.PAUSED;
+        Time.timeScale = 0;
         pauseButton.SetActive(false);
         pausePanel.SetActive(true);
     }
@@ -49,6 +45,7 @@ public class MainMenuScript : MonoBehaviour
     {
        pauseButton.SetActive(true);
        pausePanel.SetActive(false);
+        Time.timeScale = 1;
        GameManagerScript.gmInstance.gameState = GameManagerScript.GameStates.PLAYING;
     }
 
