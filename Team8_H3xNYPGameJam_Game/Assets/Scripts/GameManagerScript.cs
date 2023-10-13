@@ -72,7 +72,8 @@ public class GameManagerScript : MonoBehaviour
             arrowPanel.SetActive(false);
             if (arrowCount <= 15)
                 arrowCount++;
-            gameState = GameStates.PLAYING; 
+            gameState = GameStates.PLAYING;
+            Player2.instance.Recover();
             Player2.instance.transform.DOMove(Player2.instance.startingLocation(), 1).OnComplete(() => {
                 Player2.instance.isBack = true;
                 Player2.instance.currentPlayerState = playerState.IDLE;

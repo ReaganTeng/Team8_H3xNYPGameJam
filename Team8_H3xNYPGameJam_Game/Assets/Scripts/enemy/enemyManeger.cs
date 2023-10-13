@@ -24,7 +24,8 @@ public class enemyManeger : MonoBehaviour
     {
         if(e != null)
         {
-           Destroy(e); e = null;
+           Destroy(e.gameObject);
+            e = null;
         }
         GameObject SpawnEnemy = new GameObject();
         e= SpawnEnemy.AddComponent(typeof(enemy)) as enemy;
@@ -49,7 +50,7 @@ public class enemyManeger : MonoBehaviour
     private void setEnemyStats()
     {
         int a = Random.Range(0, AllenemyType.Length);
-        e.SetEnemyStats(ES);
+        e.SetEnemyStats(AllenemyType[a]);
     }
     public void Start()
     {

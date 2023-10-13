@@ -12,6 +12,7 @@ public class UpgradeManager : MonoBehaviour
     Player2 playerScript;
     AudioSource AS;
     public AudioClip chaChingSound;
+    public DigitToImageReplacer[] DTIR;
     //AS.Play();
 
     private void Awake()
@@ -53,5 +54,9 @@ public class UpgradeManager : MonoBehaviour
 
         playerScript.playerStrengthText.text = playerScript.playerStrength.ToString();
         playerScript.playerWeightText.text = playerScript.playerWeight.ToString();
+        for (int i = 0; i<DTIR.Length;i++)
+        {
+            DTIR[i].ChangeToImg();
+        }
     }
 }

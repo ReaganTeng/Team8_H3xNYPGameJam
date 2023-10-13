@@ -99,9 +99,7 @@ public class Player2 : MonoBehaviour
     private void Update()
     {
 
-        EnemyTracker();
-
-        if (!shopCanvas.gameObject.activeSelf || GameManagerScript.gmInstance.gameState== GameStates.PLAYING)
+        if (!shopCanvas.gameObject.activeSelf && GameManagerScript.gmInstance.gameState== GameStates.PLAYING)
         {
             if (isBack)
             {
@@ -135,13 +133,15 @@ public class Player2 : MonoBehaviour
     //
 
     //TRACK HOW MANY ENEMIES ARE DEFEATED
-    private void EnemyTracker()
+    public  bool EnemyTracker()
     {
-        if (enemiesDefeated >= 3)
+        if (enemiesDefeated >= 1)
         {
             shopCanvas.gameObject.SetActive(true);
+            return true;
 
         }
+        return false;
     }
 
 
@@ -302,6 +302,9 @@ public class Player2 : MonoBehaviour
         }
         currentPlayerState = playerState.HURT;
         sm.RunAnimation(hurtAnim, 1);
+        PlayRandomSound(hurtSounds);
+
+
         Debug.Log("Hurt");
         
     }
